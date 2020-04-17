@@ -2,12 +2,19 @@ import {Net} from './net';
 import {environment} from '../../environments/environment';
 import {Account} from './account';
 import {Area} from './world/area';
+import {View} from './world/view/view';
+import {Box} from './world/model/box';
+import {V_ground} from './world/view/v_ground';
 
 export class Worlds{
 
   static worlds = [] ;
 
   static init(callBack){
+
+    View.init([
+      new V_ground()
+    ]);
 
     Net.http.get(`${environment.backURL}/readWorlds`, {responseType:"json", headers: Net.headers}).subscribe((res)=>{
 
@@ -20,6 +27,18 @@ export class Worlds{
       if ( worldJson !== null ){
         Worlds.worlds.push(worldJson);
       }
+    });
+
+    Net.socket.on('instructions', function (instructions){
+
+      for ( let instruction of instructions ){
+        if ( instruction.key === "add" ){
+          Box.adds( instruction.boxes, function(boxes) {
+            View.adds(boxes);
+          });
+        }
+      }
+
     });
 
   }
@@ -37,10 +56,11 @@ export class Worlds{
       Net.socket.emit('enterInWorld',  world, Account.user.id, function(res) {
         if ( res ){
           Area.world = world ;
-
+          View.reset();
           callBack(res);
         }
       });
+
     }
 
   }

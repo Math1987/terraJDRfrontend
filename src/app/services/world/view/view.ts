@@ -1,4 +1,5 @@
 import {Area} from '../area';
+import {Net} from '../../net' ;
 
 export class View{
 
@@ -7,11 +8,18 @@ export class View{
   static moveControls = null ;
   static selectFunction = null ;
 
-  static init(){
+  static init(patterns){
+    View.PATTERNS = patterns ;
     View.initRounds();
     View.initDrawer();
+
+    for ( let pattern of View.PATTERNS ){
+      pattern.init_();
+    }
   }
-  static reset(){}
+  static reset(){
+    View.setRayon(View.rayon);
+  }
   static setRayon(rayon){
 
     if ( View.ROUND_MATRIX !== null ) {
@@ -56,24 +64,57 @@ export class View{
     }
 
   }
+  static goOn(x,y){
+    if ( Area.world !== null ) {
+      let newX = Math.max(0, Math.min(Area.world.width - 1, x));
+      let newY = Math.max(0, Math.min(Area.world.height - 1, y));
+      View.move(newX - View.x, newY - View.y);
+    }
+  }
+  static adds(boxes){
+    console.log(boxes);
 
+    /*let delet = [] ;
+    for ( let b of Box.BOXES){
+      delet.push(b);
+    }*/
+    for ( let r = 0 ; r < View.ROUND_MATRIX[View.rayon+1].length ; r ++ ) {
+      let round = View.ROUND_MATRIX[View.rayon+1][r] ;
+      for (let box of boxes) {
+        if ('x' in box && 'y' in box
+          &&  box.x - View.x == round.x && box.y - View.y === round.y ) {
+
+          let vBox = View.build(box);
+          if ( vBox !== null ){
+            View.ROUNDS[r].push(vBox);
+          }
+
+        }
+      }
+    }
+    /*View.focused = View.ROUNDS[0];
+    for ( let delBox of delet ){
+      //View.removeByPosition(delBox.values.x, delBox.values.y);
+    }*/
+
+
+  }
 
   static TIME = {last:0, elapsed:0, animator:0} ;
-  private static SRC_IMAGE = './../../../../assets/images';
-  static ROUND_MATRIX = null ;
-  private static VIEW_MATRIX = null ;
-  private static VBOX_MODELS = null ;
-  static ROUNDS = null ;
-  private static VIEWS = null ;
-  private static PATTERNS = null ;
-  private static RATIOY = 0.59 ;
+  protected static SRC_IMAGE = './../../../../assets/images';
+  protected static ROUND_MATRIX = null ;
+  protected static VIEW_MATRIX = null ;
+  protected static VBOX_MODELS = null ;
+  protected static ROUNDS = null ;
+  protected static VIEWS = null ;
+  protected static PATTERNS = null ;
+  protected static RATIOY = 0.59 ;
 
-  private static x = 0 ;
-  private static y = 0 ;
-  private static rayon = 5 ;
-  private static focused = null ;
+  protected static x = 0 ;
+  protected static y = 0 ;
+  protected static rayon = 5 ;
+  protected static focused = null ;
   private static draw = null ;
-
 
   private static initRounds(){
     View.ROUND_MATRIX = [] ;
@@ -163,7 +204,16 @@ export class View{
 
     setInterval(View.draw, 50);
   }
-  static move(x:number,y:number){
+  private static build(box){
+    let pattern = null ;
+    for ( let pat of View.PATTERNS ){
+      if ( pat.readKey() === box.key ){
+        pattern = pat ;
+      }
+    }
+    return pattern ;
+  }
+  private static move(x:number,y:number){
 
     View.x += x ;
     View.y += y ;
@@ -216,7 +266,7 @@ export class View{
         }
       }
       View.focused = View.ROUNDS[0];
-      //Net.socket.emit('readByPositions', Area.world.name, askPositions, function(res) {});
+      Net.socket.emit('readPositions', askPositions, function(res) {});
     }
 
   }
@@ -270,7 +320,18 @@ export class View{
   private static drawFocus(){}
 
   constructor(){}
-  draw(context, size){}
+  init_(){}
+  draw(context, size){
+    if ( this.getImage() !== null ){
+      context.drawImage(this.getImage(),-size/2, -size/2, size, size);
+    }
+  }
+  getImage(){
+    return null ;
+  }
+  getZ(){
+    return 0 ;
+  }
 
 
 

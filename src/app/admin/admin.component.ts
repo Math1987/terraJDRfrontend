@@ -40,6 +40,8 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
   enterInWorld(world){
     Worlds.enterIn(world, function(res) {
+      View.goOn(0,0);
+      console.log('enter in world for admin');
     });
   }
   isFocus(world){

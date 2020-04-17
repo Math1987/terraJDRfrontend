@@ -20,9 +20,6 @@ export class NavComponent implements OnInit{
     if ( Account.user === null ){
       this.router.navigate(['/login']);
     }else{
-
-      View.init();
-
       Worlds.init(function(worlds) {});
     }
 
