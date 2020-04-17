@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-sm bg-light">
+
+  <ul class="nav navbar-nav ml-0">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/u/jeu">mes mondes</a>
+    </li>
+    <li *ngIf="isAdmin()" class="nav-item">
+      <a class="nav-link" routerLink="/u/admin">admin</a>
+    </li>
+  </ul>
+
+  <ul class="nav navbar-nav ml-auto">
+
+    <li class="nav-item">
+      <div class="nav-link">{{getUserPseudo()}}</div>
+    </li>
+    <li class="nav-item">
+      <div class="nav-link"  (click)="deconnexion()">X</div>
+    </li>
+
+  </ul>
+
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+
