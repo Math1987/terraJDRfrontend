@@ -1,1 +1,14 @@
-<p>game works!</p>
+<div class="jumbotron text-center">
+  <h3>choisis le monde dans lequel tu marquera l'Histoire de Terra.</h3>
+  <div class="worlds" >
+    <div *ngFor="let world of getWorlds()" class="list-group-item list-group-item-success">
+      <h3 [ngClass]="{
+     'btn': true,
+     'btn-dark': !isFocus(world),
+     'btn-success': isFocus(world)
+
+      }" (click)="enterInWorld(world)">{{world.name}}</h3>
+
+    </div>
+  </div>
+</div>

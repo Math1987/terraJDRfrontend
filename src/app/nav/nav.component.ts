@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Account} from '../services/account';
 import {Router} from '@angular/router';
 import {Worlds} from '../services/worlds';
+import {View} from '../services/world/view/view';
+
 
 @Component({
   selector: 'app-nav',
@@ -15,11 +17,13 @@ export class NavComponent implements OnInit{
   ) { }
 
   ngOnInit() {
-    console.log('nav init');
     if ( Account.user === null ){
       this.router.navigate(['/login']);
     }else{
-      Worlds.init();
+
+      View.init();
+
+      Worlds.init(function(worlds) {});
     }
 
   }
