@@ -23,6 +23,7 @@ export class Worlds{
       Worlds.worlds = res ;
       Area.init();
       if ( Area.world !== null ){
+
         Worlds.enterIn( Area.world, function(enterInRes) {
           callBack(res);
         });
@@ -58,24 +59,13 @@ export class Worlds{
 
   static enterIn(world, callBack){
 
-    console.log('enterIn world');
-
-    if ( Area.world !== null ){
-
-      Worlds.getOut( function(res) {
-        Worlds.enterIn(world, callBack);
-      });
-
-    }else if (  Area.world === null || world.name !== Area.world.name ){
-      Net.socket.emit('enterInWorld',  world, Account.user.id, function(res) {
-        if ( res ){
-          Area.setWorld(world);
-          View.reset();
-          callBack(res);
-        }
-      });
-
-    }
+    Net.socket.emit('enterInWorld',  world, Account.user.id, function(res) {
+      if ( res ){
+        Area.setWorld(world);
+        View.reset();
+        callBack(res);
+      }
+    });
 
   }
   static getOut(callBack){

@@ -20,6 +20,8 @@ import { GameComponent } from './game/game.component';
 import { NavComponent } from './nav/nav.component';
 import { AdminComponent } from './admin/admin.component';
 import { MapComponent } from './game/map/map.component';
+import { CharacterComponent } from './game/character/character.component';
+import { WorldsComponent } from './game/worlds/worlds.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { MapComponent } from './game/map/map.component';
     GameComponent,
     NavComponent,
     AdminComponent,
-    MapComponent
+    MapComponent,
+    CharacterComponent,
+    WorldsComponent
   ],
   imports: [
     BrowserModule,

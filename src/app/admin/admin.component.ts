@@ -29,7 +29,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
       NavComponent.setInitCallBack(function(worlds) {
         if ( Area.world !== null ){
-            View.goOn(Area.world.width/2,Area.world.height/2);
+          self.runView();
         }
       });
 
@@ -43,9 +43,10 @@ export class AdminComponent implements OnInit, OnDestroy {
     return Worlds.worlds;
   }
   enterInWorld(world){
+    const self = this;
     if ( Area.world === null || Area.world.name !== world.name ) {
       Worlds.enterIn(world, function(res) {
-        View.goOn(Area.world.width / 2, Area.world.height / 2);
+        self.runView();
       });
     }
   }
@@ -55,6 +56,13 @@ export class AdminComponent implements OnInit, OnDestroy {
     }else{
       return false ;
     }
+  }
+
+  runView(){
+    View.moveControls = function(x,y,callBack){
+      callBack('true');
+    };
+    View.goOn(Area.world.width/2,Area.world.height/2);
   }
 
 

@@ -15,6 +15,7 @@ export class View{
     View.initRounds();
     View.initDrawer();
     View.initControls();
+    View.initSelection();
 
     for ( let pattern of View.PATTERNS ){
       pattern.init_();
@@ -126,7 +127,7 @@ export class View{
   private static moverToRight: B_mover = null ;
   private static moverBottomRight: B_mover = null ;
   private static moverBottomLeft: B_mover = null ;
-
+  private static selectPosition = null ;
 
   protected static x = 0 ;
   protected static y = 0 ;
@@ -214,7 +215,6 @@ export class View{
       View.TIME.animator += View.TIME.elapsed ;
 
       if ( View.canvasWorld !== null ){
-        console.log('drawing world');
         View.drawWorld();
         View.drawFocus();
       }
@@ -250,6 +250,46 @@ export class View{
     View.moverBottomLeft  = new B_mover(-Math.PI * 0.75, function() {
       moveHere(-1,0);
     }) ;
+
+  }
+  private static initSelection(){
+
+    const self = this ;
+
+    View.selectPosition = function(event) {
+
+
+      if ( self.canvasWorld !== null ){
+        let px = event.clientX - self.canvasWorld.getBoundingClientRect().left ;
+        let py = event.clientY - self.canvasWorld.getBoundingClientRect().top ;
+
+
+        if ( px >= 0 && px <= self.canvasWorld.clientWidth + 10000
+          && py >= 0 && py <= self.canvasWorld.clientHeight + 10000 ) {
+
+          let size = View.canvasWorld.clientWidth / View.rayon / 2;
+
+          let caseX = Math.floor(((px - View.canvasWorld.clientWidth / 2) / size + 0.5) - (py - View.canvasWorld.clientHeight / 2) / size / View.RATIOY);
+          let caseY = Math.floor((py - View.canvasWorld.clientHeight / 2) / size / View.RATIOY + ((px - View.canvasWorld.clientWidth / 2) / size + 0.5));
+
+          for (let i = 0; i < View.VIEWS.length; i++) {
+            let view = View.VIEW_MATRIX[View.rayon][i];
+            if (view.x == caseX && view.y == caseY) {
+              self.focused = View.VIEWS[i];
+              View.focused = self.focused ;
+
+              if ( self.selectFunction !== null ){
+                self.selectFunction(self.focused);
+              }
+
+              break ;
+            }
+          }
+
+        }
+      }
+    };
+    document.addEventListener('mousedown', View.selectPosition);
 
   }
   private static build(box){

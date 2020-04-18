@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
      console.log('init login');
 
     if (Account.user !== null) {
-      this.router.navigate(['/u']);
+      this.router.navigate(['/u/jeu']);
     }else{
       Area.reset();
     }
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
 
         Account.create( this.formCreate.value.email, this.formCreate.value.password, this.formCreate.value.pseudo, function(res) {
           if ( res !== null ){
-            self.router.navigate(['/u']);
+            self.router.navigate(['/u/jeu']);
           }else{
             alert('erreur de connexion.');
           }

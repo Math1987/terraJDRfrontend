@@ -6,6 +6,9 @@ import {GameComponent} from './game/game.component';
 import {NavComponent} from './nav/nav.component';
 import {AdminComponent} from './admin/admin.component';
 import {MapComponent} from './game/map/map.component';
+import {CharacterComponent} from './game/character/character.component';
+import {Worlds} from './services/worlds';
+import {WorldsComponent} from './game/worlds/worlds.component';
 
 
 const routes: Routes = [
@@ -15,7 +18,10 @@ const routes: Routes = [
       {path:"", component:GameComponent},
       {path:"admin", component:AdminComponent},
       {path:"jeu", component:GameComponent, children:[
-          {path:"carte", component:MapComponent}
+          {path:"", component:WorldsComponent},
+          {path:"mondes", component:WorldsComponent},
+          {path:"carte", component:MapComponent},
+          {path:"perso", component:CharacterComponent}
         ]}
     ]},
   {path:"**", redirectTo:"login", pathMatch:"full"}

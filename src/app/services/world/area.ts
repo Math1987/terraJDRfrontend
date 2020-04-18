@@ -8,13 +8,18 @@ export class Area{
   static character = null ;
 
   static init(){
+
     if ( localStorage.getItem("world")){
       Area.world = JSON.parse(localStorage.getItem("world")) ;
+      if ( localStorage.getItem("character")){
+        Area.character = JSON.parse(localStorage.getItem("character")) ;
+      }
     }
   }
   static reset(){
     Area.world = null ;
-    localStorage.removeItem("world");
+    Area.leaveWorld();
+    Area.leaveCharacter();
   }
 
   static setWorld(world){
@@ -36,7 +41,7 @@ export class Area{
 
   static setCharacter(character){
     Area.character = character ;
-    localStorage.setItem("character", character);
+    localStorage.setItem("character", JSON.stringify(character));
   }
   static leaveCharacter(){
     Area.character = null ;

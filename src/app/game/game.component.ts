@@ -22,12 +22,6 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
 
-    const self = this ;
-
-    NavComponent.setInitCallBack(function(worlds) {
-      GameComponent.initialized = true ;
-
-    });
   }
   isInitialized(){
     return GameComponent.initialized;
@@ -68,7 +62,8 @@ export class GameComponent implements OnInit {
     console.log(canvas);
 
     Area.setCharacter(character);
-    this.router.navigate(['u/jeu/carte']);
+
+    this.router.navigate(['u/jeu/carte'] );
 
   }
   isFocus(world){
