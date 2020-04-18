@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Net} from '../services/net';
 import {Account} from '../services/account';
+import {Area} from '../services/world/area';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,8 @@ export class LoginComponent implements OnInit {
 
     if (Account.user !== null) {
       this.router.navigate(['/u']);
+    }else{
+      Area.reset();
     }
 
   }

@@ -1,5 +1,7 @@
 import {Area} from '../area';
 import {Net} from '../../net' ;
+import {B_mover} from './view_mover';
+import {Box} from './../model/box';
 
 export class View{
 
@@ -12,6 +14,7 @@ export class View{
     View.PATTERNS = patterns ;
     View.initRounds();
     View.initDrawer();
+    View.initControls();
 
     for ( let pattern of View.PATTERNS ){
       pattern.init_();
@@ -64,6 +67,9 @@ export class View{
     }
 
   }
+  static setCanvasWorld(canvas){
+    View.canvasWorld = canvas ;
+  }
   static goOn(x,y){
     if ( Area.world !== null ) {
       let newX = Math.max(0, Math.min(Area.world.width - 1, x));
@@ -72,12 +78,11 @@ export class View{
     }
   }
   static adds(boxes){
-    console.log(boxes);
 
-    /*let delet = [] ;
+    let delet = [] ;
     for ( let b of Box.BOXES){
       delet.push(b);
-    }*/
+    }
     for ( let r = 0 ; r < View.ROUND_MATRIX[View.rayon+1].length ; r ++ ) {
       let round = View.ROUND_MATRIX[View.rayon+1][r] ;
       for (let box of boxes) {
@@ -91,11 +96,18 @@ export class View{
 
         }
       }
+      for ( let i = delet.length-1 ; i >= 0 ; i -- ){
+        let delBox = delet[i];
+        if ( 'x' in delBox && 'y' in delBox && delBox.x == (View.x + round.x) && delBox.y == (View.y + round.y)){
+          delet.splice(i,1);
+        }
+      }
     }
-    /*View.focused = View.ROUNDS[0];
+
+    View.focused = View.ROUNDS[0];
     for ( let delBox of delet ){
-      //View.removeByPosition(delBox.values.x, delBox.values.y);
-    }*/
+      Box.removeByPosition(delBox.x, delBox.y);
+    }
 
 
   }
@@ -109,6 +121,12 @@ export class View{
   protected static VIEWS = null ;
   protected static PATTERNS = null ;
   protected static RATIOY = 0.59 ;
+
+  private static moverTopLeft: B_mover = null;
+  private static moverToRight: B_mover = null ;
+  private static moverBottomRight: B_mover = null ;
+  private static moverBottomLeft: B_mover = null ;
+
 
   protected static x = 0 ;
   protected static y = 0 ;
@@ -196,6 +214,7 @@ export class View{
       View.TIME.animator += View.TIME.elapsed ;
 
       if ( View.canvasWorld !== null ){
+        console.log('drawing world');
         View.drawWorld();
         View.drawFocus();
       }
@@ -203,6 +222,35 @@ export class View{
     };
 
     setInterval(View.draw, 50);
+  }
+  private static initControls(){
+
+    const self = this ;
+
+    function moveHere(x,y){
+      if ( self.moveControls !== null ){
+        self.moveControls(x,y, function(res) {
+          if ( res !== null ){
+            self.move(x,y);
+          }
+        });
+      }else{
+        self.move(x,y);
+      }
+    }
+    View.moverTopLeft = new B_mover(-Math.PI / 4, function() {
+      moveHere(0,-1);
+    }) ;
+    View.moverToRight = new B_mover(Math.PI / 4, function() {
+      moveHere(1,0);
+    }) ;
+    View.moverBottomRight  = new B_mover(Math.PI * 0.75, function() {
+      moveHere(0,1);
+    }) ;
+    View.moverBottomLeft  = new B_mover(-Math.PI * 0.75, function() {
+      moveHere(-1,0);
+    }) ;
+
   }
   private static build(box){
     let pattern = null ;
@@ -266,7 +314,10 @@ export class View{
         }
       }
       View.focused = View.ROUNDS[0];
-      Net.socket.emit('readPositions', askPositions, function(res) {});
+      if ( askPositions.length > 0 ){
+        Net.socket.emit('readPositions', askPositions, function(res) {});
+      }
+
     }
 
   }
@@ -315,9 +366,24 @@ export class View{
     }
     context.restore();
 
+    context.fillStyle = "gray";
+    context.textAlign = "left" ;
+    context.font = `${size*0.5}px Arial`;
+    context.fillText(`${View.x}x,${View.y}y`, size*1.8,size*0.5);
+
+    size*=0.75;
+
+    View.moverTopLeft.draw(View.canvasWorld, 0, 0, size, size, {style:"white"});
+    View.moverToRight.draw(View.canvasWorld, View.canvasWorld.width-size*2, 0, size, size, {style:"white"});
+
+    View.moverBottomLeft.draw(View.canvasWorld, 0, View.canvasWorld.height-size*2, size, size, {style:"white"});
+    View.moverBottomRight.draw(View.canvasWorld, View.canvasWorld.width-size*2, View.canvasWorld.height-size*2, size, size, {style:"white"});
+
 
   }
   private static drawFocus(){}
+
+
 
   constructor(){}
   init_(){}

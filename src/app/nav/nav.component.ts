@@ -3,6 +3,8 @@ import {Account} from '../services/account';
 import {Router} from '@angular/router';
 import {Worlds} from '../services/worlds';
 import {View} from '../services/world/view/view';
+import {Characters} from '../services/characters';
+import {Area} from '../services/world/area';
 
 
 @Component({
@@ -12,6 +14,9 @@ import {View} from '../services/world/view/view';
 })
 export class NavComponent implements OnInit{
 
+  static functionInit = null ;
+  static initialized = false ;
+
   constructor(
     private router: Router
   ) { }
@@ -20,9 +25,23 @@ export class NavComponent implements OnInit{
     if ( Account.user === null ){
       this.router.navigate(['/login']);
     }else{
-      Worlds.init(function(worlds) {});
-    }
+      Worlds.init(function(worlds) {
+        Characters.init(function(characters) {
+          NavComponent.initialized = true ;
+          if ( NavComponent.functionInit !== null ){
+            NavComponent.functionInit();
+          }
+        });
+      });
 
+    }
+  }
+  static setInitCallBack(callBackFunction){
+    if ( NavComponent.initialized ){
+      callBackFunction();
+    }else{
+      NavComponent.functionInit = callBackFunction;
+    }
   }
 
 
@@ -38,6 +57,7 @@ export class NavComponent implements OnInit{
   }
   deconnexion(){
     Account.deconnexion();
+    Area.reset();
     this.router.navigate(['/login']);
   }
 

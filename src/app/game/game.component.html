@@ -1,4 +1,4 @@
-<div class="jumbotron text-center">
+<div *ngIf="getCharacter() === null" class="jumbotron text-center">
   <h3>choisis le monde dans lequel tu marquera l'Histoire de Terra.</h3>
   <div class="worlds" >
     <div *ngFor="let world of getWorlds()" class="list-group-item list-group-item-success">
@@ -11,4 +11,63 @@
 
     </div>
   </div>
+
+  <div *ngIf="isInitialized() && getWorld() && getCharacters().length <= 0" class="list-group-item list-group-item-success">
+    <h3>crée ton personnage</h3>
+    <div class="list-group-item list-group-item-success">
+      <div class="list-group-item-success">
+        <h5>nom:</h5>
+        <input id="createName">
+      </div>
+      <div class="list-group-item-success">
+        <h5>sexe:</h5>
+        <form name ="sexe">
+          <input type="radio" name="checker" value="Masculin" checked="checked"/>Masculin<br />
+          <input type="radio" name="checker" value="Féminin"/>Féminin<br />
+        </form>
+
+      </div>
+      <div class="list-group-item-success">
+        <h5>race:</h5>
+        <form name ="race">
+          <input type="radio" name="checker" value="Humain" checked="checked"/>Humain<br />
+          <input type="radio" name="checker" value="Nain"/>Nain<br />
+          <input type="radio" name="checker" value="Vampire"/>Vampire<br />
+          <input type="radio" name="checker" value="Elf"/>Elf<br />
+        </form>
+      </div>
+    </div>
+    <div class="btn btn-success" (click)="create()">créer</div>
+  </div>
+
+  <div *ngIf="getCharacters().length > 0">
+    <h3>joues avec:</h3>
+    <div class="list-group-item-success row">
+      <div *ngFor="let character of getCharacters()">
+        <div class="btn btn-success" (click)="chooseCharacter(character)">{{character.name}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<div *ngIf="getCharacter()" class="list-group-item">
+
+  <nav class="navbar navbar-expand-sm bg-light">
+
+    <ul class="nav navbar-nav ml-0">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/u/jeu/carte">carte</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/u/jeu/carte">perso</a>
+      </li>
+    </ul>
+
+  </nav>
+
+  <router-outlet></router-outlet>
 </div>

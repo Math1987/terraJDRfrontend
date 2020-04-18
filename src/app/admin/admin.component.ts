@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Worlds} from '../services/worlds';
 import {Area} from '../services/world/area';
 import {View} from '../services/world/view/view';
+import {NavComponent} from '../nav/nav.component';
 
 @Component({
   selector: 'app-admin',
@@ -23,11 +24,14 @@ export class AdminComponent implements OnInit, OnDestroy {
       this.router.navigate(['u/jeu']);
     }else{
 
+      const self = this ;
       View.canvasWorld = document.getElementById("worldViewAdmin") as HTMLCanvasElement ;
 
-      if ( Area.world === null && Worlds.worlds !== null && Worlds.worlds.length > 0 ){
-        this.enterInWorld(Worlds.worlds[0]);
-      }
+      NavComponent.setInitCallBack(function(worlds) {
+        if ( Area.world !== null ){
+            View.goOn(Area.world.width/2,Area.world.height/2);
+        }
+      });
 
     }
   }
@@ -39,13 +43,14 @@ export class AdminComponent implements OnInit, OnDestroy {
     return Worlds.worlds;
   }
   enterInWorld(world){
-    Worlds.enterIn(world, function(res) {
-      View.goOn(0,0);
-      console.log('enter in world for admin');
-    });
+    if ( Area.world === null || Area.world.name !== world.name ) {
+      Worlds.enterIn(world, function(res) {
+        View.goOn(Area.world.width / 2, Area.world.height / 2);
+      });
+    }
   }
   isFocus(world){
-    if ( Area.world !== null && world.name === Area.world.name ){
+    if ( Area.isWorldFocused(world) ){
       return true ;
     }else{
       return false ;

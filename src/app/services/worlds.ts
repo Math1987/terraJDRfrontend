@@ -5,6 +5,7 @@ import {Area} from './world/area';
 import {View} from './world/view/view';
 import {Box} from './world/model/box';
 import {V_ground} from './world/view/v_ground';
+import {V_character} from './world/view/v_character';
 
 export class Worlds{
 
@@ -13,13 +14,23 @@ export class Worlds{
   static init(callBack){
 
     View.init([
-      new V_ground()
+      new V_ground(),
+      new V_character()
     ]);
 
     Net.http.get(`${environment.backURL}/readWorlds`, {responseType:"json", headers: Net.headers}).subscribe((res)=>{
 
       Worlds.worlds = res ;
-      callBack(res);
+      Area.init();
+      if ( Area.world !== null ){
+        Worlds.enterIn( Area.world, function(enterInRes) {
+          callBack(res);
+        });
+      }else{
+        Worlds.enterIn(Worlds.worlds[0], function(enterInRes) {
+          callBack(res);
+        });
+      }
 
     });
 
@@ -44,9 +55,12 @@ export class Worlds{
   }
 
 
+
   static enterIn(world, callBack){
 
-    if ( Area.world !== null && Area.world.name !== world.name ){
+    console.log('enterIn world');
+
+    if ( Area.world !== null ){
 
       Worlds.getOut( function(res) {
         Worlds.enterIn(world, callBack);
@@ -55,7 +69,7 @@ export class Worlds{
     }else if (  Area.world === null || world.name !== Area.world.name ){
       Net.socket.emit('enterInWorld',  world, Account.user.id, function(res) {
         if ( res ){
-          Area.world = world ;
+          Area.setWorld(world);
           View.reset();
           callBack(res);
         }
@@ -68,7 +82,7 @@ export class Worlds{
 
     Net.socket.emit('getOutOfWorld', function(getOutRes) {
 
-      Area.world = null ;
+      Area.leaveWorld() ;
       callBack('done');
 
     });
