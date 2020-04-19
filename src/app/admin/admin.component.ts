@@ -6,6 +6,8 @@ import {Area} from '../services/world/area';
 import {View} from '../services/world/view/view';
 import {NavComponent} from '../nav/nav.component';
 import {UpdateBoxControlComponent} from './update-box-control/update-box-control.component';
+import {Net} from '../services/net';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-admin',
@@ -15,6 +17,9 @@ import {UpdateBoxControlComponent} from './update-box-control/update-box-control
 export class AdminComponent implements OnInit, OnDestroy {
 
   updateBoxesControl = new UpdateBoxControlComponent();
+  createNewWorld = null ;
+
+  static changeWorldFunction = null ;
 
   constructor(
     private router: Router
@@ -49,6 +54,9 @@ export class AdminComponent implements OnInit, OnDestroy {
     if ( Area.world === null || Area.world.name !== world.name ) {
       Worlds.enterIn(world, function(res) {
         self.runView();
+        if ( AdminComponent.changeWorldFunction !== null ){
+          AdminComponent.changeWorldFunction();
+        }
       });
     }
   }
@@ -60,13 +68,31 @@ export class AdminComponent implements OnInit, OnDestroy {
     }
   }
 
+  openCreateWorld(){
+    this.createNewWorld = true;
+  }
+  createWorld(){
+
+    let name = (document.getElementById("inputCreateWorldName") as HTMLInputElement).value ;
+    let width = (document.getElementById("inputCreateWorldWidth") as HTMLInputElement).value ;
+    let height = (document.getElementById("inputCreateWorldHeight") as HTMLInputElement).value ;
+
+    const self = this ;
+    if ( name !== null && width !== null && height !== null ){
+      Net.http.get(`${environment.backURL}/generate?name=${name}&width=${width}&height=${height}&json={}`, { responseType:'text', headers : Net.headers}).subscribe((res)=>{
+        self.createNewWorld = null ;
+        self.router.navigate(['/u/admin']);
+      });
+    }
+
+  }
+
   runView(){
     const self = this ;
     View.moveControls = function(x,y,callBack){
       callBack('true');
     };
     View.selectFunction = function(views:View){
-      console.log(views);
       self.updateBoxesControl.setViews(views);
     };
     View.goOn(Area.world.width/2,Area.world.height/2);

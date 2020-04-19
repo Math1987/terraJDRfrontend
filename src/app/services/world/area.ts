@@ -16,7 +16,6 @@ export class Area{
         let chara = JSON.parse(localStorage.getItem("character"));
         Net.http.get(`${environment.backURL}/readById?world=${Area.world.name}&id=${chara.id}`,
           {responseType:"json", headers: Net.headers}).subscribe((res)=>{
-            console.log(res) ;
             if ( res !== null ){
               Area.character = res ;
             }

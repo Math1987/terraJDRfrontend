@@ -3,6 +3,8 @@ import {Area} from '../../services/world/area';
 import {Net} from '../../services/net';
 import {environment} from '../../../environments/environment';
 import {Box} from '../../services/world/model/box';
+import {NavComponent} from '../../nav/nav.component';
+import {AdminComponent} from '../admin.component';
 
 @Component({
   selector: 'app-patterns',
@@ -16,7 +18,13 @@ export class PatternsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.updatePatterns();
+    const self = this ;
+    NavComponent.setInitCallBack(function(worlds) {
+      self.updatePatterns();
+      AdminComponent.changeWorldFunction = function() {
+        self.updatePatterns();
+      }
+    });
   }
   updatePatterns(){
     const self = this ;
@@ -41,8 +49,6 @@ export class PatternsComponent implements OnInit {
             }
           );
         }
-
-        console.log(self.patterns);
 
       });
     }

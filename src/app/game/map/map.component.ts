@@ -28,8 +28,6 @@ export class MapComponent implements OnInit {
 
       if ( Area.world !== null && Area.character !== null ){
 
-        console.log(Area.character);
-
         View.setCanvasWorld(canvas) ;
         View.setRayon(5);
         View.moveControls = function(x,y, callBack){

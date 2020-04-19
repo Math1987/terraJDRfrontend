@@ -10,7 +10,34 @@
       }" (click)="enterInWorld(world)">{{world.name}}</h3>
 
     </div>
+    <div class="list-group-item list-group-item-success">
+      <button class="btn btn-primary" (click)="openCreateWorld()">+</button>
+    </div>
   </div>
+
+
+  <div *ngIf="createNewWorld" class="list-group-item">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Nom</span>
+      </div>
+      <input id="inputCreateWorldName" type="text" class="form-control" placeholder="nom du monde" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Largeur</span>
+      </div>
+      <input id="inputCreateWorldWidth" type="number" class="form-control" placeholder="largeur x du monde en nombre de cases" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Hauteur</span>
+      </div>
+      <input id="inputCreateWorldHeight" type="text" class="form-control" placeholder="hauteur y du monde en nombre de cases" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <button class="btn btn-success" (click)="createWorld()">créer</button>
+  </div>
+
 </div>
 
 

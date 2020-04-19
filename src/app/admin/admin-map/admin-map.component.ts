@@ -71,7 +71,6 @@ export class AdminMapComponent implements OnInit {
       callBack('true');
     };
     View.selectFunction = function(views: View) {
-      console.log(views);
       self.updateBoxesControl.setViews(views);
     };
     View.goOn(Area.world.width / 2, Area.world.height / 2);

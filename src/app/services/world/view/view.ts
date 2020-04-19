@@ -376,11 +376,7 @@ export class View{
           for (let i = 0; i < View.VIEWS.length; i++) {
             let view = View.VIEW_MATRIX[View.rayon][i];
             if (view.x == caseX && view.y == caseY) {
-              self.focused = View.VIEWS[i];
-              View.focused = self.focused ;
-              if ( self.selectFunction !== null ){
-                self.selectFunction(self.focused);
-              }
+              View.focusBox(View.VIEWS[i]);
               break ;
             }
           }
@@ -452,13 +448,19 @@ export class View{
           }
         }
       }
-      View.focused = View.ROUNDS[0];
+      View.focusBox(View.ROUNDS[0]);
       if ( askPositions.length > 0 ){
         Net.socket.emit('readPositions', askPositions, function(res) {});
       }
 
     }
 
+  }
+  private static focusBox(focused){
+    View.focused = focused ;
+    if ( this.selectFunction !== null ){
+      this.selectFunction(focused);
+    }
   }
   private static drawWorld(){
     const context = this.canvasWorld.getContext("2d");
