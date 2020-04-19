@@ -48,6 +48,15 @@ export class Worlds{
           Box.adds( instruction.boxes, function(boxes) {
             View.adds(boxes);
           });
+        }else if ( instruction.key === "updateValues" ){
+          console.log(instruction.array);
+          Area.updateValues( instruction.array);
+          Box.updateValues( instruction.array, function(res) {});
+        }else if ( instruction.key === "updatePositions"){
+          Area.updatePositions(instruction.array);
+          Box.updatePositions( instruction.array, function(res) {
+            View.updatePositions(res);
+          });
         }
       }
 

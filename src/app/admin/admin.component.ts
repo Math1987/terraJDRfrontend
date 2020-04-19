@@ -5,6 +5,7 @@ import {Worlds} from '../services/worlds';
 import {Area} from '../services/world/area';
 import {View} from '../services/world/view/view';
 import {NavComponent} from '../nav/nav.component';
+import {UpdateBoxControlComponent} from './update-box-control/update-box-control.component';
 
 @Component({
   selector: 'app-admin',
@@ -13,6 +14,7 @@ import {NavComponent} from '../nav/nav.component';
 })
 export class AdminComponent implements OnInit, OnDestroy {
 
+  updateBoxesControl = new UpdateBoxControlComponent();
 
   constructor(
     private router: Router
@@ -59,8 +61,13 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   runView(){
+    const self = this ;
     View.moveControls = function(x,y,callBack){
       callBack('true');
+    };
+    View.selectFunction = function(views:View){
+      console.log(views);
+      self.updateBoxesControl.setViews(views);
     };
     View.goOn(Area.world.width/2,Area.world.height/2);
   }

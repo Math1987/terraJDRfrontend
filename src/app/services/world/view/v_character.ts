@@ -1,4 +1,5 @@
 import {View} from './view';
+import {Box} from '../model/box';
 
 export class V_character extends View{
 
@@ -16,6 +17,11 @@ export class V_character extends View{
     return 'character';
   }
   init(){}
+  createInstance(box:Box){
+    let instance = new V_character();
+    instance.box = box ;
+    return instance ;
+  }
 
   getImage(){
     return V_character.image ;

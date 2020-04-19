@@ -22,6 +22,7 @@ import { AdminComponent } from './admin/admin.component';
 import { MapComponent } from './game/map/map.component';
 import { CharacterComponent } from './game/character/character.component';
 import { WorldsComponent } from './game/worlds/worlds.component';
+import { UpdateBoxControlComponent } from './admin/update-box-control/update-box-control.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { WorldsComponent } from './game/worlds/worlds.component';
     AdminComponent,
     MapComponent,
     CharacterComponent,
-    WorldsComponent
+    WorldsComponent,
+    UpdateBoxControlComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import {Net} from '../net';
 import {Account} from '../account';
+import {environment} from '../../../environments/environment';
 
 
 export class Area{
@@ -12,7 +13,14 @@ export class Area{
     if ( localStorage.getItem("world")){
       Area.world = JSON.parse(localStorage.getItem("world")) ;
       if ( localStorage.getItem("character")){
-        Area.character = JSON.parse(localStorage.getItem("character")) ;
+        let chara = JSON.parse(localStorage.getItem("character"));
+        Net.http.get(`${environment.backURL}/readById?world=${Area.world.name}&id=${chara.id}`,
+          {responseType:"json", headers: Net.headers}).subscribe((res)=>{
+            console.log(res) ;
+            if ( res !== null ){
+              Area.character = res ;
+            }
+        });
       }
     }
   }
@@ -20,6 +28,21 @@ export class Area{
     Area.world = null ;
     Area.leaveWorld();
     Area.leaveCharacter();
+  }
+  static updateValues(array){
+    for ( let keyVal of array ){
+      if ( keyVal.id == Area.character.id ){
+        Area.character[keyVal.key] = keyVal.value ;
+      }
+    }
+  }
+  static updatePositions(array){
+    for ( let keyVal of array ){
+      if ( keyVal.id == Area.character.id ){
+        Area.character.x = keyVal.x ;
+        Area.character.y = keyVal.y ;
+      }
+    }
   }
 
   static setWorld(world){

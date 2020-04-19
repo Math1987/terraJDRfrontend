@@ -67,12 +67,7 @@ export class WorldsComponent implements OnInit {
 
   chooseCharacter(character) {
 
-    const canvas = document.getElementById("worldViewGame") as HTMLCanvasElement;
-    console.log(canvas);
-
     Area.setCharacter(character);
-
-
     this.router.navigate(['u/jeu/carte']);//, { relativeTo: this.router });
 
   }

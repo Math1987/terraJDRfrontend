@@ -3,6 +3,7 @@ import {View} from '../../services/world/view/view';
 import {Area} from '../../services/world/area';
 import {Router} from '@angular/router';
 import {NavComponent} from '../../nav/nav.component';
+import {Net} from '../../services/net';
 
 @Component({
   selector: 'app-map',
@@ -17,6 +18,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
 
+    const self = this ;
 
     const canvas = document.getElementById("worldViewGame") as HTMLCanvasElement ;
     canvas.width = 780 ;
@@ -25,14 +27,31 @@ export class MapComponent implements OnInit {
     NavComponent.setInitCallBack(function(worlds) {
 
       if ( Area.world !== null && Area.character !== null ){
-        View.setCanvasWorld(canvas) ;
 
+        console.log(Area.character);
+
+        View.setCanvasWorld(canvas) ;
+        View.setRayon(5);
         View.moveControls = function(x,y, callBack){
-          callBack(null);
+          if ( Area.character.mover > 0 ){
+            Net.socket.emit('action', 'move', {
+              user : Area.character,
+              x : x,
+              y : y
+            }, function(action) {
+              if ( action ){
+                callBack(null);
+              }else{
+                callBack(null);
+              }
+            });
+          }else{
+            callBack(null);
+          }
         };
         View.goOn(Area.character.x ,Area.character.y );
       }else{
-        this.router.navigate(['u/jeu/mondes']);
+        self.router.navigate(['u/jeu/mondes']);
       }
 
     });
@@ -44,7 +63,11 @@ export class MapComponent implements OnInit {
   }
 
   getMove(){
-    return 0 ;
+    if ( Area.character && 'mover' in Area.character ){
+      return Area.character.mover;
+    }else{
+      return 0 ;
+    }
   }
 
 }

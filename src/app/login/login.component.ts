@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-     console.log('init login');
-
     if (Account.user !== null) {
       this.router.navigate(['/u/jeu']);
     }else{

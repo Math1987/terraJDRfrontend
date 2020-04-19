@@ -78,6 +78,15 @@ export class View{
       View.move(newX - View.x, newY - View.y);
     }
   }
+  static isIn(x,y){
+    let got = false ;
+    for ( let round of View.ROUND_MATRIX[View.rayon+1] ){
+      if ( round.x + View.x == x && round.y + View.y == y ){
+        got = true ;
+      }
+    }
+    return got ;
+  }
   static adds(boxes){
 
     let delet = [] ;
@@ -112,6 +121,51 @@ export class View{
 
 
   }
+  static updatePositions(boxes){
+
+    for ( let target of boxes ) {
+
+      if ( 'state' in target && target.state == "notfound" ){
+        if ( View.isIn(target.x, target.y) ) {
+          Net.socket.emit('readById', target.id, function(obj) {
+            if (obj !== null) {
+              Box.adds([obj], function(viewAdds) {
+                View.adds(viewAdds);
+              });
+            }
+          });
+        }
+
+      }else {
+
+        let view = View.getById(target.id);
+        View.removeById(target.id);
+
+        if (view !== null) {
+
+          if (Area.character !== null && target.id == Area.character.id) {
+            View.move(Area.character.x - View.x, Area.character.y - View.y);
+            View.ROUNDS[0].push(view);
+          } else {
+            let found = false ;
+            for (let r = 0; r < View.ROUND_MATRIX[View.rayon + 1].length; r++) {
+              let round = View.ROUND_MATRIX[View.rayon + 1][r];
+              let px = View.x + round.x;
+              let py = View.y + round.y;
+              if (px == view.box.x && py == view.box.y) {
+                View.ROUNDS[r].push(view);
+                found = true ;
+              }
+            }
+            if ( !found ){
+              View.removeById(target.id);
+            }
+          }
+        }
+      }
+    }
+
+  }
 
   static TIME = {last:0, elapsed:0, animator:0} ;
   protected static SRC_IMAGE = './../../../../assets/images';
@@ -134,6 +188,46 @@ export class View{
   protected static rayon = 5 ;
   protected static focused = null ;
   private static draw = null ;
+
+  protected static getById(id){
+    let vBoxReturn = null ;
+    for ( let rounds of View.ROUNDS ){
+      let view = View.getByIdFromArray(id, rounds) ;
+      if ( view !== null ){
+        vBoxReturn = view ;
+        break ;
+      }
+    }
+    return vBoxReturn ;
+  }
+  protected static getByIdFromArray(id, array){
+    let vBoxReturn = null ;
+    for ( let view of array ){
+      if ( view !== null ) {
+        if (view.box.id == id) {
+          vBoxReturn = view;
+          break ;
+        } else {
+          vBoxReturn = null ;// View.getByIdFromArray(id, view.vBoxes);
+          if (vBoxReturn !== null) {
+            break;
+          }
+        }
+      }
+    }
+    return vBoxReturn ;
+  }
+  protected static removeById(id){
+
+    for ( let rounds of View.ROUNDS  ){
+      for ( let i = rounds.length-1 ; i >= 0 ; i -- ){
+        if ( rounds[i].box.id == id ){
+          rounds.splice(i,1);
+        }
+      }
+    }
+
+  }
 
   private static initRounds(){
     View.ROUND_MATRIX = [] ;
@@ -278,6 +372,8 @@ export class View{
               self.focused = View.VIEWS[i];
               View.focused = self.focused ;
 
+              console.log(View.focused);
+
               if ( self.selectFunction !== null ){
                 self.selectFunction(self.focused);
               }
@@ -296,7 +392,7 @@ export class View{
     let pattern = null ;
     for ( let pat of View.PATTERNS ){
       if ( pat.readKey() === box.key ){
-        pattern = pat ;
+        pattern = pat.createInstance(box) ;
       }
     }
     return pattern ;
@@ -424,8 +520,14 @@ export class View{
   private static drawFocus(){}
 
 
+  box ;
 
   constructor(){}
+  createInstance(box:Box){
+    let instance = new View();
+    instance.box = box ;
+    return instance ;
+  }
   init_(){}
   draw(context, size){
     if ( this.getImage() !== null ){

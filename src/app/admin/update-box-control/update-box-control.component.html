@@ -1,0 +1,19 @@
+<div class="list-group-item list-group-item-success">
+  <div class="list-group-item-primary">
+    <h4>update boxes</h4>
+  </div>
+  <input>
+  <div *ngFor="let target of updateBox.targets">
+    <div class="list-group-item list-group-item-success">
+      <h5>{{target.view.box.key}}</h5>
+      <div class="row">
+        <div class="list-group-item list-group-item-warning" *ngFor="let value of target.values">
+          <div>
+            <p>{{value.key}}</p>
+            <input value="{{value.value}}"  [(ngModel)]="value.value" (change)="updateValue(target.view, value.key, value.value )">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
