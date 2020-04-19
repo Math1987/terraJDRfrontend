@@ -1,5 +1,5 @@
 <div class="jumbotron text-center">
-  <h3>choisis le monde dans lequel tu marquera l'Histoire de Terra.</h3>
+  <h3>Editer les mondes en temps réel</h3>
   <div class="worlds flex-row" >
     <div *ngFor="let world of getWorlds()" class="list-group-item list-group-item-success">
       <h3 [ngClass]="{
@@ -12,9 +12,18 @@
     </div>
   </div>
 </div>
-<div class="list-group-item">
-  <div>
-    <canvas id="worldViewAdmin"></canvas>
-  </div>
-  <app-update-box-control [updateBox]="updateBoxesControl"></app-update-box-control>
-</div>
+
+
+<nav class="navbar navbar-expand-sm bg-light">
+
+  <ul class="nav navbar-nav ml-0">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/u/admin/carte">carte</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/u/admin/models">models</a>
+    </li>
+  </ul>
+
+</nav>
+<router-outlet></router-outlet>
