@@ -125,8 +125,10 @@ export class View{
 
     for ( let target of boxes ) {
 
+
       if ( 'state' in target && target.state == "notfound" ){
         if ( View.isIn(target.x, target.y) ) {
+          console.log('came in view');
           Net.socket.emit('readById', target.id, function(obj) {
             if (obj !== null) {
               Box.adds([obj], function(viewAdds) {
@@ -141,24 +143,29 @@ export class View{
         let view = View.getById(target.id);
         View.removeById(target.id);
 
-        if (view !== null) {
+        if ( !View.isIn(target.x,target.y) ){
+          Box.removeById(target.id);
+        }else {
 
-          if (Area.character !== null && target.id == Area.character.id) {
-            View.move(Area.character.x - View.x, Area.character.y - View.y);
-            View.ROUNDS[0].push(view);
-          } else {
-            let found = false ;
-            for (let r = 0; r < View.ROUND_MATRIX[View.rayon + 1].length; r++) {
-              let round = View.ROUND_MATRIX[View.rayon + 1][r];
-              let px = View.x + round.x;
-              let py = View.y + round.y;
-              if (px == view.box.x && py == view.box.y) {
-                View.ROUNDS[r].push(view);
-                found = true ;
+          if (view !== null) {
+
+            if (Area.character !== null && target.id == Area.character.id) {
+              View.move(Area.character.x - View.x, Area.character.y - View.y);
+              View.ROUNDS[0].push(view);
+            } else {
+              let found = false;
+              for (let r = 0; r < View.ROUND_MATRIX[View.rayon + 1].length; r++) {
+                let round = View.ROUND_MATRIX[View.rayon + 1][r];
+                let px = View.x + round.x;
+                let py = View.y + round.y;
+                if (px == view.box.x && py == view.box.y) {
+                  View.ROUNDS[r].push(view);
+                  found = true;
+                }
               }
-            }
-            if ( !found ){
-              View.removeById(target.id);
+              if (!found) {
+                View.removeById(target.id);
+              }
             }
           }
         }
@@ -371,13 +378,9 @@ export class View{
             if (view.x == caseX && view.y == caseY) {
               self.focused = View.VIEWS[i];
               View.focused = self.focused ;
-
-              console.log(View.focused);
-
               if ( self.selectFunction !== null ){
                 self.selectFunction(self.focused);
               }
-
               break ;
             }
           }

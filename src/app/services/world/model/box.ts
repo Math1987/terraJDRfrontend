@@ -69,6 +69,14 @@ export class Box{
       }
     }
   }
+  static removeById(id){
+    for ( let i = Box.BOXES.length-1 ; i >= 0 ; i -- ){
+      let box = Box.BOXES[i] ;
+      if ( 'id' in box && box.id == id ){
+        Box.BOXES.splice(i, 1);
+      }
+    }
+  }
 
 
   constructor(){}
