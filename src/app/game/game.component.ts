@@ -6,6 +6,7 @@ import {Net} from '../services/net';
 import {Characters} from '../services/characters';
 import {NavComponent} from '../nav/nav.component';
 import {Router} from '@angular/router';
+import {Box} from '../services/world/model/box';
 
 @Component({
   selector: 'app-game',
@@ -15,6 +16,9 @@ import {Router} from '@angular/router';
 export class GameComponent implements OnInit {
 
   static initialized = false ;
+
+  static lastCharacterUpdate = new Date().getTime();
+  static resources = [] ;
 
   constructor(
     private router: Router
@@ -51,6 +55,31 @@ export class GameComponent implements OnInit {
   getCharacter(){
     return Area.character ;
   }
+
+  updates(){
+    if ( Area.lastCharacterUpdate !== GameComponent.lastCharacterUpdate) {
+
+      GameComponent.resources = [];
+      for (let i = 0; i < Object.keys(Area.character).length; i++) {
+
+        let resource = Box.getRessourceFromKey(Object.keys(Area.character)[i]);
+        if ( resource !== null ){
+          GameComponent.resources.push({
+            key: Object.keys(Area.character)[i],
+            nom : resource.nom,
+            value: Object.values(Area.character)[i]
+          });
+        }
+      }
+
+    }
+    return true ;
+  }
+
+  getResources(){
+    return GameComponent.resources ;
+  }
+
   enterInWorld(world){
     Worlds.enterIn(world, function(res) {
 

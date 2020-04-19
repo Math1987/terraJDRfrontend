@@ -11,6 +11,60 @@ export class Box{
     'y'
   ];
 
+  static RESOURCES = [
+    {
+      key : "life",
+      nom : "vie"
+    },
+    {
+      key : "water",
+      nom :  "eau"
+    },
+    {
+      key : "food",
+      nom :  "nourriture"
+    },
+    {
+      key : "material",
+      nom :  "materiel"
+    },
+    {
+      key : "faith",
+      nom :  "foi"
+    },
+    {
+      key : "xp",
+      nom :  "xp"
+    }
+  ];
+
+  static SKILLS = [
+    {
+      key : "attack",
+      nom : "attaque"
+    },
+    {
+      key : "defense",
+      nom :  "défense"
+    },
+    {
+      key : "getWater",
+      nom :  "sourcier"
+    },
+    {
+      key : "getFood",
+      nom :  "chasseur cueilleur"
+    },
+    {
+      key : "getMaterial",
+      nom :  "bûcheron"
+    },
+    {
+      key : "getFaith",
+      nom :  "prier"
+    }
+  ];
+
   static isProtectedKey(key){
     let isProtected = false ;
     for ( let pk of Box.PROTECTED_KEYS ){
@@ -21,7 +75,26 @@ export class Box{
     }
     return isProtected;
   }
-
+  static getRessourceFromKey(key){
+    let res = null ;
+    for ( let resource of Box.RESOURCES ){
+      if ( resource.key == key ){
+        res = resource;
+        break ;
+      }
+    }
+    return res ;
+  }
+  static getSkillFromKey(key){
+    let res = null ;
+    for ( let skill of Box.SKILLS ){
+      if ( skill.key == key ){
+        res = skill;
+        break ;
+      }
+    }
+    return res ;
+  }
 
   static adds(boxesJson, callBack){
     for ( let box of boxesJson ){

@@ -2,10 +2,12 @@
 <p>permet d'éditer les modèles utilisés pour la création de nouveau éléments au fil du jeu.</p>
 <div *ngFor="let pattern of patterns">
   <div class="list-group-item list-group-item-success">
-    <p>{{pattern.key}}</p>
-    <div *ngFor="let keyVal of pattern.array" class="list-group-item list-group-item-warning">
-      <p>{{keyVal.key}}</p>
-      <input value="{{keyVal.value}}" [(ngModel)]="keyVal.value" (change)="updatePattern(pattern, keyVal.key, keyVal.value)">
+    <h3>{{pattern.key}}</h3>
+    <div class="flexRow flex-md-wrap">
+      <div *ngFor="let keyVal of pattern.array" class="list-group-item list-group-item-warning">
+        <p>{{keyVal.key}}:</p>
+        <input value="{{keyVal.value}}" [(ngModel)]="keyVal.value" (change)="updatePattern(pattern, keyVal.key, keyVal.value)">
+      </div>
     </div>
   </div>
 </div>

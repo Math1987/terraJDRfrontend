@@ -1,5 +1,5 @@
 
-<div *ngIf="getCharacter()" class="list-group-item">
+<div *ngIf="getCharacter() && updates()" class="list-group-item">
 
   <nav class="navbar navbar-expand-sm bg-light">
 
@@ -11,6 +11,15 @@
         <a class="nav-link" routerLink="/u/jeu/perso">perso</a>
       </li>
     </ul>
+
+
+    <ul class="nav navbar-nav ml-auto">
+
+      <li *ngFor="let resource of getResources()" class="nav-item">
+        <div class="list-group-item list-group-item-primary">{{resource.nom}}: {{resource.value}}</div>
+      </li>
+    </ul>
+
 
   </nav>
 
