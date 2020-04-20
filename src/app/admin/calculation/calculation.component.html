@@ -3,8 +3,13 @@
   <div class="flexRow">
     <div *ngFor="let calcul of calculations">
       <div class="list-group-item list-group-item-danger ">
-        <p>{{calcul.key}}</p>
-        <input value="{{calcul.value}}" [(ngModel)]="calcul.value" (change)="updateValue(calcul.key, calcul.value)">
+        <h3>{{calcul.name}}</h3>
+        <div class="list-group-item list-group-item-danger">
+          <div *ngFor="let attribute of calcul.attributes">
+            <p>{{attribute.key}}</p>
+            <input value="{{attribute.value}}" [(ngModel)]="attribute.value" (change)="updateValue(calcul.name, attribute.key, attribute.value)">
+          </div>
+        </div>
       </div>
     </div>
   </div>

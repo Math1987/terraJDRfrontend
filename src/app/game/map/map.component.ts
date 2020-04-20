@@ -14,8 +14,9 @@ import {Controls} from '../../services/world/controls/controls';
 })
 export class MapComponent implements OnInit {
 
-  lastCharacterUpdate = new Date().getTime() ;
-  lastSelectFocusUpdate = new Date().getTime() ;
+  lastCharacterUpdate = 0 ;
+  lastSelectFocusUpdate = 0 ;
+  lastValueUpdate = 0 ;
   actives = [] ;
   interactions = [] ;
 
@@ -55,6 +56,9 @@ export class MapComponent implements OnInit {
           }
         };
         View.goOn(Area.character.x ,Area.character.y );
+        self.lastCharacterUpdate = 0 ;
+        self.lastSelectFocusUpdate = 0 ;
+        self.update();
       }else{
         self.router.navigate(['u/jeu/mondes']);
       }
@@ -83,26 +87,34 @@ export class MapComponent implements OnInit {
       }
 
       if ( View.lastUpdateFocused !== this.lastSelectFocusUpdate ) {
-        if (View.focused) {
-          this.interactions = [] ;
-          for (let view of View.focused) {
-            if ( view.box.id !== Area.character.id ) {
-
-              let interactions = Controls.getInteractionsBetween(Area.character, view.box);
-              if (interactions && interactions.actions.length > 0) {
-                this.interactions.push(interactions);
-              }
-
-            }
-
-          }
-        }
         this.lastSelectFocusUpdate = View.lastUpdateFocused ;
+        this.updateSelection();
+      }
+      if ( Box.lastUpdateValue !== this.lastValueUpdate ){
+        this.lastValueUpdate = Box.lastUpdateValue ;
+        this.updateSelection();
       }
 
     }
     return true ;
   }
+  updateSelection(){
+    if (View.focused) {
+      this.interactions = [] ;
+      for (let view of View.focused) {
+        if ( view.box.id !== Area.character.id) {
+
+          let interactions = Controls.getInteractionsBetween(Area.character, view.box);
+          if (interactions) {
+            this.interactions.push(interactions);
+          }
+
+        }
+
+      }
+    }
+  }
+
 
   getActions(){
     if ( Area.character && "actions" in Area.character ){
@@ -115,12 +127,45 @@ export class MapComponent implements OnInit {
 
     if ( this.getActions() > 0 ) {
       Net.socket.emit('action', action.key, {
-        user: Area.character
+        user: Area.character,
+        target : Area.character
       }, function(res) {
 
       });
     }else{
       alert(`tu as utilisé toutes tes actions.`);
+    }
+
+  }
+  useInteraction(interaction, action){
+
+    let canDo = true ;
+    console.log(action);
+    if ( "cost" in action ){
+
+      for ( let key of Object.keys(action.cost) ){
+        if ( interaction.user[key] < action.cost[key] ){
+          canDo = false ;
+          let resource = Controls.getRessourceFromKey(key);
+          alert(`Il te faut au moins ${action.cost[key]} ${resource.nom}`);
+        }
+      }
+
+    }
+    if ( canDo ){
+      Net.socket.emit('action', action.key, {
+        user : interaction.user,
+        target : interaction.target
+      }, function(res) {
+
+      });
+    }
+
+    if ( 'actions_cost' in action && this.getActions() <= 0 ){
+      //alert(`il te faut plus d'actions.`)
+    }else{
+
+
     }
 
   }

@@ -27,8 +27,14 @@
             <h3>{{interaction.target.name}}</h3>
             <div class="list-group-item list-group-item-warning">
               <div *ngFor="let action of interaction.actions">
-                <div class="btn btn-warning">{{action.nom}}</div>
+                <div class="btn btn-warning" (click)="useInteraction(interaction, action)">{{action.nom}}</div>
               </div>
+              <ul class="list-group-item list-group-item-primary">
+                <div *ngFor="let resource of interaction.resources">
+                  <li>{{resource.nom}}: {{resource.value}}</li>
+                </div>
+              </ul>
+
             </div>
         </div>
       </div>

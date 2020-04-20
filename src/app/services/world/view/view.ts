@@ -121,17 +121,15 @@ export class View{
     for ( let delBox of delet ){
       Box.removeByPosition(delBox.x, delBox.y);
     }
-
+    View.lastUpdateFocused = new Date().getTime();
 
   }
   static updatePositions(boxes){
 
     for ( let target of boxes ) {
 
-
       if ( 'state' in target && target.state == "notfound" ){
         if ( View.isIn(target.x, target.y) ) {
-          console.log('came in view');
           Net.socket.emit('readById', target.id, function(obj) {
             if (obj !== null) {
               Box.adds([obj], function(viewAdds) {
@@ -177,6 +175,51 @@ export class View{
 
   }
 
+  static getById(id){
+    let vBoxReturn = null ;
+    for ( let rounds of View.ROUNDS ){
+      let view = View.getByIdFromArray(id, rounds) ;
+      if ( view !== null ){
+        vBoxReturn = view ;
+        break ;
+      }
+    }
+    return vBoxReturn ;
+  }
+  static getByIdFromArray(id, array){
+    let vBoxReturn = null ;
+    for ( let view of array ){
+      if ( view !== null ) {
+        if (view.box.id == id) {
+          vBoxReturn = view;
+          break ;
+        } else {
+          vBoxReturn = null ;// View.getByIdFromArray(id, view.vBoxes);
+          if (vBoxReturn !== null) {
+            break;
+          }
+        }
+      }
+    }
+    return vBoxReturn ;
+  }
+  static removeById(id){
+
+    for ( let rounds of View.ROUNDS  ){
+      for ( let i = rounds.length-1 ; i >= 0 ; i -- ){
+        if ( rounds[i].box.id == id ){
+          rounds.splice(i,1);
+        }
+      }
+    }
+
+  }
+  static removeByIds(ids){
+    for ( let id of ids  ){
+      View.removeById(id);
+    }
+  }
+
   static TIME = {last:0, elapsed:0, animator:0} ;
   protected static SRC_IMAGE = './../../../../assets/images';
   protected static ROUND_MATRIX = null ;
@@ -197,46 +240,6 @@ export class View{
   protected static y = 0 ;
   protected static rayon = 5 ;
   private static draw = null ;
-
-  protected static getById(id){
-    let vBoxReturn = null ;
-    for ( let rounds of View.ROUNDS ){
-      let view = View.getByIdFromArray(id, rounds) ;
-      if ( view !== null ){
-        vBoxReturn = view ;
-        break ;
-      }
-    }
-    return vBoxReturn ;
-  }
-  protected static getByIdFromArray(id, array){
-    let vBoxReturn = null ;
-    for ( let view of array ){
-      if ( view !== null ) {
-        if (view.box.id == id) {
-          vBoxReturn = view;
-          break ;
-        } else {
-          vBoxReturn = null ;// View.getByIdFromArray(id, view.vBoxes);
-          if (vBoxReturn !== null) {
-            break;
-          }
-        }
-      }
-    }
-    return vBoxReturn ;
-  }
-  protected static removeById(id){
-
-    for ( let rounds of View.ROUNDS  ){
-      for ( let i = rounds.length-1 ; i >= 0 ; i -- ){
-        if ( rounds[i].box.id == id ){
-          rounds.splice(i,1);
-        }
-      }
-    }
-
-  }
 
   private static initRounds(){
     View.ROUND_MATRIX = [] ;

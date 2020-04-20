@@ -109,8 +109,6 @@ export class WorldsComponent implements OnInit {
         race: race
       }, function(createUserCharaRes) {
 
-        console.log(createUserCharaRes);
-
         Characters.add(createUserCharaRes);
         self.chooseCharacter(createUserCharaRes);
 

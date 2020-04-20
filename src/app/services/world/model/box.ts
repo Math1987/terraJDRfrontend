@@ -1,5 +1,7 @@
 export class Box{
 
+  static lastUpdateValue = new Date().getTime() ;
+
   static PATTERNS = [] ;
 
   static BOXES = [];
@@ -11,36 +13,6 @@ export class Box{
     'y'
   ];
 
-  static RESOURCES = [
-    {
-      key : "life",
-      nom : "vie"
-    },
-    {
-      key : "water",
-      nom :  "eau"
-    },
-    {
-      key : "food",
-      nom :  "nourriture"
-    },
-    {
-      key : "material",
-      nom :  "materiel"
-    },
-    {
-      key : "faith",
-      nom :  "foi"
-    },
-    {
-      key : "actions",
-      nom :  "actions"
-    },
-    {
-      key : "xp",
-      nom :  "xp"
-    }
-  ];
   static SKILLS = [
     {
       key : "attack",
@@ -67,6 +39,7 @@ export class Box{
       nom :  "prier"
     }
   ];
+
   static ACTIONS_ACTIVE = [
     {
       key : "getWater",
@@ -77,17 +50,17 @@ export class Box{
       nom : "chercher de la nourriture"
     },
     {
+      key: "defense",
+      nom : "se soigner"
+    }/*,
+    {
       key: "getMaterial",
       nom : "couper du bois"
     },
     {
       key: "getFaith",
       nom : "trouver la foi"
-    },
-    {
-      key: "defense",
-      nom : "se soigner"
-    }
+    }*/
   ];
 
 
@@ -100,16 +73,6 @@ export class Box{
       }
     }
     return isProtected;
-  }
-  static getRessourceFromKey(key){
-    let res = null ;
-    for ( let resource of Box.RESOURCES ){
-      if ( resource.key == key ){
-        res = resource;
-        break ;
-      }
-    }
-    return res ;
   }
   static getSkillFromKey(key){
     let res = null ;
@@ -155,6 +118,7 @@ export class Box{
       for ( let box of Box.BOXES ){
         if ( 'id' in box && box.id == keyVal.id ){
           box[keyVal.key] = keyVal.value ;
+          Box.lastUpdateValue = new Date().getTime();
         }
       }
     }
@@ -196,7 +160,11 @@ export class Box{
       }
     }
   }
-
+  static removeByIds(ids){
+    for ( let id of ids ){
+      Box.removeById(id);
+    }
+  }
 
   constructor(){}
 

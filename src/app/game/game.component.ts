@@ -7,6 +7,7 @@ import {Characters} from '../services/characters';
 import {NavComponent} from '../nav/nav.component';
 import {Router} from '@angular/router';
 import {Box} from '../services/world/model/box';
+import {Controls} from '../services/world/controls/controls';
 
 @Component({
   selector: 'app-game',
@@ -62,7 +63,7 @@ export class GameComponent implements OnInit {
       GameComponent.resources = [];
       for (let i = 0; i < Object.keys(Area.character).length; i++) {
 
-        let resource = Box.getRessourceFromKey(Object.keys(Area.character)[i]);
+        let resource = Controls.getRessourceFromKey(Object.keys(Area.character)[i]);
         if ( resource !== null ){
           GameComponent.resources.push({
             key: Object.keys(Area.character)[i],

@@ -18,7 +18,6 @@ export class CalculationComponent implements OnInit {
   ngOnInit() {
     const self = this ;
     NavComponent.setInitCallBack(function(worlds) {
-      console.log('init calcul');
       self.updateCalculations();
     });
   }
@@ -27,12 +26,29 @@ export class CalculationComponent implements OnInit {
     const self = this ;
     Net.http.get(`${environment.backURL}/readCalculations`, { respsonseType: "json", headers: Net.headers}).subscribe((res)=>{
 
+      console.log(res);
       self.calculations = res ;
+      self.calculations = [] ;
+      for ( let calcul of res ){
+        let array = [] ;
+        for ( let key of Object.keys(calcul.attributes) ){
+          array.push({
+            key : key,
+            value : calcul.attributes[key]
+          });
+        }
+        self.calculations.push({
+          name : calcul.name,
+          attributes : array
+        })
+      }
+
+      console.log(self.calculations);
 
     });
   }
-  updateValue(key, value){
-    Net.socket.emit('updateCalculation',key, value, function(res) {
+  updateValue(name, attribute, value){
+    Net.socket.emit('updateCalculation',name ,attribute ,value, function(res) {
       alert('votre modification a bien été prise en compte.');
     });
   }
