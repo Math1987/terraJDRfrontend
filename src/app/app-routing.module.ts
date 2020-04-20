@@ -11,6 +11,7 @@ import {Worlds} from './services/worlds';
 import {WorldsComponent} from './game/worlds/worlds.component';
 import {AdminMapComponent} from './admin/admin-map/admin-map.component';
 import {PatternsComponent} from './admin/patterns/patterns.component';
+import {CalculationComponent} from './admin/calculation/calculation.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
       {path:"admin", component:AdminComponent, children:[
           {path:"carte", component: AdminMapComponent},
           {path:"models", component: PatternsComponent},
+          {path:"calculs", component: CalculationComponent},
         ]},
       {path:"jeu", component:GameComponent, children:[
           {path:"", component:WorldsComponent},

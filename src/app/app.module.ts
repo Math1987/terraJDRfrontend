@@ -25,6 +25,7 @@ import { WorldsComponent } from './game/worlds/worlds.component';
 import { UpdateBoxControlComponent } from './admin/update-box-control/update-box-control.component';
 import { AdminMapComponent } from './admin/admin-map/admin-map.component';
 import { PatternsComponent } from './admin/patterns/patterns.component';
+import { CalculationComponent } from './admin/calculation/calculation.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PatternsComponent } from './admin/patterns/patterns.component';
     WorldsComponent,
     UpdateBoxControlComponent,
     AdminMapComponent,
-    PatternsComponent
+    PatternsComponent,
+    CalculationComponent
   ],
   imports: [
     BrowserModule,

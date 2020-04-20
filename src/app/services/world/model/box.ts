@@ -33,11 +33,14 @@ export class Box{
       nom :  "foi"
     },
     {
+      key : "actions",
+      nom :  "actions"
+    },
+    {
       key : "xp",
       nom :  "xp"
     }
   ];
-
   static SKILLS = [
     {
       key : "attack",
@@ -64,6 +67,29 @@ export class Box{
       nom :  "prier"
     }
   ];
+  static ACTIONS_ACTIVE = [
+    {
+      key : "getWater",
+      nom : "puiser de l'eau"
+    },
+    {
+      key: "getFood",
+      nom : "chercher de la nourriture"
+    },
+    {
+      key: "getMaterial",
+      nom : "couper du bois"
+    },
+    {
+      key: "getFaith",
+      nom : "trouver la foi"
+    },
+    {
+      key: "defense",
+      nom : "se soigner"
+    }
+  ];
+
 
   static isProtectedKey(key){
     let isProtected = false ;
@@ -94,6 +120,26 @@ export class Box{
       }
     }
     return res ;
+  }
+  static getActiveFromKey(key){
+    let res = null ;
+    for ( let active of Box.ACTIONS_ACTIVE ){
+      if ( active.key == key ){
+        res = active;
+        break ;
+      }
+    }
+    return res ;
+  }
+  static getActivesFromObj(obj){
+    let actives = [] ;
+    for ( let i = 0 ; i < Object.keys(obj).length ; i ++ ){
+      let active = Box.getActiveFromKey( Object.keys(obj)[i] );
+      if ( active ){
+        actives.push(active);
+      }
+    }
+    return actives ;
   }
 
   static adds(boxesJson, callBack){

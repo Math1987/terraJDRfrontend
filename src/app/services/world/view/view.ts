@@ -9,6 +9,9 @@ export class View{
   static canvasFocus = null ;
   static moveControls = null ;
   static selectFunction = null ;
+  static focused = null ;
+
+  static lastUpdateFocused = new Date().getTime();
 
   static init(patterns){
     View.PATTERNS = patterns ;
@@ -193,7 +196,6 @@ export class View{
   protected static x = 0 ;
   protected static y = 0 ;
   protected static rayon = 5 ;
-  protected static focused = null ;
   private static draw = null ;
 
   protected static getById(id){
@@ -461,6 +463,7 @@ export class View{
     if ( this.selectFunction !== null ){
       this.selectFunction(focused);
     }
+    View.lastUpdateFocused = new Date().getTime();
   }
   private static drawWorld(){
     const context = this.canvasWorld.getContext("2d");

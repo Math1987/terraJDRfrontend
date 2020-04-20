@@ -4,6 +4,8 @@ import {Area} from '../../services/world/area';
 import {Router} from '@angular/router';
 import {NavComponent} from '../../nav/nav.component';
 import {Net} from '../../services/net';
+import {Box} from '../../services/world/model/box';
+import {Controls} from '../../services/world/controls/controls';
 
 @Component({
   selector: 'app-map',
@@ -11,6 +13,11 @@ import {Net} from '../../services/net';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+
+  lastCharacterUpdate = new Date().getTime() ;
+  lastSelectFocusUpdate = new Date().getTime() ;
+  actives = [] ;
+  interactions = [] ;
 
   constructor(
     private router: Router
@@ -66,6 +73,56 @@ export class MapComponent implements OnInit {
     }else{
       return 0 ;
     }
+  }
+
+  update(){
+    if ( Area.character ) {
+
+      if ( Area.lastCharacterUpdate !== this.lastCharacterUpdate ){
+        this.actives = Box.getActivesFromObj(Area.character);
+      }
+
+      if ( View.lastUpdateFocused !== this.lastSelectFocusUpdate ) {
+        if (View.focused) {
+          this.interactions = [] ;
+          for (let view of View.focused) {
+            if ( view.box.id !== Area.character.id ) {
+
+              let interactions = Controls.getInteractionsBetween(Area.character, view.box);
+              if (interactions && interactions.actions.length > 0) {
+                this.interactions.push(interactions);
+              }
+
+            }
+
+          }
+        }
+        this.lastSelectFocusUpdate = View.lastUpdateFocused ;
+      }
+
+    }
+    return true ;
+  }
+
+  getActions(){
+    if ( Area.character && "actions" in Area.character ){
+      return Area.character.actions ;
+    }else{
+      return 0 ;
+    }
+  }
+  useActive(action){
+
+    if ( this.getActions() > 0 ) {
+      Net.socket.emit('action', action.key, {
+        user: Area.character
+      }, function(res) {
+
+      });
+    }else{
+      alert(`tu as utilisé toutes tes actions.`);
+    }
+
   }
 
 }
