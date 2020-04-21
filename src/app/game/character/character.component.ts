@@ -10,7 +10,7 @@ import {Net} from '../../services/net';
 })
 export class CharacterComponent implements OnInit {
 
-  static lastCharacterUpdate = new Date().getTime();
+  static lastUpdate = new Date().getTime();
   skills = [];
 
   constructor() { }
@@ -18,8 +18,7 @@ export class CharacterComponent implements OnInit {
   ngOnInit() {
   }
   updates(){
-    if ( Area.character !== null && Area.lastCharacterUpdate !== CharacterComponent.lastCharacterUpdate ){
-      Area.lastCharacterUpdate = CharacterComponent.lastCharacterUpdate ;
+    if ( Area.character !== null && Box.lastUpdate !== CharacterComponent.lastUpdate ){
 
       this.skills = [] ;
       for ( let i = 0 ; i < Object.keys(Area.character).length ; i ++ ){
@@ -34,6 +33,7 @@ export class CharacterComponent implements OnInit {
         }
 
       }
+      CharacterComponent.lastUpdate = Box.lastUpdate ;
     }
     return true;
   }

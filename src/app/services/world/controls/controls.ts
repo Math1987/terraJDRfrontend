@@ -1,3 +1,10 @@
+import {Action} from './actions/action';
+import {A_attack} from './actions/a_attack';
+import {A_heal} from './actions/a_heal';
+import {A_getFood} from './actions/a_getFood';
+import {A_getWater} from './actions/a_getWater';
+
+
 export class Controls{
 
   static RESOURCES = [
@@ -30,23 +37,15 @@ export class Controls{
       nom :  "xp"
     }
   ];
-  static INTERACTIONS = [
-    {
-      key : "attack",
-      nom : "attaquer",
-      target : "life",
-      raceConstraint : "different",
-      actions_cost : 1,
-      cost : { actions : 1 }
-    },
-    {
-      key: "defense",
-      nom : "soigner",
-      target : "life",
-      raceConstraint : "same",
-      cost : { food : 20 }
-    }
-  ];
+
+  static init(){
+    Action.init([
+      new A_attack(),
+      new A_heal(),
+      new A_getFood(),
+      new A_getWater(),
+    ]);
+  }
 
   static getResourcesFromObj(obj){
     let resources = [] ;
@@ -70,58 +69,6 @@ export class Controls{
     return res ;
   }
 
-  static getInteractionsBetween(user, target){
-
-    let interaction = {
-      user : user,
-      target : target,
-      resources : Controls.getResourcesFromObj(target),
-      actions : []
-    } ;
-    if ( user.x == target.x && user.y == target.y ) {
-      for (let key1 of Object.keys(user)) {
-        if (Controls.isInteraction(key1)) {
-
-          for (let key2 of Object.keys(target)) {
-            let action = Controls.getInteraction(user, key1, target, key2);
-            if (action) {
-              interaction.actions.push(action);
-            }
-          }
-        }
-      }
-    }
-    return interaction ;
-  }
-  static isInteraction(key){
-    let interact = false ;
-    for ( let interaction of Controls.INTERACTIONS ){
-      if ( interaction.key == key ){
-        interact = true ;
-        break ;
-      }
-    }
-    return interact ;
-  }
-  static getInteraction(user1, key1, target2, key2){
-
-    let interaction = null ;
-    for ( let interact of Controls.INTERACTIONS ){
-      if ( interact.key === key1 && interact.target === key2
-        && (
-          (
-            !('raceConstraint' in interact )
-            || ((interact.raceConstraint == "same" && user1.race == target2.race)
-                || (interact.raceConstraint == "different" && user1.race !== target2.race ))
-            )
-        )
-      ){
-        interaction = interact ;
-        break ;
-      }
-    }
-    return interaction ;
-  }
 
 
 

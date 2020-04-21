@@ -98,5 +98,18 @@ export class AdminComponent implements OnInit, OnDestroy {
     View.goOn(Area.world.width/2,Area.world.height/2);
   }
 
+  pass(){
+    if ( Area.world ){
+      if ( confirm("êtes vous sur de vouloir passer un tour?") ){
+        Net.socket.emit('pass', function(res) {
+          alert(res);
+        });
+      }
+    }else{
+      alert(`vous n'avez pas de monde sélectionné pour passer un tour.`);
+    }
+
+  }
+
 
 }

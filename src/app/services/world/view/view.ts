@@ -11,8 +11,6 @@ export class View{
   static selectFunction = null ;
   static focused = null ;
 
-  static lastUpdateFocused = new Date().getTime();
-
   static init(patterns){
     View.PATTERNS = patterns ;
     View.initRounds();
@@ -121,7 +119,6 @@ export class View{
     for ( let delBox of delet ){
       Box.removeByPosition(delBox.x, delBox.y);
     }
-    View.lastUpdateFocused = new Date().getTime();
 
   }
   static updatePositions(boxes){
@@ -466,7 +463,7 @@ export class View{
     if ( this.selectFunction !== null ){
       this.selectFunction(focused);
     }
-    View.lastUpdateFocused = new Date().getTime();
+    Box.lastUpdate = new Date().getTime();
   }
   private static drawWorld(){
     const context = this.canvasWorld.getContext("2d");

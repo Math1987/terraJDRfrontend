@@ -33,19 +33,29 @@ export class PatternsComponent implements OnInit {
 
         self.patterns = [] ;
         for ( let pat of res ){
-          let vals = [] ;
-          for ( let i = 0 ; i < Object.keys(pat).length ; i ++ ){
-            if ( !Box.isProtectedKey(Object.keys(pat)[i])){
-              vals.push({
-                key: Object.keys(pat)[i],
-                value: Object.values(pat)[i]
+          let instanciables = [] ;
+          for ( let i = 0 ; i < Object.keys(pat.instanciables).length ; i ++ ){
+            if ( !Box.isProtectedKey(Object.keys(pat.instanciables)[i])){
+              instanciables.push({
+                key: Object.keys(pat.instanciables)[i],
+                value: Object.values(pat.instanciables)[i]
+              });
+            }
+          }
+          let globals = [] ;
+          for ( let i = 0 ; i < Object.keys(pat.globals).length ; i ++ ){
+            if ( !Box.isProtectedKey(Object.keys(pat.globals)[i])){
+              globals.push({
+                key: Object.keys(pat.globals)[i],
+                value: Object.values(pat.globals)[i]
               });
             }
           }
           self.patterns.push(
             {
               key: pat.key,
-              array: vals
+              instanciables: instanciables,
+              globals: globals
             }
           );
         }
@@ -53,8 +63,8 @@ export class PatternsComponent implements OnInit {
       });
     }
   }
-  updatePattern(pattern, key, value) {
-    Net.socket.emit('updatePattern', pattern.key, key, value, function(res) {});
+  updatePattern(pattern, key, type, value) {
+    Net.socket.emit('updatePattern', pattern.key, key, value, type, function(res) {});
   }
 
 

@@ -8,6 +8,7 @@ import {V_ground} from './world/view/v_ground';
 import {V_character} from './world/view/v_character';
 import {V_neutral} from './world/view/v_neutral';
 import {V_squeleton} from './world/view/v_squeleton';
+import {Controls} from './world/controls/controls';
 
 export class Worlds{
 
@@ -21,6 +22,7 @@ export class Worlds{
       new V_character(),
       new V_squeleton()
     ]);
+    Controls.init();
 
     Net.http.get(`${environment.backURL}/readWorlds`, {responseType:"json", headers: Net.headers}).subscribe((res)=>{
 
@@ -52,26 +54,26 @@ export class Worlds{
 
           Box.adds( instruction.boxes, function(boxes) {
             View.adds(boxes);
-            Box.lastUpdateValue = new Date().getTime();
+            Box.lastUpdate = new Date().getTime();
           });
         }else if ( instruction.key === "updateValues" ){
 
           Area.updateValues( instruction.array);
           Box.updateValues( instruction.array, function(res) {});
-          Box.lastUpdateValue = new Date().getTime();
+          Box.lastUpdate = new Date().getTime();
 
         }else if ( instruction.key === "updatePositions"){
 
           Area.updatePositions(instruction.array);
           Box.updatePositions( instruction.array, function(res) {
             View.updatePositions(res);
-            Box.lastUpdateValue = new Date().getTime();
+            Box.lastUpdate = new Date().getTime();
           });
         }else if ( instruction.key === "delete"){
 
           Box.removeByIds(instruction.array);
           View.removeByIds(instruction.array);
-          Box.lastUpdateValue = new Date().getTime();
+          Box.lastUpdate = new Date().getTime();
 
         }
       }

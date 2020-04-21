@@ -1,8 +1,7 @@
 export class Box{
 
-  static lastUpdateValue = new Date().getTime() ;
+  static lastUpdate = new Date().getTime() ;
 
-  static PATTERNS = [] ;
 
   static BOXES = [];
 
@@ -40,29 +39,6 @@ export class Box{
     }
   ];
 
-  static ACTIONS_ACTIVE = [
-    {
-      key : "getWater",
-      nom : "puiser de l'eau"
-    },
-    {
-      key: "getFood",
-      nom : "chercher de la nourriture"
-    },
-    {
-      key: "defense",
-      nom : "se soigner"
-    }/*,
-    {
-      key: "getMaterial",
-      nom : "couper du bois"
-    },
-    {
-      key: "getFaith",
-      nom : "trouver la foi"
-    }*/
-  ];
-
 
   static isProtectedKey(key){
     let isProtected = false ;
@@ -84,26 +60,17 @@ export class Box{
     }
     return res ;
   }
-  static getActiveFromKey(key){
-    let res = null ;
-    for ( let active of Box.ACTIONS_ACTIVE ){
-      if ( active.key == key ){
-        res = active;
+  static isInPositionOf(key, x, y){
+    let bool = false ;
+    for ( let box of Box.BOXES ){
+      if ( box.key == key && box.x == x && box.y == y ){
+        bool = true ;
         break ;
       }
     }
-    return res ;
+    return bool ;
   }
-  static getActivesFromObj(obj){
-    let actives = [] ;
-    for ( let i = 0 ; i < Object.keys(obj).length ; i ++ ){
-      let active = Box.getActiveFromKey( Object.keys(obj)[i] );
-      if ( active ){
-        actives.push(active);
-      }
-    }
-    return actives ;
-  }
+
 
   static adds(boxesJson, callBack){
     for ( let box of boxesJson ){
@@ -118,7 +85,7 @@ export class Box{
       for ( let box of Box.BOXES ){
         if ( 'id' in box && box.id == keyVal.id ){
           box[keyVal.key] = keyVal.value ;
-          Box.lastUpdateValue = new Date().getTime();
+          Box.lastUpdate = new Date().getTime();
         }
       }
     }

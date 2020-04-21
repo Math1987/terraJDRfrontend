@@ -15,6 +15,8 @@ export class Net{
   static init(http: HttpClient){
     Net.http = http ;
     Net.socket = io.connect(environment.backURL);
+
+
   }
 
 }

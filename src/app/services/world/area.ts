@@ -5,7 +5,6 @@ import {environment} from '../../../environments/environment';
 
 export class Area{
 
-  static lastCharacterUpdate = new Date().getTime();
   static world = null ;
   static character = null ;
 
@@ -33,7 +32,6 @@ export class Area{
     for ( let keyVal of array ){
       if ( keyVal.id == Area.character.id ){
         Area.character[keyVal.key] = keyVal.value ;
-        Area.lastCharacterUpdate = new Date().getTime();
       }
     }
   }
@@ -42,7 +40,6 @@ export class Area{
       if ( keyVal.id == Area.character.id ){
         Area.character.x = keyVal.x ;
         Area.character.y = keyVal.y ;
-        Area.lastCharacterUpdate = new Date().getTime();
       }
     }
   }

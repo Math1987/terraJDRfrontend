@@ -6,6 +6,8 @@ import {NavComponent} from '../../nav/nav.component';
 import {Net} from '../../services/net';
 import {Box} from '../../services/world/model/box';
 import {Controls} from '../../services/world/controls/controls';
+import {Interaction} from '../../services/world/controls/interactions/interaction';
+import {Action} from '../../services/world/controls/actions/action';
 
 @Component({
   selector: 'app-map',
@@ -14,11 +16,9 @@ import {Controls} from '../../services/world/controls/controls';
 })
 export class MapComponent implements OnInit {
 
-  lastCharacterUpdate = 0 ;
-  lastSelectFocusUpdate = 0 ;
-  lastValueUpdate = 0 ;
-  actives = [] ;
-  interactions = [] ;
+  lastUpdate = 0 ;
+  actions = [] ;
+  interactions: any = [] ;
 
   constructor(
     private router: Router
@@ -56,8 +56,7 @@ export class MapComponent implements OnInit {
           }
         };
         View.goOn(Area.character.x ,Area.character.y );
-        self.lastCharacterUpdate = 0 ;
-        self.lastSelectFocusUpdate = 0 ;
+        self.lastUpdate = 0 ;
         self.update();
       }else{
         self.router.navigate(['u/jeu/mondes']);
@@ -82,26 +81,30 @@ export class MapComponent implements OnInit {
   update(){
     if ( Area.character ) {
 
-      if ( Area.lastCharacterUpdate !== this.lastCharacterUpdate ){
-        this.actives = Box.getActivesFromObj(Area.character);
+      if ( Box.lastUpdate !== this.lastUpdate ){
+        this.actions = Action.getActionsFromObj(Area.character);
       }
 
-      if ( View.lastUpdateFocused !== this.lastSelectFocusUpdate ) {
-        this.lastSelectFocusUpdate = View.lastUpdateFocused ;
+      if ( Box.lastUpdate !== this.lastUpdate ) {
+        this.actions = Action.getActionsFromObj(Area.character);
         this.updateSelection();
-      }
-      if ( Box.lastUpdateValue !== this.lastValueUpdate ){
-        this.lastValueUpdate = Box.lastUpdateValue ;
-        this.updateSelection();
+        this.lastUpdate = Box.lastUpdate ;
       }
 
     }
     return true ;
   }
   updateSelection(){
+
+    console.log("update selection");
+
     if (View.focused) {
       this.interactions = [] ;
-      for (let view of View.focused) {
+
+      this.interactions = Interaction.buildInteractionsFromView(Area.character, View.focused);
+
+
+      /*for (let view of View.focused) {
         if ( view.box.id !== Area.character.id) {
 
           let interactions = Controls.getInteractionsBetween(Area.character, view.box);
@@ -111,7 +114,7 @@ export class MapComponent implements OnInit {
 
         }
 
-      }
+      }*/
     }
   }
 
@@ -125,48 +128,12 @@ export class MapComponent implements OnInit {
   }
   useActive(action){
 
-    if ( this.getActions() > 0 ) {
-      Net.socket.emit('action', action.key, {
-        user: Area.character,
-        target : Area.character
-      }, function(res) {
-
-      });
-    }else{
-      alert(`tu as utilisé toutes tes actions.`);
-    }
+    action.use(Area.character, Area.character);
 
   }
   useInteraction(interaction, action){
 
-    let canDo = true ;
-    console.log(action);
-    if ( "cost" in action ){
-
-      for ( let key of Object.keys(action.cost) ){
-        if ( interaction.user[key] < action.cost[key] ){
-          canDo = false ;
-          let resource = Controls.getRessourceFromKey(key);
-          alert(`Il te faut au moins ${action.cost[key]} ${resource.nom}`);
-        }
-      }
-
-    }
-    if ( canDo ){
-      Net.socket.emit('action', action.key, {
-        user : interaction.user,
-        target : interaction.target
-      }, function(res) {
-
-      });
-    }
-
-    if ( 'actions_cost' in action && this.getActions() <= 0 ){
-      //alert(`il te faut plus d'actions.`)
-    }else{
-
-
-    }
+    interaction.useAction(action);
 
   }
 

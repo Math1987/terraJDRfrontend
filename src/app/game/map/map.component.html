@@ -11,11 +11,11 @@
     <div class="list-group-item list-group-item">
       <h3>actions</h3>
       <div class="list-group-item list-group-item-warning">
-        <div *ngFor="let action of actives" >
+        <div *ngFor="let action of actions" >
           <div
             class="btn btn-warning"
 
-            (click)="useActive(action)">{{action.nom}}</div>
+            (click)="useActive(action)">{{action.getActiveNom()}}</div>
         </div>
       </div>
     </div>
@@ -24,14 +24,15 @@
       <h3>interactions</h3>
       <div class="list-group-item list-group-item-warning">
         <div *ngFor="let interaction of interactions" >
-            <h3>{{interaction.target.name}}</h3>
+            <h3>{{interaction.title()}}</h3>
+            <h5>{{interaction.subTitle()}}</h5>
             <div class="list-group-item list-group-item-warning">
               <div *ngFor="let action of interaction.actions">
-                <div class="btn btn-warning" (click)="useInteraction(interaction, action)">{{action.nom}}</div>
+                <div class="btn btn-warning" (click)="useInteraction(interaction, action)">{{action.getNom()}}</div>
               </div>
               <ul class="list-group-item list-group-item-primary">
-                <div *ngFor="let resource of interaction.resources">
-                  <li>{{resource.nom}}: {{resource.value}}</li>
+                <div *ngFor="let value of interaction.values">
+                  <li>{{value.nom}}: {{value.value}}</li>
                 </div>
               </ul>
 

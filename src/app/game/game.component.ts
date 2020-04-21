@@ -18,7 +18,7 @@ export class GameComponent implements OnInit {
 
   static initialized = false ;
 
-  static lastCharacterUpdate = new Date().getTime();
+  static lastUpdate = new Date().getTime();
   static resources = [] ;
 
   constructor(
@@ -58,7 +58,7 @@ export class GameComponent implements OnInit {
   }
 
   updates(){
-    if ( Area.lastCharacterUpdate !== GameComponent.lastCharacterUpdate) {
+    if ( Box.lastUpdate !== GameComponent.lastUpdate) {
 
       GameComponent.resources = [];
       for (let i = 0; i < Object.keys(Area.character).length; i++) {
@@ -72,7 +72,7 @@ export class GameComponent implements OnInit {
           });
         }
       }
-
+      GameComponent.lastUpdate = Box.lastUpdate ;
     }
     return true ;
   }
