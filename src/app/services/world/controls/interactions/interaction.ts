@@ -1,10 +1,13 @@
 import {Box} from '../../model/box';
 import {Action} from '../actions/action';
 import {Translator} from '../../model/translator';
+import {View} from '../../view/view';
+import {Input} from '@angular/core';
 
 export class Interaction{
 
   static INTERACTIONS = [];
+  static ID_BUILDER = 0 ;
 
   static VALUE_KEYS = [
     {
@@ -29,60 +32,76 @@ export class Interaction{
 
     let interactions = [] ;
     for ( let view of views ){
-       let interaction = Interaction.buildInteraction(user, view.box);
+       let interaction = Interaction.buildInteraction(user, view);
        if ( interaction ){
          interactions.push(interaction);
        }
     }
-    return interactions ;
+
+    let tri = [] ;
+    for ( let interaction of interactions ){
+      if ( interaction.target.id === interaction.user.id ){
+        tri.push(interaction);
+        break ;
+      }
+    }
+    for ( let interaction of interactions ){
+      if ( interaction.target.id !== interaction.user.id ){
+        tri.push(interaction);
+      }
+    }
+
+    return tri ;
 
   }
-  static buildInteraction(user, target): Interaction {
+  static buildInteraction(user, target : View): Interaction {
     let interaction = null;
 
-    if ( user.id !== target.id ) {
-      interaction = new Interaction();
-      let actions = [];
+    interaction = new Interaction();
+    let actions = [];
 
-      for (let key of Object.keys(user)) {
-        for (let keyTarget of Object.keys(target)) {
-          let action = Action.getActionBetween(user, key, target, keyTarget);
-          if (action) {
-            actions.push(action);
-          }
+    for (let key of Object.keys(user)) {
+      for (let keyTarget of Object.keys(target.box)) {
+        let action = Action.getActionBetween(user, key, target.box, keyTarget);
+        if (action) {
+          actions.push(action);
         }
       }
-      interaction.values = [];
-      for (let key of Object.keys(target)) {
-        let patternValue = Interaction.getValue(key);
-        if (patternValue) {
-          interaction.values.push({
-            key: key,
-            nom: patternValue.nom,
-            value: target[key]
-          });
-        }
-      }
-
-      if ( actions.length >= 0  ){
-        interaction.user = user;
-        interaction.target = target;
-        interaction.actions = actions;
-      }else{
-        interaction = null;
-      }
-
-
     }
+    interaction.values = [];
+    for (let key of Object.keys(target.box)) {
+      let patternValue = Interaction.getValue(key);
+      if (patternValue) {
+        interaction.values.push({
+          key: key,
+          nom: patternValue.nom,
+          value: target.box[key]
+        });
+      }
+    }
+
+    if ( actions.length >= 0  ){
+      interaction.id = Interaction.ID_BUILDER ++ ;
+      interaction.view = target ;
+      interaction.user = user;
+      interaction.target = target.box;
+      interaction.actions = actions;
+    }else{
+      interaction = null;
+    }
+
 
     return interaction ;
   }
 
-
+  id = 0 ;
+  canvas = null ;
+  view = null ;
   user : any = null ;
   target : any = null ;
   actions = [] ;
   values = [] ;
+  @Input() InteractionCanvas : HTMLCanvasElement ;
 
   constructor(){}
   title(){
@@ -101,6 +120,23 @@ export class Interaction{
   }
   useAction(action){
     action.use(this.user, this.target);
+  }
+
+  draw(){
+
+    if ( !this.canvas ){
+      this.canvas = document.getElementById("" + this.id ) as HTMLCanvasElement ;
+    }
+
+    if ( this.canvas ){
+      this.canvas.width = 256 ;
+      this.canvas.height = 256 ;
+      let context = this.canvas.getContext('2d');
+      context.translate(this.canvas.width/2, this.canvas.height/2 );
+      this.view.draw(context, this.canvas.width);
+    }
+
+    return true ;
   }
 
 

@@ -9,23 +9,13 @@
 
   <div class="list-group-item flexRow">
     <div class="list-group-item list-group-item">
-      <h3>actions</h3>
-      <div class="list-group-item list-group-item-warning">
-        <div *ngFor="let action of actions" >
-          <div
-            class="btn btn-warning"
-
-            (click)="useActive(action)">{{action.getActiveNom()}}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="list-group-item list-group-item">
       <h3>interactions</h3>
-      <div class="list-group-item list-group-item-warning">
+      <div class="list-group-item list-group-item-success flexRow">
         <div *ngFor="let interaction of interactions" >
+          <div *ngIf="interaction.draw()" class="align-content-center text-center list-group-item list-group-item">
             <h3>{{interaction.title()}}</h3>
             <h5>{{interaction.subTitle()}}</h5>
+            <canvas id="{{interaction.id}}" class="canvasInteraction"></canvas>
             <div class="list-group-item list-group-item-warning">
               <div *ngFor="let action of interaction.actions">
                 <div class="btn btn-warning" (click)="useInteraction(interaction, action)">{{action.getNom()}}</div>
@@ -37,6 +27,8 @@
               </ul>
 
             </div>
+          </div>
+
         </div>
       </div>
     </div>

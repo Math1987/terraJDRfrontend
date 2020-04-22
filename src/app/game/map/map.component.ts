@@ -83,10 +83,6 @@ export class MapComponent implements OnInit {
 
       if ( Box.lastUpdate !== this.lastUpdate ){
         this.actions = Action.getActionsFromObj(Area.character);
-      }
-
-      if ( Box.lastUpdate !== this.lastUpdate ) {
-        this.actions = Action.getActionsFromObj(Area.character);
         this.updateSelection();
         this.lastUpdate = Box.lastUpdate ;
       }
@@ -96,25 +92,11 @@ export class MapComponent implements OnInit {
   }
   updateSelection(){
 
-    console.log("update selection");
-
     if (View.focused) {
-      this.interactions = [] ;
+      let interactions = Interaction.buildInteractionsFromView(Area.character, View.focused) ;
 
-      this.interactions = Interaction.buildInteractionsFromView(Area.character, View.focused);
+      this.interactions = interactions ;
 
-
-      /*for (let view of View.focused) {
-        if ( view.box.id !== Area.character.id) {
-
-          let interactions = Controls.getInteractionsBetween(Area.character, view.box);
-          if (interactions) {
-            this.interactions.push(interactions);
-          }
-
-        }
-
-      }*/
     }
   }
 

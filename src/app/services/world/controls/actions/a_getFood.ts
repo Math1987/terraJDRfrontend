@@ -21,6 +21,15 @@ export class A_getFood extends Action{
       return false ;
     }
   }
+  matchInteraction(user, key1, target, key2){
+    if ( key1 == this.readKey() && key1 == key2
+    && user.id == target.id
+    && user.actions > 0 ){
+      return true ;
+    }else{
+      return false ;
+    }
+  }
   getCosts(){
     return [
       {

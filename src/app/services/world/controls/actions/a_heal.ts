@@ -27,6 +27,7 @@ export class A_heal extends Action{
 
   matchInteraction(user, key1, target, key2): boolean {
     if ( key1 == "defense" && key2 == "life"
+        && user.food >= 20
         && user.x == target.x && user.y == target.y
         && target.life < target.life_max
         && ( !('race' in target && 'race' in user) || target.race === user.race )
