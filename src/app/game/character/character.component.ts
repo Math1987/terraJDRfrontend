@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Area} from '../../services/world/area';
 import {Box} from '../../services/world/model/box';
 import {Net} from '../../services/net';
+import {Controls} from '../../services/world/controls/controls';
+import {NavComponent} from '../../nav/nav.component';
 
 @Component({
   selector: 'app-character',
@@ -13,9 +15,19 @@ export class CharacterComponent implements OnInit {
   static lastUpdate = new Date().getTime();
   skills = [];
 
-  constructor() { }
+  constructor() {
+    console.log('construct chara');
+    CharacterComponent.lastUpdate = 0 ;
+    this.updates();
+  }
 
   ngOnInit() {
+
+    const self = this ;
+    NavComponent.functionInit = function() {
+      CharacterComponent.lastUpdate = 0 ;
+      self.updates();
+    };
   }
   updates(){
     if ( Area.character !== null && Box.lastUpdate !== CharacterComponent.lastUpdate ){
@@ -23,7 +35,7 @@ export class CharacterComponent implements OnInit {
       this.skills = [] ;
       for ( let i = 0 ; i < Object.keys(Area.character).length ; i ++ ){
         let key = Object.keys(Area.character)[i];
-        let skill = Box.getSkillFromKey( Object.keys(Area.character)[i]);
+        let skill = Controls.getSkillFromKey( Object.keys(Area.character)[i]);
         if ( skill ){
           this.skills.push({
             key : key,

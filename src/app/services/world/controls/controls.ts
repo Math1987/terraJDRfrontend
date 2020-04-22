@@ -3,39 +3,16 @@ import {A_attack} from './actions/a_attack';
 import {A_heal} from './actions/a_heal';
 import {A_getFood} from './actions/a_getFood';
 import {A_getWater} from './actions/a_getWater';
+import {Translator} from '../model/translator/translator';
 
 
 export class Controls{
 
   static RESOURCES = [
-    {
-      key : "life",
-      nom : "vie"
-    },
-    {
-      key : "water",
-      nom :  "eau"
-    },
-    {
-      key : "food",
-      nom :  "nourriture"
-    },
-    {
-      key : "material",
-      nom :  "materiel"
-    },
-    {
-      key : "faith",
-      nom :  "foi"
-    },
-    {
-      key : "actions",
-      nom :  "actions"
-    },
-    {
-      key : "xp",
-      nom :  "xp"
-    }
+    'life' ,'water' ,'food' ,'material' ,'faith' ,'actions' ,'xp'
+  ];
+  static SKILLS = [
+    'attack' ,"defense" ,"getWater" ,"getFood" ,"getMaterial" ,"getFaith"
   ];
 
   static init(){
@@ -61,8 +38,25 @@ export class Controls{
   static getRessourceFromKey(key){
     let res = null ;
     for ( let resource of Controls.RESOURCES ){
-      if ( resource.key == key ){
-        res = resource;
+      if ( resource == key ){
+        res = {
+          key : key,
+          nom : Translator.translate(key, "fr", 'default')
+      };
+        break ;
+      }
+    }
+    return res ;
+  }
+
+  static getSkillFromKey(key){
+    let res = null ;
+    for ( let skill of Controls.SKILLS ){
+      if ( skill == key ){
+        res = {
+          key : key,
+          nom : Translator.translate(key, 'fr', 'skill')
+        };
         break ;
       }
     }

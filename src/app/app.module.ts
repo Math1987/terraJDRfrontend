@@ -26,6 +26,9 @@ import { UpdateBoxControlComponent } from './admin/update-box-control/update-box
 import { AdminMapComponent } from './admin/admin-map/admin-map.component';
 import { PatternsComponent } from './admin/patterns/patterns.component';
 import { CalculationComponent } from './admin/calculation/calculation.component';
+import { RankingComponent } from './game/ranking/ranking.component';
+import { MartyrComponent } from './game/ranking/martyr/martyr.component';
+import { MessageComponent } from './game/message/message.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { CalculationComponent } from './admin/calculation/calculation.component'
     UpdateBoxControlComponent,
     AdminMapComponent,
     PatternsComponent,
-    CalculationComponent
+    CalculationComponent,
+    RankingComponent,
+    MartyrComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

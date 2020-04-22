@@ -12,6 +12,8 @@ import {WorldsComponent} from './game/worlds/worlds.component';
 import {AdminMapComponent} from './admin/admin-map/admin-map.component';
 import {PatternsComponent} from './admin/patterns/patterns.component';
 import {CalculationComponent} from './admin/calculation/calculation.component';
+import {RankingComponent} from './game/ranking/ranking.component';
+import {MartyrComponent} from './game/ranking/martyr/martyr.component';
 
 
 const routes: Routes = [
@@ -28,7 +30,10 @@ const routes: Routes = [
           {path:"", component:WorldsComponent},
           {path:"mondes", component:WorldsComponent},
           {path:"carte", component:MapComponent},
-          {path:"perso", component:CharacterComponent}
+          {path:"perso", component:CharacterComponent},
+          {path:"classement", component:RankingComponent, children:[
+              {path:"martyr", component:MartyrComponent}
+            ]},
         ]}
     ]},
   {path:"**", redirectTo:"login", pathMatch:"full"}

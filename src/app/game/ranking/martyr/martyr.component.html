@@ -1,0 +1,26 @@
+<div class="list-group-item list-group-item">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Rang</th>
+      <th scope="col">Joueur</th>
+      <th scope="col">tué</th>
+      <th scope="col">mort de soif</th>
+      <th scope="col">mort de faim</th>
+      <th scope="col">total</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let row of rows">
+        <th scope="row">{{row.rank}}</th>
+        <th scope="row">{{row.name}}</th>
+        <td>{{row.killed}}</td>
+        <td>{{row.water}}</td>
+        <td>{{row.food}}</td>
+        <td>{{row.total}}</td>
+      </tr>
+    <tr>
+    </tbody>
+  </table>
+
+</div>

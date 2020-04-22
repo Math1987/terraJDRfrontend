@@ -12,32 +12,7 @@ export class Box{
     'y'
   ];
 
-  static SKILLS = [
-    {
-      key : "attack",
-      nom : "attaque"
-    },
-    {
-      key : "defense",
-      nom :  "défense"
-    },
-    {
-      key : "getWater",
-      nom :  "sourcier"
-    },
-    {
-      key : "getFood",
-      nom :  "chasseur cueilleur"
-    },
-    {
-      key : "getMaterial",
-      nom :  "bûcheron"
-    },
-    {
-      key : "getFaith",
-      nom :  "prier"
-    }
-  ];
+
 
 
   static isProtectedKey(key){
@@ -49,16 +24,6 @@ export class Box{
       }
     }
     return isProtected;
-  }
-  static getSkillFromKey(key){
-    let res = null ;
-    for ( let skill of Box.SKILLS ){
-      if ( skill.key == key ){
-        res = skill;
-        break ;
-      }
-    }
-    return res ;
   }
   static isInPositionOf(key, x, y){
     let bool = false ;
@@ -82,6 +47,18 @@ export class Box{
     }
     callBack(boxesJson);
   }
+
+  static readById(id){
+    let box = null ;
+    for ( let b of Box.BOXES ){
+      if ( 'id' in  b && b.id == id ){
+        box = b ;
+        break ;
+      }
+    }
+    return box ;
+  }
+
   static updateValues(array, callBack){
 
     let updateds = [] ;

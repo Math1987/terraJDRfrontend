@@ -22,7 +22,12 @@ export class MapComponent implements OnInit {
 
   constructor(
     private router: Router
-  ) { }
+  ) {
+
+    this.lastUpdate = 0 ;
+    this.update();
+
+  }
 
   ngOnInit() {
 
@@ -31,7 +36,7 @@ export class MapComponent implements OnInit {
     const canvas = document.getElementById("worldViewGame") as HTMLCanvasElement ;
     canvas.width = 780 ;
     canvas.height = 780*0.59 ;
-
+    this.lastUpdate = 0 ;
     NavComponent.setInitCallBack(function(worlds) {
 
       if ( Area.world !== null && Area.character !== null ){

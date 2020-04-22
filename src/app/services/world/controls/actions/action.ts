@@ -1,5 +1,5 @@
 import {Net} from '../../../net';
-import {Translator} from '../../model/translator';
+import {Translator} from '../../model/translator/translator';
 
 export class Action{
 

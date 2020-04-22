@@ -1,12 +1,11 @@
 import {Box} from '../../model/box';
 import {Action} from '../actions/action';
-import {Translator} from '../../model/translator';
+import {Translator} from '../../model/translator/translator';
 import {View} from '../../view/view';
 import {Input} from '@angular/core';
 
 export class Interaction{
 
-  static INTERACTIONS = [];
   static ID_BUILDER = 0 ;
 
   static VALUE_KEYS = [
@@ -108,7 +107,7 @@ export class Interaction{
     if ( 'name' in this.target ){
       return this.target.name ;
     }else{
-      return this.target.key ;
+      return Translator.translate(this.target.key, 'fr', "default") ;
     }
   }
   subTitle(){

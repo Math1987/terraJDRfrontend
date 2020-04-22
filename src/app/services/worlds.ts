@@ -9,6 +9,7 @@ import {V_character} from './world/view/v_character';
 import {V_neutral} from './world/view/v_neutral';
 import {V_squeleton} from './world/view/v_squeleton';
 import {Controls} from './world/controls/controls';
+import {Model} from './world/model/model';
 
 export class Worlds{
 
@@ -16,6 +17,7 @@ export class Worlds{
 
   static init(callBack){
 
+    Model.init();
     View.init([
       new V_ground(),
       new V_neutral(),
