@@ -49,6 +49,7 @@ export class Worlds{
 
     Net.socket.on('instructions', function (instructions){
 
+
       for ( let instruction of instructions ){
         if ( instruction.key === "add" ){
 
@@ -82,10 +83,12 @@ export class Worlds{
 
   }
 
-
+  static reset(){
+    Box.reset();
+    View.reset();
+  }
 
   static enterIn(world, callBack){
-
     Net.socket.emit('enterInWorld',  world, Account.user.id, function(res) {
       if ( res ){
         Area.setWorld(world);

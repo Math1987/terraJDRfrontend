@@ -8,12 +8,6 @@ export class A_heal extends Action{
   readKey(){
     return "defense";
   }
-  getNom(){
-    return "soigner";
-  }
-  getActiveNom(){
-    return "se soigner" ;
-  }
   isActive(): boolean {
     return true;
   }

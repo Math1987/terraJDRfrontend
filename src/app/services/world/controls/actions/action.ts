@@ -1,4 +1,5 @@
 import {Net} from '../../../net';
+import {Translator} from '../../model/translator';
 
 export class Action{
 
@@ -44,11 +45,13 @@ export class Action{
   readKey(){
     return "action";
   }
-  getNom(){
-    return 'action';
-  }
-  getActiveNom(){
-    return this.getNom();
+  getNom(user, target){
+    if ( user.id == target.id ){
+      return Translator.translate(this.readKey(),"fr", "selfAction" );
+    }else{
+      return Translator.translate(this.readKey(),"fr", "action" );
+    }
+
   }
   matchActive(user){
     return true ;
@@ -70,7 +73,7 @@ export class Action{
       for ( let key of Object.keys(user) ){
         if ( cost.key == key && user[key] < cost.value ){
           canMakeAction = false ;
-          alert(`il vous faut au moins ${cost.value} ${cost.nom} pour ${this.getNom()}`);
+          alert(`il vous faut au moins ${cost.value} ${cost.nom} pour ${this.getNom(user, target)}`);
         }
       }
     }

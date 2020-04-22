@@ -5,6 +5,7 @@ import {Worlds} from '../services/worlds';
 import {View} from '../services/world/view/view';
 import {Characters} from '../services/characters';
 import {Area} from '../services/world/area';
+import {Net} from '../services/net';
 
 
 @Component({
@@ -57,9 +58,18 @@ export class NavComponent implements OnInit{
     }
   }
   deconnexion(){
-    Account.deconnexion();
-    Area.reset();
-    this.router.navigate(['/login']);
+    const self = this ;
+    Net.socket.emit('deconnexion', function(res) {
+      console.log(res);
+      Account.deconnexion();
+      Area.reset();
+      Worlds.reset();
+      self.router.navigate(['/login']);
+
+      Net.reset();
+
+    });
+
   }
 
 }

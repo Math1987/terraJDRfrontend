@@ -23,6 +23,8 @@ export class View{
     }
   }
   static reset(){
+    View.x = 0 ;
+    View.y = 0 ;
     View.setRayon(View.rayon);
   }
   static setRayon(rayon){
@@ -115,7 +117,7 @@ export class View{
       }
     }
 
-    View.focused = View.ROUNDS[0];
+    View.focusBox(View.ROUNDS[0]);
     for ( let delBox of delet ){
       Box.removeByPosition(delBox.x, delBox.y);
     }

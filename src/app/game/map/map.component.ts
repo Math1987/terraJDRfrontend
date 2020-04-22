@@ -8,6 +8,7 @@ import {Box} from '../../services/world/model/box';
 import {Controls} from '../../services/world/controls/controls';
 import {Interaction} from '../../services/world/controls/interactions/interaction';
 import {Action} from '../../services/world/controls/actions/action';
+import {Worlds} from '../../services/worlds';
 
 @Component({
   selector: 'app-map',
@@ -17,7 +18,6 @@ import {Action} from '../../services/world/controls/actions/action';
 export class MapComponent implements OnInit {
 
   lastUpdate = 0 ;
-  actions = [] ;
   interactions: any = [] ;
 
   constructor(
@@ -36,6 +36,7 @@ export class MapComponent implements OnInit {
 
       if ( Area.world !== null && Area.character !== null ){
 
+        Worlds.reset();
         View.setCanvasWorld(canvas) ;
         View.setRayon(5);
         View.moveControls = function(x,y, callBack){
@@ -82,7 +83,6 @@ export class MapComponent implements OnInit {
     if ( Area.character ) {
 
       if ( Box.lastUpdate !== this.lastUpdate ){
-        this.actions = Action.getActionsFromObj(Area.character);
         this.updateSelection();
         this.lastUpdate = Box.lastUpdate ;
       }
@@ -93,6 +93,7 @@ export class MapComponent implements OnInit {
   updateSelection(){
 
     if (View.focused) {
+
       let interactions = Interaction.buildInteractionsFromView(Area.character, View.focused) ;
 
       this.interactions = interactions ;

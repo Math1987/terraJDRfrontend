@@ -60,12 +60,16 @@ export class GameComponent implements OnInit {
   updates(){
     if ( Box.lastUpdate !== GameComponent.lastUpdate) {
 
-      GameComponent.resources = [];
+
+      while(GameComponent.resources.length > 0 ){
+        GameComponent.resources.splice(0,1);
+      }
+
       for (let i = 0; i < Object.keys(Area.character).length; i++) {
 
         let resource = Controls.getRessourceFromKey(Object.keys(Area.character)[i]);
         if ( resource !== null ){
-          GameComponent.resources.push({
+           GameComponent.resources.push({
             key: Object.keys(Area.character)[i],
             nom : resource.nom,
             value: Object.values(Area.character)[i]

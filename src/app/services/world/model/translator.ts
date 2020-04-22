@@ -34,7 +34,7 @@ export class Translator{
       fr : {
         default : "défense",
         action : "soigner",
-        interaction : "se soigner",
+        selfAction : "se soigner",
         skill : "défense"
       }
     },

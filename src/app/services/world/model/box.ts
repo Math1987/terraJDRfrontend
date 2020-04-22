@@ -71,7 +71,11 @@ export class Box{
     return bool ;
   }
 
-
+  static reset(){
+    while ( Box.BOXES.length > 0 ){
+      Box.BOXES.splice(0,1);
+    }
+  }
   static adds(boxesJson, callBack){
     for ( let box of boxesJson ){
         Box.BOXES.push(box);
