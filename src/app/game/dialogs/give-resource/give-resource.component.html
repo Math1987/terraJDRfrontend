@@ -19,7 +19,7 @@
   <form [formGroup]="form" (ngSubmit)="submit(form)">
   <mat-dialog-content>
     <mat-form-field>
-      <input matInput formControlName="filename" type="number" placeholder="valeur" value="0">
+      <input matInput formControlName="filename" type="number" placeholder="valeur" value="1" min="1">
     </mat-form-field>
   </mat-dialog-content>
 

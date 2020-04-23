@@ -3,11 +3,10 @@ import {Translator} from './translator';
 export class T_material extends Translator{
 
   default = "matériel" ;
-  value = "matériel" ;
-  skill = "bûcheron" ;
+  designation = `de matériel` ;
 
   readKey(){
-    return 'getMaterial' ;
+    return 'material' ;
   }
 
 }

@@ -6,6 +6,7 @@ export class T_getWater extends Translator{
   selfAction = "puiser de l'eau";
   skill = "sourcier" ;
 
+
   constructor(){
     super();
   }

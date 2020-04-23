@@ -6,6 +6,7 @@ export class T_getFood extends Translator{
   selfAction = "chercher de la nourriture" ;
   skill = "chasseur cueilleur" ;
 
+
   constructor(){
     super();
   }
