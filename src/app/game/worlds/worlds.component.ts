@@ -99,8 +99,6 @@ export class WorldsComponent implements OnInit {
       }
     }
 
-    console.log(race);
-
     if (name.length > 2) {
       Net.socket.emit('createUserCharacter', {
         key: "character",

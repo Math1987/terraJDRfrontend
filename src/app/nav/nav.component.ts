@@ -60,7 +60,7 @@ export class NavComponent implements OnInit{
   deconnexion(){
     const self = this ;
     Net.socket.emit('deconnexion', function(res) {
-      console.log(res);
+
       Account.deconnexion();
       Area.reset();
       Worlds.reset();

@@ -26,7 +26,6 @@ export class CalculationComponent implements OnInit {
     const self = this ;
     Net.http.get(`${environment.backURL}/readCalculations`, { respsonseType: "json", headers: Net.headers}).subscribe((res)=>{
 
-      console.log(res);
       self.calculations = res ;
       self.calculations = [] ;
       for ( let calcul of res ){
@@ -40,11 +39,8 @@ export class CalculationComponent implements OnInit {
         self.calculations.push({
           name : calcul.name,
           attributes : array
-        })
+        });
       }
-
-      console.log(self.calculations);
-
     });
   }
   updateValue(name, attribute, value){

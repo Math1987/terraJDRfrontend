@@ -51,7 +51,6 @@ export class Action{
     }else{
       return Translator.translate(this.readKey(),"fr", "action" );
     }
-
   }
   matchActive(user){
     return true ;

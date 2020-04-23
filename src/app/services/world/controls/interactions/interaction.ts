@@ -73,7 +73,7 @@ export class Interaction{
       if (patternValue) {
         interaction.values.push({
           key: key,
-          nom: patternValue.nom,
+          nom: Translator.translate(key, 'fr', 'value'),
           value: target.box[key]
         });
       }

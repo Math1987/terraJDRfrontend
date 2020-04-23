@@ -8,9 +8,6 @@ export class A_getWater extends Action{
   readKey(){
     return "getWater";
   }
-  getNom(){
-    return "puiser de l'eau";
-  }
   isActive(): boolean {
     return true;
   }

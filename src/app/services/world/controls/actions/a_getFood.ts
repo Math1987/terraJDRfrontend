@@ -8,9 +8,6 @@ export class A_getFood extends Action{
   readKey(){
     return "getFood";
   }
-  getNom(){
-    return "chercher de la nourriture";
-  }
   isActive(): boolean {
     return true;
   }

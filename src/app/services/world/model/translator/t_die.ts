@@ -16,10 +16,6 @@ export class T_die extends Translator{
     let userBox = Box.readById(json.user);
     let targetBox = Box.readById(json.target);
 
-    console.log(userBox);
-    console.log(targetBox);
-
-
     if ( userBox !== null  && targetBox !== null ){
 
 

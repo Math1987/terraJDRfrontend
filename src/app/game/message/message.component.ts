@@ -20,7 +20,6 @@ export class MessageComponent implements OnInit {
 
     const self = this ;
     Net.socket.on('historic', function(json) {
-      console.log(json);
       let message = Translator.fromHistoricToMessage(Area.character, json, 'fr') ;
       if ( message ){
         self.messages.unshift(message);

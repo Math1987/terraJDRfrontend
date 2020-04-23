@@ -15,9 +15,8 @@ export class Net{
   static init(http: HttpClient){
     Net.http = http ;
     Net.socket = io.connect(environment.backURL);
-    console.log('socket ' + Net.socket);
     Net.socket.emit('test', function(res) {
-      console.log(res);
+
     });
   }
   static reset(){

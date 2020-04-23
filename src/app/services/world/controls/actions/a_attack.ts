@@ -10,9 +10,6 @@ export class A_attack extends Action{
   readKey(){
     return "attack";
   }
-  getNom(){
-    return "attaquer";
-  }
   matchInteraction(user, key1, target, key2): boolean {
 
     if ( !Box.isInPositionOf('neutral', user.x, user.y)

@@ -2,129 +2,24 @@ export class Translator{
 
   static TRANSLATORS = [];
 
-  static KEYS = {
-
-    ground : {
-      fr: {
-        default: "désert"
-      }
-    },
-    neutral : {
-      fr: {
-        default: "zonne neutre"
-      }
-    },
-
-    life : {
-      fr : {
-        default : "vie"
-      }
-    },
-    water : {
-      fr : {
-        default: "eau"
-      }
-    },
-    food : {
-      fr : {
-        default: "nourriture"
-      }
-    },
-    material: {
-      fr : {
-        default: "materiel"
-      }
-    },
-    faith:{
-      fr : {
-        default: "foi"
-      }
-    },
-
-    human : {
-      fr : {
-        default : 'humain'
-      }
-    },
-    dwarf : {
-      fr : {
-        default : "nain"
-      }
-    },
-    vampire : {
-      fr :{
-        default : "vampire"
-      }
-    },
-    elf : {
-      fr : {
-        default : "elfe"
-      }
-    },
-    squeleton :{
-      fr : {
-        default : "squelette",
-        singular : "un squelette"
-      }
-    },
-
-    attack: {
-      fr : {
-        default : "attaque",
-        action : "attaquer",
-        skill : "attaque"
-      }
-    },
-    defense: {
-      fr : {
-        default : "défense",
-        action : "soigner",
-        selfAction : "se soigner",
-        skill : "défense"
-      }
-    },
-    getWater : {
-      fr : {
-        default : `puiser de l'eau`,
-        skill : `sourcier`
-      }
-    },
-    getFood : {
-      fr : {
-        default : 'chercher de la nourriture',
-        skill : 'chasseur cueilleur'
-      }
-    },
-    getMaterial : {
-      fr : {
-        default : `bûcheron`,
-        skill : `bûcheron`
-      }
-    },
-    getFaith : {
-      fr : {
-        default : `foi`,
-        skill : `prier`
-      }
-    },
-  };
-
-
   static init(translators){
     Translator.TRANSLATORS = translators;
   }
 
   static translate(key, language, type ){
 
-    if ( "action" !== type && "selfAction" !== type && "skill" !== type && "singular" !== type){
-      type = "default";
+    let translate = null ;
+    for ( let translator of Translator.TRANSLATORS ){
+      translate = translator.translate(key, type) ;
+      if ( translate ){
+        break ;
+      }
+    }
+    if ( translate === null ){
+      translate = key ;
     }
 
-    if ( Translator.KEYS[key] && Translator.KEYS[key][language] && Translator.KEYS[key][language][type]){
-      return Translator.KEYS[key][language][type] ;
-    }else{
-      return key ;
-    }
+    return translate ;
 
   }
 
@@ -142,17 +37,12 @@ export class Translator{
   readKey(){
     return '' ;
   }
-  asDefault(language){
-    return '';
-  }
-  asAction(language){
-    return '';
-  }
-  asSelfAction(language){
-    return '' ;
-  }
-  asSkill(language){
-    return '';
+  translate(key, type){
+    let translate = null ;
+    if ( this.readKey() == key ){
+      translate = this[type] ;
+    }
+    return translate ;
   }
   asMessage(user, json, language){}
 

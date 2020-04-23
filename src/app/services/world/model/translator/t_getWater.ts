@@ -3,6 +3,9 @@ import {Box} from '../box';
 
 export class T_getWater extends Translator{
 
+  selfAction = "puiser de l'eau";
+  skill = "sourcier" ;
+
   constructor(){
     super();
   }

@@ -16,7 +16,6 @@ export class CharacterComponent implements OnInit {
   skills = [];
 
   constructor() {
-    console.log('construct chara');
     CharacterComponent.lastUpdate = 0 ;
     this.updates();
   }

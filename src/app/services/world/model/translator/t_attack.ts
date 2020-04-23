@@ -3,6 +3,9 @@ import {Box} from '../box';
 
 export class T_attack extends Translator{
 
+  action = "attaquer" ;
+  skill = "attaque" ;
+
   constructor(){
     super();
   }
