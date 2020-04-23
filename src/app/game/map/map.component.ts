@@ -74,6 +74,7 @@ export class MapComponent implements OnInit {
 
 
 
+
   }
 
   getMove(){

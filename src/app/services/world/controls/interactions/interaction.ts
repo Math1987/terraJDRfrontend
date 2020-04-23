@@ -9,17 +9,14 @@ export class Interaction{
   static ID_BUILDER = 0 ;
 
   static VALUE_KEYS = [
-    {
-      key: 'life',
-      nom : "vie"
-    }
+    'life', 'water', 'food', 'material'
   ];
 
   static getValue(key){
     let pattern = null ;
-    for ( let patternValue of Interaction.VALUE_KEYS ){
-      if ( patternValue.key == key ){
-        pattern = patternValue ;
+    for ( let val of Interaction.VALUE_KEYS ){
+      if ( val == key ){
+        pattern = val ;
         break ;
       }
     }
@@ -54,9 +51,8 @@ export class Interaction{
 
   }
   static buildInteraction(user, target : View): Interaction {
-    let interaction = null;
 
-    interaction = new Interaction();
+    let interaction = new Interaction();
     let actions = [];
 
     for (let key of Object.keys(user)) {
@@ -78,7 +74,6 @@ export class Interaction{
         });
       }
     }
-
     if ( actions.length >= 0  ){
       interaction.id = Interaction.ID_BUILDER ++ ;
       interaction.view = target ;
@@ -88,7 +83,6 @@ export class Interaction{
     }else{
       interaction = null;
     }
-
 
     return interaction ;
   }

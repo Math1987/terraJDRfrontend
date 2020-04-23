@@ -13,8 +13,6 @@ export class Box{
   ];
 
 
-
-
   static isProtectedKey(key){
     let isProtected = false ;
     for ( let pk of Box.PROTECTED_KEYS ){
@@ -59,18 +57,15 @@ export class Box{
     return box ;
   }
 
-  static updateValues(array, callBack){
+  static updateValues(array){
 
-    let updateds = [] ;
     for ( let keyVal of array ){
       for ( let box of Box.BOXES ){
         if ( 'id' in box && box.id == keyVal.id ){
           box[keyVal.key] = keyVal.value ;
-          Box.lastUpdate = new Date().getTime();
         }
       }
     }
-
   }
   static updatePositions(array, callBack){
     let updateds = [] ;

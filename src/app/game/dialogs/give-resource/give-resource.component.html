@@ -1,0 +1,32 @@
+
+
+  <h1 mat-dialog-title>donner une resource</h1>
+
+  <mat-dialog-content>
+    <mat-radio-group  [(ngModel)]="resource" (change)="setResource()">
+      <div>
+        <mat-radio-button checked="checked" [value]="'water'">eau</mat-radio-button>
+      </div>
+      <div>
+        <mat-radio-button [value]="'food'">nourriture</mat-radio-button>
+      </div>
+      <div>
+        <mat-radio-button [value]="'material'">matériel</mat-radio-button>
+      </div>
+    </mat-radio-group>
+  </mat-dialog-content>
+
+  <form [formGroup]="form" (ngSubmit)="submit(form)">
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput formControlName="filename" type="number" placeholder="valeur" value="0">
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button type="submit" class="btn-success">valider</button>
+    <button mat-button type="button" class="btn-danger" mat-dialog-close>anuler</button>
+  </mat-dialog-actions>
+
+</form>
+

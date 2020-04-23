@@ -4,6 +4,7 @@ import {A_heal} from './actions/a_heal';
 import {A_getFood} from './actions/a_getFood';
 import {A_getWater} from './actions/a_getWater';
 import {Translator} from '../model/translator/translator';
+import {A_giveResource} from './actions/a_giveResource';
 
 
 export class Controls{
@@ -21,6 +22,7 @@ export class Controls{
       new A_heal(),
       new A_getFood(),
       new A_getWater(),
+      new A_giveResource()
     ]);
   }
 

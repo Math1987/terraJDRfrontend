@@ -13,6 +13,7 @@ import {T_faith} from './translator/t_faith';
 import {T_ground} from './translator/t_ground';
 import {T_neutral} from './translator/t_neutral';
 import {T_defense} from './translator/t_defense';
+import {T_giveResource} from './translator/t_giveResource';
 
 export class Model{
 
@@ -28,6 +29,7 @@ export class Model{
       new T_getFood(),
       new T_getWater(),
       new T_getFood(),
+      new T_giveResource(),
       new T_life(),
       new T_water(),
       new T_food(),

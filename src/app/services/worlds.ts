@@ -57,29 +57,28 @@ export class Worlds{
 
           Box.adds( instruction.boxes, function(boxes) {
             View.adds(boxes);
-            Box.lastUpdate = new Date().getTime();
           });
         }else if ( instruction.key === "updateValues" ){
 
           Area.updateValues( instruction.array);
-          Box.updateValues( instruction.array, function(res) {});
-          Box.lastUpdate = new Date().getTime();
+          Box.updateValues( instruction.array);
 
         }else if ( instruction.key === "updatePositions"){
 
           Area.updatePositions(instruction.array);
           Box.updatePositions( instruction.array, function(res) {
             View.updatePositions(res);
-            Box.lastUpdate = new Date().getTime();
           });
         }else if ( instruction.key === "delete"){
 
           Box.removeByIds(instruction.array);
           View.removeByIds(instruction.array);
-          Box.lastUpdate = new Date().getTime();
 
         }
       }
+      Box.lastUpdate = new Date().getTime();
+
+
 
     });
 

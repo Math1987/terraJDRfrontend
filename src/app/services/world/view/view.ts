@@ -173,6 +173,19 @@ export class View{
     }
 
   }
+  static updateValues(updates){
+    for ( let update of updates ) {
+      for (let round of View.ROUNDS) {
+        for (let view of round) {
+          if (view.box.id == update.id) {
+
+            view.box = Box.readById(update.id);
+            console.log(Box.readById(update.id));
+          }
+        }
+      }
+    }
+  }
 
   static getById(id){
     let vBoxReturn = null ;

@@ -13,9 +13,10 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatMenuModule, MatSidenavModule
+  MatMenuModule, MatSidenavModule,
+  MatDialogModule, MatCheckboxModule, MatRadioModule
 } from '@angular/material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { GameComponent } from './game/game.component';
 import { NavComponent } from './nav/nav.component';
 import { AdminComponent } from './admin/admin.component';
@@ -29,6 +30,7 @@ import { CalculationComponent } from './admin/calculation/calculation.component'
 import { RankingComponent } from './game/ranking/ranking.component';
 import { MartyrComponent } from './game/ranking/martyr/martyr.component';
 import { MessageComponent } from './game/message/message.component';
+import { GiveResourceComponent } from './game/dialogs/give-resource/give-resource.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { MessageComponent } from './game/message/message.component';
     CalculationComponent,
     RankingComponent,
     MartyrComponent,
-    MessageComponent
+    MessageComponent,
+    GiveResourceComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +65,13 @@ import { MessageComponent } from './game/message/message.component';
     MatIconModule,
     MatButtonToggleModule,
     MatSidenavModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [GiveResourceComponent]
 })
 export class AppModule { }
