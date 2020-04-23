@@ -30,16 +30,46 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 The dev server is automatically connected to the back-end service on `http://localhost:4200/`.
 You can get it on `https://github.com/Math1987/terraJDRbackend.git`
-Note that the back-end dev service needs a local mysql environment with a DB named `terrajdr_db`, with the username root
+Note that the back-end dev service needs a local mysql environment with a DB named `terrajdr_db`, with the username `root`
+
+By default, an account user `admin@terrajdr.com`, password `terrajdr` is generated from backend at first launch with admin rights.
 
 ## structure of the app
 
 ###routing 
-navigate to login component if the user is not connected, watching account in service folder
-else use nav component sending to childrens "game" or "admin", watching Area in service to get world or character focused
+navigate to login component if the user is not connected, watching account in service folder.
+else use nav component sending to childrens "game" or "admin".
 
 ###applications
 ####admin
-Give a level-design interface allowing modifications on pattern's objects, calculation or world in real time:
+interface with closed access for level-design allowing modifications on:
+
+-pattern's objects in each different world,
+
+-calculation global,
+
+-objects in each world in real time
+
 ####game
-Give the player interface
+interface for players:
+
+-map for the view and interactions,
+
+-character to upgreat skills,
+
+-rank 
+
+
+####service
+Use http and socket.io to get and keep datas for user like account values or player's values and give objects to use them from the components.
+
+The worlds service manage the access to differents worlds and the instructions receiving from the backend with socket.io.
+It send them to the appropriates objects tidy in `model`, `view`, `controls` (in the world folder), to update the user's game.
+
+View work on a static environment using OPP patterns to draw elements, builded from Models as Boxes. 
+
+Model is used to store all the datas of the elements using by the player.
+
+Controls give objects using OPP patterns used by interactions from components.
+
+
