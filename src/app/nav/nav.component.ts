@@ -7,6 +7,13 @@ import {Characters} from '../services/characters';
 import {Area} from '../services/world/area';
 import {Net} from '../services/net';
 
+/**
+ * Nav Component:
+ *
+ * This is the header of the user e.
+ * It manage roots to switch worlds or account
+ *
+ */
 
 @Component({
   selector: 'app-nav',

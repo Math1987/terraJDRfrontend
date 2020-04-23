@@ -9,6 +9,15 @@ import {Router} from '@angular/router';
 import {Box} from '../services/world/model/box';
 import {Controls} from '../services/world/controls/controls';
 
+/**
+ * Game component:
+ *
+ * Manage player's roots in a focused world, as "map", "character", "rank"
+ * give the player's resources infomation, like "life", "water", "food" etc...
+ * git a message for recent historic.
+ *
+ */
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
