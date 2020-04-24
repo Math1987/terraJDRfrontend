@@ -25,6 +25,7 @@ export class Area{
   }
   static reset(){
     Area.world = null ;
+    Area.character = null ;
     Area.leaveWorld();
     Area.leaveCharacter();
   }

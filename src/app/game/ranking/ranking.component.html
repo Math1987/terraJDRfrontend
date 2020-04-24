@@ -3,15 +3,53 @@
   <div class="list-group-item list-group-item">
     <nav class="navbar navbar-expand">
 
-      <ul class="nav navbar-nav ml-0">
-        <li class="nav-item">
-          <div class="nav-link btn btn-outline-success" routerLink="/u/jeu/classement/martyr">martyr</div>
-        </li>
-      </ul>
-
 
     </nav>
 
+      <div class = "row-cols-lg-3 flex-row">
+    <div class="list-group-item list-group-item-success">
+      <h3>Martyr</h3>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Rang</th>
+          <th scope="col">Joueur</th>
+          <th scope="col">mort</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  *ngFor="let row of martyrs">
+          <th scope="row">{{row.rank}}</th>
+          <td>{{row.name}}</td>
+          <td>{{row.value}}</td>
+        </tr>
+        <tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <router-outlet></router-outlet>
+
+    <div class = "row-cols-lg-3 flex-row">
+      <div class="list-group-item list-group-item-success">
+        <h3>Tueur en série</h3>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Rang</th>
+            <th scope="col">Joueur</th>
+            <th scope="col">massacre</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr  *ngFor="let row of killer">
+            <th scope="row">{{row.rank}}</th>
+            <td>{{row.name}}</td>
+            <td>{{row.value}}</td>
+          </tr>
+          <tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
 </div>

@@ -144,7 +144,11 @@ export class View{
         View.removeById(target.id);
 
         if ( !View.isIn(target.x,target.y) ){
-          Box.removeById(target.id);
+          if (Area.character !== null && target.id == Area.character.id) {
+            View.move(Area.character.x - View.x, Area.character.y - View.y);
+          }else{
+            Box.removeById(target.id);
+          }
         }else {
 
           if (view !== null) {
@@ -178,9 +182,7 @@ export class View{
       for (let round of View.ROUNDS) {
         for (let view of round) {
           if (view.box.id == update.id) {
-
             view.box = Box.readById(update.id);
-            console.log(Box.readById(update.id));
           }
         }
       }
@@ -528,7 +530,7 @@ export class View{
     context.fillStyle = "gray";
     context.textAlign = "left" ;
     context.font = `${size*0.5}px Arial`;
-    context.fillText(`${View.x}x,${View.y}y`, size*1.8,size*0.5);
+    context.fillText(`${View.x - Math.floor(Area.world.width/2)}x,${View.y- Math.floor(Area.world.height/2)}y`, size*1.8,size*0.5);
 
     size*=0.75;
 

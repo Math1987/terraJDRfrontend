@@ -5,6 +5,7 @@ import {A_getFood} from './actions/a_getFood';
 import {A_getWater} from './actions/a_getWater';
 import {Translator} from '../model/translator/translator';
 import {A_giveResource} from './actions/a_giveResource';
+import {A_getResource} from './actions/a_getResource';
 
 
 export class Controls{
@@ -20,8 +21,9 @@ export class Controls{
     Action.init([
       new A_attack(),
       new A_heal(),
-      new A_getFood(),
-      new A_getWater(),
+      //new A_getFood(),
+      //new A_getWater(),
+      new A_getResource(),
       new A_giveResource()
     ]);
   }

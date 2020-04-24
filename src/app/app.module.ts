@@ -31,6 +31,7 @@ import { RankingComponent } from './game/ranking/ranking.component';
 import { MartyrComponent } from './game/ranking/martyr/martyr.component';
 import { MessageComponent } from './game/message/message.component';
 import { GiveResourceComponent } from './game/dialogs/give-resource/give-resource.component';
+import { GetResourceComponent } from './game/dialogs/get-resource/get-resource.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { GiveResourceComponent } from './game/dialogs/give-resource/give-resourc
     RankingComponent,
     MartyrComponent,
     MessageComponent,
-    GiveResourceComponent
+    GiveResourceComponent,
+    GetResourceComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,9 @@ import { GiveResourceComponent } from './game/dialogs/give-resource/give-resourc
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [GiveResourceComponent]
+  entryComponents: [
+    GiveResourceComponent,
+    GetResourceComponent
+  ]
 })
 export class AppModule { }

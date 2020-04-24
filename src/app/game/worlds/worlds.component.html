@@ -1,5 +1,4 @@
 <div class="jumbotron text-center">
-  <h3>choisis ton monde.</h3>
   <div class="worlds" >
     <div *ngFor="let world of getWorlds()" class="list-group-item list-group-item-success">
       <h3 [ngClass]="{
@@ -41,7 +40,6 @@
   </div>
 
   <div *ngIf="getCharacters().length > 0">
-    <h3>joues avec:</h3>
     <div class="list-group-item-success row">
       <div *ngFor="let character of getCharacters()">
         <div class="btn btn-success" (click)="chooseCharacter(character)">{{character.name}}</div>

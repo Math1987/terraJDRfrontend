@@ -15,6 +15,7 @@ import {T_neutral} from './translator/t_neutral';
 import {T_defense} from './translator/t_defense';
 import {T_giveResource} from './translator/t_giveResource';
 import {T_getMaterial} from './translator/t_getMaterial';
+import {T_getResource} from './translator/t_getResource';
 
 export class Model{
 
@@ -31,6 +32,7 @@ export class Model{
       new T_getWater(),
       new T_getFood(),
       new T_getMaterial(),
+      new T_getResource(),
       new T_giveResource(),
       new T_life(),
       new T_water(),

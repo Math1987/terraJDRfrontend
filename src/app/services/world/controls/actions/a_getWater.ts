@@ -1,4 +1,5 @@
 import {Action} from './action';
+import {Area} from '../../area';
 
 export class A_getWater extends Action{
 
@@ -19,8 +20,9 @@ export class A_getWater extends Action{
     }
   }
   matchInteraction(user, key1, target, key2){
-    if ( key1 == this.readKey() && key1 == key2
-      && user.id == target.id
+    if ( key1 == this.readKey() && ( target[key2] == "ground" ||  target[key2] == "neutral")
+      && target.x == user.x && target.y == user.y
+      && user.id === Area.character.id
       && user.actions > 0 ){
       return true ;
     }else{

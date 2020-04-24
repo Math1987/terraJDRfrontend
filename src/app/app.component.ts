@@ -5,6 +5,9 @@ import {Account} from './services/account';
 import * as $ from 'jquery';
 import {MatDialog} from '@angular/material';
 import {Dialog} from './services/dialog';
+import {Area} from './services/world/area';
+import {Worlds} from './services/worlds';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +18,8 @@ export class AppComponent implements OnInit{
 
   constructor(
     private http: HttpClient,
-    private dialog : MatDialog
+    private dialog : MatDialog,
+    private router : Router
   ){}
 
   ngOnInit(): void {
@@ -23,5 +27,25 @@ export class AppComponent implements OnInit{
     Net.init(this.http);
     Account.init();
     Dialog.init(this.dialog);
+
+    const self = this ;
+
+    let intervalReload = setInterval(function() {
+      if ( !Net.socket.connected ){
+        if ( !localStorage.getItem("reload") ){
+          localStorage.setItem("reload", "done");
+          window.location.reload();
+        }else{
+          localStorage.removeItem("reload");
+          Account.deconnexion();
+          Area.reset();
+          Worlds.reset();
+          self.router.navigate(['/login']);
+          clearInterval(intervalReload);
+        }
+      }
+    },1000);
+
+
   }
 }

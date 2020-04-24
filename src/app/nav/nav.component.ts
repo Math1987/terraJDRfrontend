@@ -30,6 +30,7 @@ export class NavComponent implements OnInit{
   ) { }
 
   ngOnInit() {
+
     if ( Account.user === null ){
       this.router.navigate(['/login']);
     }else{
