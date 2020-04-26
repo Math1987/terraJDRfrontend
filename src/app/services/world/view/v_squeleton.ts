@@ -27,7 +27,7 @@ export class V_squeleton extends View{
     return V_squeleton.image ;
   }
   getZ(): number {
-    return 1;
+    return 2;
   }
 
 }

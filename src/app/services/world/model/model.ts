@@ -16,6 +16,7 @@ import {T_defense} from './translator/t_defense';
 import {T_giveResource} from './translator/t_giveResource';
 import {T_getMaterial} from './translator/t_getMaterial';
 import {T_getResource} from './translator/t_getResource';
+import {T_field} from './translator/t_field';
 
 export class Model{
 
@@ -23,6 +24,7 @@ export class Model{
     Translator.init([
       new T_ground(),
       new T_neutral(),
+      new T_field(),
       new T_defense(),
       new T_attack(),
       new T_attack_counter(),

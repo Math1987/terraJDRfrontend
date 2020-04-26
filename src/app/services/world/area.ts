@@ -8,10 +8,15 @@ export class Area{
   static world = null ;
   static character = null ;
 
-  static init(){
+  static init(worlds){
 
     if ( localStorage.getItem("world")){
-      Area.world = JSON.parse(localStorage.getItem("world")) ;
+      let worldStored = JSON.parse(localStorage.getItem("world")) ;
+      for ( let world of worlds ){
+        if ( worldStored.name == world.name ){
+          Area.world = world ;
+        }
+      }
       if ( localStorage.getItem("character")){
         let chara = JSON.parse(localStorage.getItem("character"));
         Net.http.get(`${environment.backURL}/readById?world=${Area.world.name}&id=${chara.id}`,
@@ -28,6 +33,11 @@ export class Area{
     Area.character = null ;
     Area.leaveWorld();
     Area.leaveCharacter();
+  }
+  static updateWorld(world){
+    if ( Area.world && Area.world.name == world.name ){
+      Area.world = world ;
+    }
   }
   static updateValues(array){
     for ( let keyVal of array ){

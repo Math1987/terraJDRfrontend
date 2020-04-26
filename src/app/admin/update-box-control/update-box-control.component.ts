@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {View} from '../../services/world/view/view';
 import {Box} from '../../services/world/model/box';
 import {Net} from '../../services/net';
+import {AdminComponent} from '../admin.component';
+import {AdminService} from '../adminService';
 
 @Component({
   selector: 'app-update-box-control',
@@ -49,6 +51,21 @@ export class UpdateBoxControlComponent implements OnInit {
       alert('value updated');
     });
 
+  }
+  isDeletable(target){
+    let deletable = false ;
+    for( let del of AdminService.DELETABLES ){
+      if (del == target.view.box.key ){
+        deletable = true ;
+        break ;
+      }
+    }
+    return deletable ;
+  }
+  delete(target){
+    Net.socket.emit('deleteById', target.view.box.id, function(res) {
+      alert('objet supprimé avec succes');
+    });
   }
 
 }

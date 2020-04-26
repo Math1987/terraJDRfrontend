@@ -188,6 +188,15 @@ export class View{
       }
     }
   }
+  static build(box){
+    let pattern = null ;
+    for ( let pat of View.PATTERNS ){
+      if ( pat.readKey() === box.key ){
+        pattern = pat.createInstance(box) ;
+      }
+    }
+    return pattern ;
+  }
 
   static getById(id){
     let vBoxReturn = null ;
@@ -216,6 +225,22 @@ export class View{
       }
     }
     return vBoxReturn ;
+  }
+  static getFocusedPosition(){
+    let position = {
+      x : 0,
+      y : 0
+    };
+    console.log(View.focused);
+    if ( View.focused ){
+      for ( let obj of View.focused ){
+        if ( 'x' in obj.box ){
+          position.x = obj.box.x ;
+          position.y = obj.box.y ;
+        }
+      }
+    }
+    return position ;
   }
   static removeById(id){
 
@@ -406,15 +431,6 @@ export class View{
     document.addEventListener('mousedown', View.selectPosition);
 
   }
-  private static build(box){
-    let pattern = null ;
-    for ( let pat of View.PATTERNS ){
-      if ( pat.readKey() === box.key ){
-        pattern = pat.createInstance(box) ;
-      }
-    }
-    return pattern ;
-  }
   private static move(x:number,y:number){
 
     View.x += x ;
@@ -527,10 +543,13 @@ export class View{
     }
     context.restore();
 
-    context.fillStyle = "gray";
-    context.textAlign = "left" ;
-    context.font = `${size*0.5}px Arial`;
-    context.fillText(`${View.x - Math.floor(Area.world.width/2)}x,${View.y- Math.floor(Area.world.height/2)}y`, size*1.8,size*0.5);
+    if ( Area.world ){
+      context.fillStyle = "gray";
+      context.textAlign = "left" ;
+      context.font = `${size*0.5}px Arial`;
+      context.fillText(`${View.x - Math.floor(Area.world.width/2)}x,${View.y- Math.floor(Area.world.height/2)}y`, size*1.8,size*0.5);
+    }
+
 
     size*=0.75;
 
@@ -554,6 +573,9 @@ export class View{
     return instance ;
   }
   init_(){}
+  fusionWith(view: View){
+    return false ;
+  }
   draw(context, size){
     if ( this.getImage() !== null ){
       context.drawImage(this.getImage(),-size/2, -size/2, size, size);

@@ -10,6 +10,8 @@ import {V_neutral} from './world/view/v_neutral';
 import {V_squeleton} from './world/view/v_squeleton';
 import {Controls} from './world/controls/controls';
 import {Model} from './world/model/model';
+import {V_field} from './world/view/v_field';
+import {V_well} from './world/view/v_well';
 
 export class Worlds{
 
@@ -22,14 +24,16 @@ export class Worlds{
       new V_ground(),
       new V_neutral(),
       new V_character(),
-      new V_squeleton()
+      new V_squeleton(),
+      new V_field(),
+      new V_well()
     ]);
     Controls.init();
 
     Net.http.get(`${environment.backURL}/readWorlds`, {responseType:"json", headers: Net.headers}).subscribe((res)=>{
 
       Worlds.worlds = res ;
-      Area.init();
+      Area.init(Worlds.worlds);
       if ( Area.world !== null ){
 
         Worlds.enterIn( Area.world, function(enterInRes) {
@@ -46,6 +50,14 @@ export class Worlds{
     Net.socket.on('addWorld', function(worldJson) {
       if ( worldJson !== null ){
         Worlds.worlds.push(worldJson);
+      }
+    });
+    Net.socket.on('pass', function(world) {
+      for ( let w of Worlds.worlds ){
+        if ( w.name == world.name ){
+          w.pass = world.pass ;
+          Area.updateWorld(world);
+        }
       }
     });
 

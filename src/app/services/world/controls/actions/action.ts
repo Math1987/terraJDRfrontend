@@ -36,6 +36,7 @@ export class Action{
     for ( let action of Action.ACTIONS ){
       if ( action.matchInteraction(user, key1, target, key2)){
         actionFound = action ;
+        break ;
       }
     }
     return actionFound ;

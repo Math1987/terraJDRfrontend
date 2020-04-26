@@ -30,21 +30,30 @@ export class AppComponent implements OnInit{
 
     const self = this ;
 
-    let intervalReload = setInterval(function() {
-      if ( !Net.socket.connected ){
-        if ( !localStorage.getItem("reload") ){
-          localStorage.setItem("reload", "done");
-          window.location.reload();
-        }else{
-          localStorage.removeItem("reload");
-          Account.deconnexion();
-          Area.reset();
-          Worlds.reset();
-          self.router.navigate(['/login']);
-          clearInterval(intervalReload);
-        }
+    setTimeout(function() {
+      if ( Net.socket.connected ){
+        localStorage.removeItem("reload");
       }
-    },1000);
+      let intervalReload = setInterval(function() {
+        console.log(localStorage.getItem("reload"));
+        if ( !Net.socket.connected ){
+          if ( !localStorage.getItem("reload") ){
+            localStorage.setItem("reload", "done");
+            window.location.reload();
+          }else{
+            localStorage.removeItem("reload");
+            Account.deconnexion();
+            Area.reset();
+            Worlds.reset();
+            self.router.navigate(['/login']);
+            clearInterval(intervalReload);
+          }
+        }
+      },1000);
+    },1500);
+
+
+
 
 
   }

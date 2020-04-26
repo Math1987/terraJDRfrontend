@@ -89,7 +89,13 @@ export class GameComponent implements OnInit {
     }
     return true ;
   }
-
+  getYear(){
+    if( Area.world ){
+      return Area.world.pass ;
+    }else{
+      return 0 ;
+    }
+  }
   getResources(){
     return GameComponent.resources ;
   }

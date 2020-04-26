@@ -32,6 +32,7 @@ import { MartyrComponent } from './game/ranking/martyr/martyr.component';
 import { MessageComponent } from './game/message/message.component';
 import { GiveResourceComponent } from './game/dialogs/give-resource/give-resource.component';
 import { GetResourceComponent } from './game/dialogs/get-resource/get-resource.component';
+import { EditorAddComponent } from './admin/dialogs/editor-add/editor-add.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { GetResourceComponent } from './game/dialogs/get-resource/get-resource.c
     MartyrComponent,
     MessageComponent,
     GiveResourceComponent,
-    GetResourceComponent
+    GetResourceComponent,
+    EditorAddComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,9 @@ import { GetResourceComponent } from './game/dialogs/get-resource/get-resource.c
   bootstrap: [AppComponent],
   entryComponents: [
     GiveResourceComponent,
-    GetResourceComponent
+    GetResourceComponent,
+
+    EditorAddComponent
   ]
 })
 export class AppModule { }

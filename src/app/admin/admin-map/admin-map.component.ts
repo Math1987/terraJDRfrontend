@@ -6,6 +6,14 @@ import {View} from '../../services/world/view/view';
 import {NavComponent} from '../../nav/nav.component';
 import {Area} from '../../services/world/area';
 import {Worlds} from '../../services/worlds';
+import {Dialog} from '../../services/dialog';
+import {GetResourceComponent} from '../../game/dialogs/get-resource/get-resource.component';
+import {Net} from '../../services/net';
+import {Box} from '../../services/world/model/box';
+import {MatDialogRef} from '@angular/material';
+import {EditorAddComponent} from '../dialogs/editor-add/editor-add.component';
+import {Translator} from '../../services/world/model/translator/translator';
+import {Builder} from '../dialogs/editor-add/builder';
 
 @Component({
   selector: 'app-admin-map',
@@ -14,14 +22,22 @@ import {Worlds} from '../../services/worlds';
 })
 export class AdminMapComponent implements OnInit {
 
-
   updateBoxesControl = new UpdateBoxControlComponent();
+  editorAddDialog: MatDialogRef<EditorAddComponent>;
+
+  static BUILDERS = [];
 
   constructor(
     private router: Router
   ) {}
 
   ngOnInit() {
+
+    AdminMapComponent.BUILDERS = [
+      new Builder('squeleton'),
+      new Builder('field'),
+      new Builder('well')
+    ];
 
     if (!Account.isAdmin()) {
       this.router.navigate(['u/jeu']);
@@ -33,6 +49,7 @@ export class AdminMapComponent implements OnInit {
       NavComponent.setInitCallBack(function(worlds) {
         if (Area.world !== null) {
           self.runView();
+          View.goOn(Area.world.width / 2, Area.world.height / 2);
         }
       });
 
@@ -52,6 +69,7 @@ export class AdminMapComponent implements OnInit {
     if (Area.world === null || Area.world.name !== world.name) {
       Worlds.enterIn(world, function(res) {
         self.runView();
+        View.goOn(Area.world.width / 2, Area.world.height / 2);
       });
     }
   }
@@ -63,6 +81,37 @@ export class AdminMapComponent implements OnInit {
       return false;
     }
   }
+  addElement(){
+    const self = this ;
+
+    self.stopView();
+
+    EditorAddComponent.builds = [] ;
+    for ( let build of AdminMapComponent.BUILDERS ){
+      let newBuild = new Builder(build.key);
+      EditorAddComponent.builds.push(newBuild);
+    }
+
+    this.editorAddDialog = Dialog.dialog.open(EditorAddComponent);
+
+
+    this.editorAddDialog
+      .afterClosed()
+      .subscribe(value => {
+
+        self.runView();
+
+        });
+
+  }
+
+  stopView(){
+    View.moveControls = function(x,y, callBack) {
+      callBack(null);
+    };
+    View.selectFunction = function(views: View) {
+    };
+  }
 
   runView() {
     const self = this;
@@ -72,6 +121,5 @@ export class AdminMapComponent implements OnInit {
     View.selectFunction = function(views: View) {
       self.updateBoxesControl.setViews(views);
     };
-    View.goOn(Area.world.width / 2, Area.world.height / 2);
   }
 }

@@ -30,7 +30,7 @@ export class A_getResource extends Action{
     }
   }
   matchInteraction(user, key1, target, key2){
-    if ( key1 == "food" && ( target[key2] == "ground" ||  target[key2] == "neutral")
+    if ( Box.isResource(key1) && Box.isGround(target[key2])
       && target.x == user.x && target.y == user.y
       && user.id === Area.character.id
       && user.actions > 0 ){

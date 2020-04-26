@@ -6,6 +6,7 @@
     <div class="list-group-item list-group-item-success">
       <h5>{{target.view.box.key}}</h5>
       <h6>{{target.view.box.name}}</h6>
+      <div *ngIf="isDeletable(target)" class="btn btn-danger" (click)="delete(target)">supprimer</div>
       <div class="row">
         <div class="list-group-item list-group-item-warning" *ngFor="let value of target.values">
           <div>

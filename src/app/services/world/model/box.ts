@@ -33,6 +33,20 @@ export class Box{
     }
     return bool ;
   }
+  static isGround(key){
+    if ( key == "ground" || key == "neutral" || key == "field" || key == "well"){
+      return true ;
+    }else{
+      return false ;
+    }
+  }
+  static isResource(key){
+    if ( key == "food" || key == "water" ){
+      return true ;
+    }else{
+      return false;
+    }
+  }
 
   static reset(){
     while ( Box.BOXES.length > 0 ){
