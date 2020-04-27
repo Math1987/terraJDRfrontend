@@ -5,6 +5,7 @@ import {Translator} from '../model/translator/translator';
 import {A_giveResource} from './actions/a_giveResource';
 import {A_getResource} from './actions/a_getResource';
 import {A_waterTree} from './actions/a_waterTree';
+import {A_plantTree} from './actions/a_plantTree';
 
 
 export class Controls{
@@ -25,7 +26,8 @@ export class Controls{
       new A_getResource(),
       new A_giveResource(),
 
-      new A_waterTree()
+      new A_waterTree(),
+      new A_plantTree()
     ]);
   }
 

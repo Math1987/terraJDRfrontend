@@ -47,6 +47,23 @@ export class Box{
       return false;
     }
   }
+  static isSolid(key){
+    if ( key == "field" || key == "well" || key == "tree" || key == "temple" ){
+      return true ;
+    }else{
+      return false;
+    }
+  }
+  static gotSolidInPosition(x,y){
+    let bool = false ;
+    for ( let box of Box.BOXES ){
+      if ( 'x' in box && box.x == x && box.y == y && Box.isSolid(box.key) ){
+        bool = true ;
+        break ;
+      }
+    }
+    return bool ;
+  }
 
   static reset(){
     while ( Box.BOXES.length > 0 ){
