@@ -6,6 +6,7 @@ import {A_giveResource} from './actions/a_giveResource';
 import {A_getResource} from './actions/a_getResource';
 import {A_waterTree} from './actions/a_waterTree';
 import {A_plantTree} from './actions/a_plantTree';
+import {A_levitation} from './actions/a_levitation';
 
 
 export class Controls{
@@ -21,6 +22,7 @@ export class Controls{
     Action.init([
       new A_attack(),
       new A_heal(),
+      new A_levitation(),
       //new A_getFood(),
       //new A_getWater(),
       new A_getResource(),

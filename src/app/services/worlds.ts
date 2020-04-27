@@ -111,6 +111,8 @@ export class Worlds{
         Area.setWorld(world);
         View.reset();
         callBack(res);
+      }else{
+        callBack(null);
       }
     });
 

@@ -8,6 +8,7 @@ import {Dialog} from './services/dialog';
 import {Area} from './services/world/area';
 import {Worlds} from './services/worlds';
 import {Router} from '@angular/router';
+import {NavComponent} from './nav/nav.component';
 
 @Component({
   selector: 'app-root',
@@ -30,31 +31,45 @@ export class AppComponent implements OnInit{
 
     const self = this ;
 
-    setTimeout(function() {
-      if ( Net.socket.connected ){
-        localStorage.removeItem("reload");
-      }
-      let intervalReload = setInterval(function() {
-        console.log(localStorage.getItem("reload"));
-        if ( !Net.socket.connected ){
-          if ( !localStorage.getItem("reload") ){
-            localStorage.setItem("reload", "done");
-            window.location.reload();
-          }else{
-            localStorage.removeItem("reload");
-            Account.deconnexion();
-            Area.reset();
-            Worlds.reset();
-            self.router.navigate(['/login']);
-            clearInterval(intervalReload);
-          }
+    check();
+
+    function check(){
+
+      setTimeout(function() {
+
+        if (!Net.socket.connected) {
+          Net.reset();
+          let checkStatus = false ;
+          Worlds.init(function() {
+            checkStatus = true ;
+            check();
+          });
+
+          setTimeout(function() {
+            if ( !checkStatus ){
+              alert('erreur de connection');
+              self.deconnection();
+            }
+          }, 2500);
+
+        }else{
+          check();
         }
-      },1000);
-    },1500);
+
+      },100);
 
 
+    }
+
+  }
 
 
+  deconnection(){
 
+    Net.socket.disconnect();
+    Account.deconnexion();
+    Area.reset();
+    Worlds.reset();
+    this.router.navigate(['/login']);
   }
 }

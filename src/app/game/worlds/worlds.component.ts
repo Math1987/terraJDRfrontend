@@ -87,6 +87,7 @@ export class WorldsComponent implements OnInit {
     let name = (document.getElementById("createName") as HTMLInputElement).value;
     let sexe = null;
     let race = null;
+    let religion = null;
 
     for (let i = 0; i < 2; i++) {
       if (document.forms.namedItem("sexe").checker[i].checked == true) {
@@ -98,13 +99,19 @@ export class WorldsComponent implements OnInit {
         race = document.forms.namedItem("race").checker[i].value;
       }
     }
+    for (let i = 0; i < document.forms.namedItem("religion").checker.length; i++) {
+      if (document.forms.namedItem("religion").checker[i].checked == true) {
+        religion = document.forms.namedItem("religion").checker[i].value;
+      }
+    }
 
     if (name.length > 2) {
       Net.socket.emit('createUserCharacter', {
         key: "character",
         name: name,
         sexe: sexe,
-        race: race
+        race: race,
+        religion: religion
       }, function(createUserCharaRes) {
 
         Characters.add(createUserCharaRes);

@@ -34,6 +34,7 @@ export class Area{
     Area.leaveWorld();
     Area.leaveCharacter();
   }
+
   static updateWorld(world){
     if ( Area.world && Area.world.name == world.name ){
       Area.world = world ;
@@ -75,6 +76,7 @@ export class Area{
   static setCharacter(character){
     Area.character = character ;
     localStorage.setItem("character", JSON.stringify(character));
+    console.log(Area.character);
   }
   static leaveCharacter(){
     Area.character = null ;
