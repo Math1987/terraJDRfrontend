@@ -53,12 +53,17 @@ export class A_getResource extends Action{
     const self = this ;
     this.fileNameDialogRef = Dialog.dialog.open(GetResourceComponent);
 
+    let tree = Box.isInPositionOf("tree", user.x, user.y );
+    if ( tree ){
+      GetResourceComponent.canGetMaterial = true ;
+    }else{
+      GetResourceComponent.canGetMaterial = false ;
+    }
+
     this.fileNameDialogRef
       .afterClosed()
       .subscribe(value => {
 
-
-        console.log(GetResourceComponent.resourceFocused);
 
           Net.socket.emit('action', GetResourceComponent.resourceFocused, {
             user : user,

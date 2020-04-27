@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
+import {Area} from '../../../services/world/area';
 
 @Component({
   selector: 'app-get-resource',
@@ -10,9 +11,12 @@ import {MatDialogRef} from '@angular/material';
 export class GetResourceComponent implements OnInit {
 
   static resourceFocused = 'getWater';
+  static canGetMaterial = false ;
 
   form: FormGroup;
   resource = 'getWater';
+
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,6 +29,9 @@ export class GetResourceComponent implements OnInit {
     this.form = this.formBuilder.group({
       filename: ''
     });
+  }
+  canGetMaterial(){
+    return GetResourceComponent.canGetMaterial ;
   }
   setResource(){
     GetResourceComponent.resourceFocused = this.resource ;

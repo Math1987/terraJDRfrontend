@@ -17,6 +17,7 @@ import {T_giveResource} from './translator/t_giveResource';
 import {T_getMaterial} from './translator/t_getMaterial';
 import {T_getResource} from './translator/t_getResource';
 import {T_field} from './translator/t_field';
+import {T_getFaith} from './translator/t_getFaith';
 
 export class Model{
 
@@ -34,6 +35,7 @@ export class Model{
       new T_getWater(),
       new T_getFood(),
       new T_getMaterial(),
+      new T_getFaith(),
       new T_getResource(),
       new T_giveResource(),
       new T_life(),

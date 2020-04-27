@@ -10,8 +10,11 @@
     <div>
       <mat-radio-button [value]="'getFood'">nourriture</mat-radio-button>
     </div>
-    <div>
+    <div *ngIf="canGetMaterial()">
       <mat-radio-button [value]="'getMaterial'">matériel</mat-radio-button>
+    </div>
+    <div>
+      <mat-radio-button [value]="'getFaith'">foi</mat-radio-button>
     </div>
   </mat-radio-group>
 </mat-dialog-content>

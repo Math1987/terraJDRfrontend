@@ -9,7 +9,7 @@ export class Interaction{
   static ID_BUILDER = 0 ;
 
   static VALUE_KEYS = [
-    'life', 'water', 'food', 'material', 'vitality'
+    'life', 'water', 'food', 'material', 'faith', 'vitality'
   ];
 
   static getValue(key){

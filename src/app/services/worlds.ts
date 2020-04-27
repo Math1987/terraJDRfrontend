@@ -13,6 +13,7 @@ import {Model} from './world/model/model';
 import {V_field} from './world/view/v_field';
 import {V_well} from './world/view/v_well';
 import {V_tree} from './world/view/v_tree';
+import {V_temple} from './world/view/v_temple';
 
 export class Worlds{
 
@@ -28,7 +29,8 @@ export class Worlds{
       new V_squeleton(),
       new V_field(),
       new V_well(),
-      new V_tree()
+      new V_tree(),
+      new V_temple()
     ]);
     Controls.init();
 
