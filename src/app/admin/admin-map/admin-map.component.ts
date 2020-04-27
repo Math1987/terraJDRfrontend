@@ -36,7 +36,8 @@ export class AdminMapComponent implements OnInit {
     AdminMapComponent.BUILDERS = [
       new Builder('squeleton'),
       new Builder('field'),
-      new Builder('well')
+      new Builder('well'),
+      new Builder('tree')
     ];
 
     if (!Account.isAdmin()) {

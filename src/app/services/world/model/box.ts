@@ -34,14 +34,14 @@ export class Box{
     return bool ;
   }
   static isGround(key){
-    if ( key == "ground" || key == "neutral" || key == "field" || key == "well"){
+    if ( key == "ground" || key == "neutral" || key == "field" || key == "well" || key == "tree" || key == "temple"){
       return true ;
     }else{
       return false ;
     }
   }
   static isResource(key){
-    if ( key == "food" || key == "water" ){
+    if ( key == "food" || key == "water" || key == "material" || key == "faith" ){
       return true ;
     }else{
       return false;

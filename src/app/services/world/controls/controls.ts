@@ -1,11 +1,10 @@
 import {Action} from './actions/action';
 import {A_attack} from './actions/a_attack';
 import {A_heal} from './actions/a_heal';
-import {A_getFood} from './actions/a_getFood';
-import {A_getWater} from './actions/a_getWater';
 import {Translator} from '../model/translator/translator';
 import {A_giveResource} from './actions/a_giveResource';
 import {A_getResource} from './actions/a_getResource';
+import {A_waterTree} from './actions/a_waterTree';
 
 
 export class Controls{
@@ -24,7 +23,9 @@ export class Controls{
       //new A_getFood(),
       //new A_getWater(),
       new A_getResource(),
-      new A_giveResource()
+      new A_giveResource(),
+
+      new A_waterTree()
     ]);
   }
 

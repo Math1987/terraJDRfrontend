@@ -91,7 +91,7 @@ export class Interaction{
         if (action) {
           let alreadyGot = false ;
           for ( let act of actions ){
-            if ( act.key == action.key ){
+            if ( act.readKey() == action.readKey() ){
               alreadyGot = true ;
               break ;
             }

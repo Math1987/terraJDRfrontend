@@ -58,6 +58,8 @@ export class A_getResource extends Action{
       .subscribe(value => {
 
 
+        console.log(GetResourceComponent.resourceFocused);
+
           Net.socket.emit('action', GetResourceComponent.resourceFocused, {
             user : user,
             target : target,
