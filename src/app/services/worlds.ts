@@ -14,6 +14,7 @@ import {V_field} from './world/view/v_field';
 import {V_well} from './world/view/v_well';
 import {V_tree} from './world/view/v_tree';
 import {V_temple} from './world/view/v_temple';
+import {V_mine} from './world/view/v_mine';
 
 export class Worlds{
 
@@ -30,7 +31,8 @@ export class Worlds{
       new V_field(),
       new V_well(),
       new V_tree(),
-      new V_temple()
+      new V_temple(),
+      new V_mine()
     ]);
     Controls.init();
 
