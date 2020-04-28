@@ -1,5 +1,6 @@
 import {Net} from '../../../net';
 import {Translator} from '../../model/translator/translator';
+import {View} from '../../view/view';
 
 export class Action{
 
@@ -31,10 +32,10 @@ export class Action{
   }
 
 
-  static getActionBetween(user, key1, target, key2){
+  static getActionBetween(user, key1, target, key2, contextViews: View[]){
     let actionFound = null ;
     for ( let action of Action.ACTIONS ){
-      if ( action.matchInteraction(user, key1, target, key2)){
+      if ( action.matchInteraction(user, key1, target, key2, contextViews)){
         actionFound = action ;
         break ;
       }
@@ -56,7 +57,7 @@ export class Action{
   matchActive(user){
     return true ;
   }
-  matchInteraction(user, key1, target, key2){
+  matchInteraction(user, key1, target, key2, contextViews : View[]){
     return false ;
   }
   isActive(){

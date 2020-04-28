@@ -1,4 +1,5 @@
 import {Action} from './action';
+import {View} from '../../view/view';
 
 export class A_heal extends Action{
 
@@ -19,7 +20,7 @@ export class A_heal extends Action{
     }
   }
 
-  matchInteraction(user, key1, target, key2): boolean {
+  matchInteraction(user, key1, target, key2, contextViews : View[]){
     if ( key1 == "defense" && key2 == "life"
         && user.food >= 20
         && user.x == target.x && user.y == target.y

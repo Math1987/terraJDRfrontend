@@ -1,5 +1,6 @@
 import {Action} from './action';
 import {Area} from '../../area';
+import {View} from '../../view/view';
 
 export class A_getFood extends Action{
 
@@ -19,7 +20,7 @@ export class A_getFood extends Action{
       return false ;
     }
   }
-  matchInteraction(user, key1, target, key2){
+  matchInteraction(user, key1, target, key2, contextViews : View[]){
 
     if ( key1 == this.readKey()  && ( target[key2] == "ground" ||  target[key2] == "neutral")
       && target.x == user.x && target.y == user.y

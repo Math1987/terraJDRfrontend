@@ -18,6 +18,8 @@ import {T_getMaterial} from './translator/t_getMaterial';
 import {T_getResource} from './translator/t_getResource';
 import {T_field} from './translator/t_field';
 import {T_getFaith} from './translator/t_getFaith';
+import {T_waterTree} from './translator/t_waterTree';
+import {T_search} from './translator/t_search';
 
 export class Model{
 
@@ -38,6 +40,8 @@ export class Model{
       new T_getFaith(),
       new T_getResource(),
       new T_giveResource(),
+      new T_waterTree(),
+      new T_search(),
       new T_life(),
       new T_water(),
       new T_food(),

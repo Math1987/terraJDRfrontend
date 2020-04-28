@@ -58,7 +58,7 @@ export class Interaction{
 
     for ( let vs of finalViews ){
 
-       let interaction = Interaction.buildInteraction(user, vs[0].box, vs);
+       let interaction = Interaction.buildInteraction(user, vs[0].box, vs, finalViews);
        if ( interaction ){
          interactions.push(interaction);
        }
@@ -80,14 +80,14 @@ export class Interaction{
     return tri ;
 
   }
-  static buildInteraction(user, target : Box, views : View[]): Interaction {
+  static buildInteraction(user, target : Box, views : View[], contextViews : View[] ): Interaction {
 
     let interaction = new Interaction();
     let actions = [];
 
     for (let key of Object.keys(user)) {
       for (let keyTarget of Object.keys(target)) {
-        let action = Action.getActionBetween(user, key, target, keyTarget);
+        let action = Action.getActionBetween(user, key, target, keyTarget, contextViews);
         if (action) {
           let alreadyGot = false ;
           for ( let act of actions ){

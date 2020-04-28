@@ -6,6 +6,7 @@ import {Dialog} from '../../../dialog';
 import {filter} from 'rxjs/operators';
 import {Box} from '../../model/box';
 import {Translator} from '../../model/translator/translator';
+import {View} from '../../view/view';
 
 export class A_giveResource extends Action{
 
@@ -17,7 +18,7 @@ export class A_giveResource extends Action{
   readKey(){
     return "giveResource";
   }
-  matchInteraction(user, key1, target, key2){
+  matchInteraction(user, key1, target, key2, contextViews : View[]){
     if ( key1 == "water"
       && key1 == key2
       && user.id !== target.id

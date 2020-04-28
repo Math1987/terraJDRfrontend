@@ -4,6 +4,7 @@ import {Dialog} from '../../../dialog';
 import {GetResourceComponent} from '../../../../game/dialogs/get-resource/get-resource.component';
 import {Net} from '../../../net';
 import {Box} from '../../model/box';
+import {View} from '../../view/view';
 
 export class A_levitation extends Action{
 
@@ -23,7 +24,7 @@ export class A_levitation extends Action{
       return false ;
     }
   }
-  matchInteraction(user, key1, target, key2){
+  matchInteraction(user, key1, target, key2, contextViews : View[]){
 
     if ( user.religion == "hermes" && user.faith >= 10
       && user.id === target.id

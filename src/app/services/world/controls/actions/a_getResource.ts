@@ -7,6 +7,7 @@ import {Net} from '../../../net';
 import {Box} from '../../model/box';
 import {GetResourceComponent} from '../../../../game/dialogs/get-resource/get-resource.component';
 import {MatDialogRef} from '@angular/material';
+import {View} from '../../view/view';
 
 export class A_getResource extends Action{
 
@@ -29,7 +30,7 @@ export class A_getResource extends Action{
       return false ;
     }
   }
-  matchInteraction(user, key1, target, key2){
+  matchInteraction(user, key1, target, key2, contextViews : View[]){
     if ( Box.isResource(key1) && Box.isGround(target[key2])
       && target.x == user.x && target.y == user.y
       && user.id === Area.character.id

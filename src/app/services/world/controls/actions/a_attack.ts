@@ -10,7 +10,7 @@ export class A_attack extends Action{
   readKey(){
     return "attack";
   }
-  matchInteraction(user, key1, target, key2): boolean {
+  matchInteraction(user, key1, target, key2, contextViews : View[]){
 
     if ( !Box.isInPositionOf('neutral', user.x, user.y)
       && key1 == "attack" && key2 == "life"

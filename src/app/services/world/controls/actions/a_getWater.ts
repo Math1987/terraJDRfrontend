@@ -1,6 +1,7 @@
 import {Action} from './action';
 import {Area} from '../../area';
 import {Box} from '../../model/box';
+import {View} from '../../view/view';
 
 export class A_getWater extends Action{
 
@@ -20,7 +21,7 @@ export class A_getWater extends Action{
       return false ;
     }
   }
-  matchInteraction(user, key1, target, key2){
+  matchInteraction(user, key1, target, key2, contextViews : View[]){
     if ( key1 == this.readKey() && Box.isGround( target[key2] )
       && target.x == user.x && target.y == user.y
       && user.id === Area.character.id

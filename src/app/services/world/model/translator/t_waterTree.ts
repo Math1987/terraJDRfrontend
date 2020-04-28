@@ -1,15 +1,15 @@
 import {Translator} from './translator';
 import {Box} from '../box';
 
-export class T_water extends Translator{
+export class T_waterTree extends Translator{
 
-  default = "eau" ;
-  value = "eau" ;
+  default = "arroser" ;
+  value = "arroser" ;
   designation = `d'eau` ;
-
-
+  action = "arroser un arbre" ;
+  selfAction = "arroser un arbre" ;
   readKey(){
-    return 'water' ;
+    return 'waterTree' ;
   }
   asMessage(user, json, language) {
 
