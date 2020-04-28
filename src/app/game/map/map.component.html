@@ -27,6 +27,17 @@
               </ul>
 
             </div>
+            <ul class="list-group-item flexRow itemsChara flex-wrap">
+              <div *ngFor="let item of interaction.items">
+                <div class="list-group-item list-group-item-danger">
+                  <p>
+                    {{translate(item, 'fr', 'default')}}
+                    {{getItemInfos(item)}}
+                  </p>
+                </div>
+
+              </div>
+            </ul>
           </div>
 
         </div>

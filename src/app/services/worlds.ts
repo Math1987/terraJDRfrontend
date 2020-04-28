@@ -18,9 +18,12 @@ import {V_mine} from './world/view/v_mine';
 
 export class Worlds{
 
+
   static worlds = [] ;
 
   static init(callBack){
+
+    Net.worldsStatus = false ;
 
     Model.init();
     View.init([
@@ -36,20 +39,42 @@ export class Worlds{
     ]);
     Controls.init();
 
-    Net.http.get(`${environment.backURL}/readWorlds`, {responseType:"json", headers: Net.headers}).subscribe((res)=>{
+    Worlds.worlds = [] ;
 
-      Worlds.worlds = res ;
-      Area.init(Worlds.worlds);
-      if ( Area.world !== null ){
-
-        Worlds.enterIn( Area.world, function(enterInRes) {
-          callBack(res);
-        });
-      }else{
-        Worlds.enterIn(Worlds.worlds[0], function(enterInRes) {
-          callBack(res);
-        });
+    setTimeout(function() {
+      if ( Worlds.worlds.length <= 0 ){
+        callBack(null);
       }
+    },2000 );
+
+    Net.http.get(`${environment.backURL}/readWorlds`, {responseType:"json", headers: Net.headers}).subscribe((res)=>{
+      console.log(res);
+      console.log('init area ');
+      Worlds.worlds = res ;
+      Area.init(Worlds.worlds, function(areaRes) {
+        console.log(areaRes);
+        console.log('now try to enter in world');
+        if ( Area.world !== null ){
+          Worlds.enterIn( Area.world, function(enterInRes) {
+            callBack(res);
+            if ( res ){
+              Net.worldsStatus = true ;
+            }else{
+              Net.worldsStatus = false ;
+            }
+          });
+        }else{
+          Worlds.enterIn(Worlds.worlds[0], function(enterInRes) {
+            callBack(res);
+            if ( res ){
+              Net.worldsStatus = true ;
+            }else{
+              Net.worldsStatus = false ;
+            }
+          });
+        }
+      });
+
 
     });
 
@@ -70,12 +95,19 @@ export class Worlds{
     Net.socket.on('instructions', function (instructions){
 
 
+      console.log(instructions);
+
       for ( let instruction of instructions ){
         if ( instruction.key === "add" ){
 
           Box.adds( instruction.boxes, function(boxes) {
             View.adds(boxes);
           });
+        }else if ( instruction.key === "addItem" ){
+
+          Area.addItem( instruction );
+          Box.addItem( instruction );
+
         }else if ( instruction.key === "updateValues" ){
 
           Area.updateValues( instruction.array);
@@ -108,6 +140,9 @@ export class Worlds{
   }
 
   static enterIn(world, callBack){
+    console.log('enter in ');
+    console.log(world);
+    console.log(Account.user );
     Net.socket.emit('enterInWorld',  world, Account.user.id, function(res) {
       if ( res ){
         Area.setWorld(world);

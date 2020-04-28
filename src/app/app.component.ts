@@ -32,14 +32,34 @@ export class AppComponent implements OnInit{
     const self = this ;
 
     check();
+    console.log(self.router.url);
+
+    let status = "connected" ;
 
     function check(){
 
       setTimeout(function() {
 
-        if (!Net.socket.connected) {
-          Net.reset();
-          let checkStatus = false ;
+        console.log(status);
+
+        if (status == "disconnect") {
+
+
+          if ( Net.socket.connected ){
+            status = "connected";
+            Worlds.reset();
+            Worlds.init(function(res) {
+              if ( res ){
+                console.log('test');
+                check();
+              }else{
+                self.router.navigate(['u/jeu']);
+              }
+            });
+          }else{
+            check();
+          }
+          /*let checkStatus = false ;
           Worlds.init(function() {
             checkStatus = true ;
             check();
@@ -50,13 +70,18 @@ export class AppComponent implements OnInit{
               alert('erreur de connection');
               self.deconnection();
             }
-          }, 2500);
+          }, 2500);*/
 
         }else{
+          if ( !Net.socket.connected ){
+            status = "disconnect" ;
+            Net.worldsStatus = false ;
+            Net.reset();
+          }
           check();
         }
 
-      },100);
+      },1000);
 
 
     }

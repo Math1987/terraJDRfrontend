@@ -76,6 +76,17 @@ export class Box{
     }
     callBack(boxesJson);
   }
+  static addItem(instruction){
+    for ( let box of Box.BOXES ){
+      if ( box.id == instruction.user ){
+        if ( box['items'] ){
+          box['items'].push(instruction.item) ;
+        }else{
+          box['items'] = [instruction.item] ;
+        }
+      }
+    }
+  }
 
   static readById(id){
     let box = null ;

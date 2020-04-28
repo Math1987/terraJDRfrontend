@@ -8,7 +8,7 @@ export class Area{
   static world = null ;
   static character = null ;
 
-  static init(worlds){
+  static init(worlds, callBack){
 
     if ( localStorage.getItem("world")){
       let worldStored = JSON.parse(localStorage.getItem("world")) ;
@@ -17,15 +17,27 @@ export class Area{
           Area.world = world ;
         }
       }
-      if ( localStorage.getItem("character")){
+      if ( Area.world && localStorage.getItem("character")){
         let chara = JSON.parse(localStorage.getItem("character"));
+
+        console.log('init area with: ');
+        console.log(chara);
+
         Net.http.get(`${environment.backURL}/readById?world=${Area.world.name}&id=${chara.id}`,
           {responseType:"json", headers: Net.headers}).subscribe((res)=>{
+          console.log("resChara ok ");
+          console.log(res);
             if ( res !== null ){
               Area.character = res ;
             }
+           callBack(res);
         });
+
+      }else{
+        callBack(null);
       }
+    }else{
+      callBack(null);
     }
   }
   static reset(){
@@ -38,6 +50,15 @@ export class Area{
   static updateWorld(world){
     if ( Area.world && Area.world.name == world.name ){
       Area.world = world ;
+    }
+  }
+  static addItem(instruction){
+    if ( Area.character.id == instruction.user ){
+      if ( Area.character['items'] ){
+        Area.character['items'].push(instruction.items) ;
+      }else{
+        Area.character['items'] = [instruction.items] ;
+      }
     }
   }
   static updateValues(array){

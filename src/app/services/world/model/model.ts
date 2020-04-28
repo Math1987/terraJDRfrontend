@@ -20,6 +20,7 @@ import {T_field} from './translator/t_field';
 import {T_getFaith} from './translator/t_getFaith';
 import {T_waterTree} from './translator/t_waterTree';
 import {T_search} from './translator/t_search';
+import {T_relic} from './translator/t_relic';
 
 export class Model{
 
@@ -46,7 +47,8 @@ export class Model{
       new T_water(),
       new T_food(),
       new T_material(),
-      new T_faith()
+      new T_faith(),
+      new T_relic()
     ]);
   }
 

@@ -47,13 +47,12 @@ export class A_plantTree extends Action{
   use(user, target){
     const self = this ;
 
-    Net.socket.emit('action', self.readKey(), {
+    Net.emit('action', self.readKey(), {
       user : user,
       target : target,
     }, function(waterRes) {
 
     });
-
 
   }
 

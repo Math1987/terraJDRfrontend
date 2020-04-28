@@ -23,6 +23,7 @@ export class View{
     }
   }
   static reset(){
+    View.canvasWorld = null ;
     View.x = 0 ;
     View.y = 0 ;
     View.setRayon(View.rayon);

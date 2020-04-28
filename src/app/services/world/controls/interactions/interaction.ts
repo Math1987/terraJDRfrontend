@@ -119,6 +119,9 @@ export class Interaction{
       interaction.user = user;
       interaction.target = target;
       interaction.actions = actions;
+      if ( target['items'] ) {
+        interaction.items = target['items'] ;
+      }
 
     }else{
       interaction = null;
@@ -134,6 +137,7 @@ export class Interaction{
   target : any = null ;
   actions = [] ;
   values = [] ;
+  items = [] ;
   @Input() InteractionCanvas : HTMLCanvasElement ;
 
   constructor(){}
