@@ -27,23 +27,38 @@ export class UpdateBoxControlComponent implements OnInit {
     for ( let view of views ){
 
       let values = [] ;
+      let attributes = [] ;
 
       for ( let i = 0 ; i < Object.keys(view.box).length ; i ++ ){
-        if ( !Box.isProtectedKey(Object.keys(view.box)[i]) && ( typeof Object.values(view.box)[i] == "number") ){
-          values.push(
-            {
-              key: Object.keys(view.box)[i],
-              value: Object.values(view.box)[i]
-            }
-          );
+        if ( !Box.isProtectedKey(Object.keys(view.box)[i])  ){
+          if ( ( typeof Object.values(view.box)[i] == "number")){
+            values.push(
+              {
+                key: Object.keys(view.box)[i],
+                value: Object.values(view.box)[i]
+              }
+            );
+          }else{
+            attributes.push(
+              {
+                key: Object.keys(view.box)[i],
+                value: Object.values(view.box)[i]
+              }
+            );
+          }
+
         }
       }
 
       this.targets.push({
         view : view,
-        values : values
+        values : values,
+        attributes : attributes
       });
     }
+  }
+  getAttributes(){
+
   }
   updateValue(view, key, value){
 

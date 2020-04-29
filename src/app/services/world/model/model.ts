@@ -21,6 +21,8 @@ import {T_getFaith} from './translator/t_getFaith';
 import {T_waterTree} from './translator/t_waterTree';
 import {T_search} from './translator/t_search';
 import {T_relic} from './translator/t_relic';
+import {T_trade} from './translator/t_trade';
+import {T_bewitch} from './translator/t_bewitch';
 
 export class Model{
 
@@ -43,12 +45,14 @@ export class Model{
       new T_giveResource(),
       new T_waterTree(),
       new T_search(),
+      new T_bewitch(),
       new T_life(),
       new T_water(),
       new T_food(),
       new T_material(),
       new T_faith(),
-      new T_relic()
+      new T_relic(),
+      new T_trade()
     ]);
   }
 

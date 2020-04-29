@@ -15,6 +15,7 @@ import {V_well} from './world/view/v_well';
 import {V_tree} from './world/view/v_tree';
 import {V_temple} from './world/view/v_temple';
 import {V_mine} from './world/view/v_mine';
+import {V_trader} from './world/view/v_trader';
 
 export class Worlds{
 
@@ -35,7 +36,8 @@ export class Worlds{
       new V_well(),
       new V_tree(),
       new V_temple(),
-      new V_mine()
+      new V_mine(),
+      new V_trader()
     ]);
     Controls.init();
 

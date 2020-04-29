@@ -6,7 +6,9 @@ export class AdminService{
     'well',
     'temple',
     'tree',
-    'squeleton'
+    'squeleton',
+    'mine',
+    'trader'
   ];
 
 

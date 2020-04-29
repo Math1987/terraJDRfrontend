@@ -11,6 +11,9 @@ import {A_search} from './actions/a_search';
 import {A_flame} from './actions/a_flame';
 import {A_bewitch} from './actions/a_bewitch';
 import {A_protection} from './actions/a_protection';
+import {A_blesstree} from './actions/a_blesstree';
+import {A_luck} from './actions/a_luck';
+import {A_trade} from './actions/a_trade';
 
 
 export class Controls{
@@ -32,10 +35,13 @@ export class Controls{
       new A_levitation(),
       new A_flame(),
       new A_protection(),
+      new A_blesstree(),
+      new A_luck(),
       //new A_getFood(),
       //new A_getWater(),
       new A_getResource(),
       new A_giveResource(),
+      new A_trade(),
 
       new A_waterTree(),
       new A_plantTree()

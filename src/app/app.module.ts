@@ -34,6 +34,7 @@ import { GiveResourceComponent } from './game/dialogs/give-resource/give-resourc
 import { GetResourceComponent } from './game/dialogs/get-resource/get-resource.component';
 import { EditorAddComponent } from './admin/dialogs/editor-add/editor-add.component';
 import { BewitchComponent } from './game/dialogs/bewitch/bewitch.component';
+import { TradeComponent } from './game/dialogs/trade/trade.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { BewitchComponent } from './game/dialogs/bewitch/bewitch.component';
     GiveResourceComponent,
     GetResourceComponent,
     EditorAddComponent,
-    BewitchComponent
+    BewitchComponent,
+    TradeComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +84,7 @@ import { BewitchComponent } from './game/dialogs/bewitch/bewitch.component';
     GiveResourceComponent,
     GetResourceComponent,
     BewitchComponent,
+    TradeComponent,
 
     EditorAddComponent
   ]
