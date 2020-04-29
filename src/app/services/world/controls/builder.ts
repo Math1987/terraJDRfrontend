@@ -1,5 +1,5 @@
-import {Translator} from '../../../services/world/model/translator/translator';
-import {View} from '../../../services/world/view/view';
+import {Translator} from '../model/translator/translator';
+import {View} from '../view/view';
 
 export class Builder{
 

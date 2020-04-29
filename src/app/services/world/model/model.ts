@@ -24,6 +24,7 @@ import {T_relic} from './translator/t_relic';
 import {T_trade} from './translator/t_trade';
 import {T_bewitch} from './translator/t_bewitch';
 import {T_openchest} from './translator/t_openChest';
+import {T_build} from './translator/t_build';
 
 export class Model{
 
@@ -54,7 +55,8 @@ export class Model{
       new T_material(),
       new T_faith(),
       new T_relic(),
-      new T_trade()
+      new T_trade(),
+      new T_build()
     ]);
   }
 

@@ -13,7 +13,7 @@ import {Box} from '../../services/world/model/box';
 import {MatDialogRef} from '@angular/material';
 import {EditorAddComponent} from '../dialogs/editor-add/editor-add.component';
 import {Translator} from '../../services/world/model/translator/translator';
-import {Builder} from '../dialogs/editor-add/builder';
+import {Builder} from '../../services/world/controls/builder';
 
 @Component({
   selector: 'app-admin-map',
@@ -40,7 +40,8 @@ export class AdminMapComponent implements OnInit {
       new Builder('tree'),
       new Builder('temple'),
       new Builder('mine'),
-      new Builder('trader')
+      new Builder('trader'),
+      new Builder("fortification")
     ];
 
     if (!Account.isAdmin()) {

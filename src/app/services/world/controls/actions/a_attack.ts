@@ -10,7 +10,8 @@ export class A_attack extends Action{
   readKey(){
     return "attack";
   }
-  matchInteraction(user, key1, target, key2, contextViews : View[]){
+  matchInteraction(user, key1, target, key2, contextViews){
+
 
     if ( !Box.isInPositionOf('neutral', user.x, user.y)
       && key1 == "attack" && key2 == "life"
@@ -18,7 +19,22 @@ export class A_attack extends Action{
       && (!('protection' in target) || target.protection <= 0 )
       && ( !('race' in target && 'race' in user) || target.race !== user.race )
     ){
-      return true ;
+
+      let isFortified = false ;
+      if ( target.key !== "fortification" ) {
+        for (let views of contextViews) {
+          for (let view of views) {
+            if (view.box.key == "fortification" && view.box.race !== user.race) {
+              isFortified = true;
+            }
+          }
+        }
+      }
+      if ( isFortified ){
+        return false ;
+      }else{
+        return true ;
+      }
     }else{
       return false ;
     }

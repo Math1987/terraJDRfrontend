@@ -15,6 +15,7 @@ import {A_blesstree} from './actions/a_blesstree';
 import {A_luck} from './actions/a_luck';
 import {A_trade} from './actions/a_trade';
 import {A_openChest} from './actions/a_openChest';
+import {A_build} from './actions/a_build';
 
 
 export class Controls{
@@ -44,6 +45,7 @@ export class Controls{
       new A_getResource(),
       new A_giveResource(),
       new A_trade(),
+      new A_build(),
 
       new A_waterTree(),
       new A_plantTree()
