@@ -47,7 +47,7 @@ export class AdminMapComponent implements OnInit {
     } else {
 
       const self = this;
-      View.canvasWorld = document.getElementById("worldViewAdmin") as HTMLCanvasElement;
+      View.setCanvasWorld( document.getElementById("worldViewAdmin") as HTMLCanvasElement );
 
       NavComponent.setInitCallBack(function(worlds) {
         if (Area.world !== null) {
@@ -60,7 +60,7 @@ export class AdminMapComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    View.canvasWorld = null;
+    View.reset();
   }
 
   getWorlds() {

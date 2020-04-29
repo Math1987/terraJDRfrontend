@@ -44,7 +44,7 @@ export class CalculationComponent implements OnInit {
     });
   }
   updateValue(name, attribute, value){
-    Net.socket.emit('updateCalculation',name ,attribute ,value, function(res) {
+    Net.emitUpdateCalculation(name ,attribute ,value ,function(res) {
       alert('votre modification a bien été prise en compte.');
     });
   }

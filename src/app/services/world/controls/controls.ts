@@ -8,6 +8,8 @@ import {A_waterTree} from './actions/a_waterTree';
 import {A_plantTree} from './actions/a_plantTree';
 import {A_levitation} from './actions/a_levitation';
 import {A_search} from './actions/a_search';
+import {A_flame} from './actions/a_flame';
+import {A_bewitch} from './actions/a_bewitch';
 
 
 export class Controls{
@@ -24,7 +26,10 @@ export class Controls{
       new A_attack(),
       new A_heal(),
       new A_search(),
+
+      new A_bewitch(),
       new A_levitation(),
+      new A_flame(),
       //new A_getFood(),
       //new A_getWater(),
       new A_getResource(),
@@ -34,6 +39,7 @@ export class Controls{
       new A_plantTree()
     ]);
   }
+
 
   static getResourcesFromObj(obj){
     let resources = [] ;

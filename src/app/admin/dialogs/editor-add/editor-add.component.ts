@@ -41,7 +41,6 @@ export class EditorAddComponent implements OnInit {
     this.dialogRef.close(`${form.value.filename}`);
   }
   focus(i){
-    console.log(i);
     EditorAddComponent.focused = i ;
   }
   isFocus(builder){
@@ -53,14 +52,9 @@ export class EditorAddComponent implements OnInit {
   }
   build(){
 
-    console.log('posiution');
-    console.log(View.focused);
-
     let position = View.getFocusedPosition() ;
 
-    console.log(position);
-
-    Net.socket.emit('create',
+    Net.emitCreate(
       {
         key: EditorAddComponent.builds[EditorAddComponent.focused].key,
         x: position.x,

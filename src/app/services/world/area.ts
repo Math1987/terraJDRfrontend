@@ -20,13 +20,8 @@ export class Area{
       if ( Area.world && localStorage.getItem("character")){
         let chara = JSON.parse(localStorage.getItem("character"));
 
-        console.log('init area with: ');
-        console.log(chara);
-
         Net.http.get(`${environment.backURL}/readById?world=${Area.world.name}&id=${chara.id}`,
           {responseType:"json", headers: Net.headers}).subscribe((res)=>{
-          console.log("resChara ok ");
-          console.log(res);
             if ( res !== null ){
               Area.character = res ;
             }
@@ -97,7 +92,6 @@ export class Area{
   static setCharacter(character){
     Area.character = character ;
     localStorage.setItem("character", JSON.stringify(character));
-    console.log(Area.character);
   }
   static leaveCharacter(){
     Area.character = null ;

@@ -64,7 +64,7 @@ export class PatternsComponent implements OnInit {
     }
   }
   updatePattern(pattern, key, type, value) {
-    Net.socket.emit('updatePattern', pattern.key, key, value, type, function(res) {});
+    Net.emitUpdatePattern( pattern.key, key, value, type, function(res) {});
   }
 
 

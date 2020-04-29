@@ -27,25 +27,26 @@ export class NavComponent implements OnInit{
 
   constructor(
     private router: Router
-  ) { }
+  ) {
 
-  ngOnInit() {
+    const self = this ;
 
-    if ( Account.user === null ){
-      this.router.navigate(['/login']);
-    }else{
+    if ( Account.user ){
+      self.initPage();
+    }else {
+      Account.setCallBackInit(function(res) {
+        if (Account.user === null) {
+          this.router.navigate(['/login']);
+        } else {
+          self.initPage();
+        }
 
-      Worlds.init(function(worlds) {
-        Characters.init(function(characters) {
-          NavComponent.initialized = true ;
-          if ( NavComponent.functionInit !== null ){
-            NavComponent.functionInit();
-          }
-        });
       });
-
     }
+
+
   }
+  ngOnInit() {}
   static setInitCallBack(callBackFunction){
     if ( NavComponent.initialized ){
       callBackFunction();
@@ -54,6 +55,18 @@ export class NavComponent implements OnInit{
     }
   }
 
+  initPage(){
+
+    Worlds.init(function(worlds) {
+      Characters.init(function(characters) {
+        NavComponent.initialized = true;
+        if (NavComponent.functionInit !== null) {
+          NavComponent.functionInit();
+        }
+      });
+    });
+
+  }
 
   isAdmin(){
     return Account.isAdmin();
@@ -67,7 +80,7 @@ export class NavComponent implements OnInit{
   }
   deconnexion(){
     const self = this ;
-    Net.socket.emit('deconnexion', function(res) {
+    Net.emitDeconnection( function(res) {
 
       Account.deconnexion();
       Area.reset();

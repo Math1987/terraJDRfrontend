@@ -8,6 +8,8 @@ import {View} from '../../view/view';
 
 export class A_levitation extends Action{
 
+  religion  = 'hermes';
+
   constructor(){
     super();
   }
@@ -29,7 +31,7 @@ export class A_levitation extends Action{
     if ( user.religion == "hermes" && user.faith >= 10
       && user.id === target.id
       && user.id === Area.character.id ){
-      return true ;
+      return false ;
     }else{
       return false ;
     }
@@ -46,7 +48,7 @@ export class A_levitation extends Action{
   use(user, target){
     const self = this ;
 
-    Net.socket.emit('action', self.readKey(), {
+    Net.emitAction( self.readKey(), {
       user : user,
       target : target,
     }, function(waterRes) {

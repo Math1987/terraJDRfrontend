@@ -6,31 +6,30 @@ import {Net} from '../../../net';
 import {Box} from '../../model/box';
 import {View} from '../../view/view';
 
-export class A_plantTree extends Action{
+export class A_flame extends Action{
 
   constructor(){
     super();
   }
   readKey(){
-    return "plantTree";
+    return "flame";
   }
   isActive(): boolean {
     return true;
   }
   matchActive(user): boolean {
-    if ( user.water >= 50 ){
-      return true ;
+    if ( user.faith >= 10 ){
+      return false ;
     }else{
       return false ;
     }
   }
   matchInteraction(user, key1, target, key2, contextViews : View[]){
 
-    if ( user.water >= 50 && Box.isGround(target.key)
-      && !Box.gotSolidInPosition(user.x, user.y)
+    if ( user.faith >= 10
+      && user.id === target.id
       && user.id === Area.character.id ){
-
-      return true ;
+      return false ;
     }else{
       return false ;
     }
@@ -38,9 +37,9 @@ export class A_plantTree extends Action{
   getCosts(){
     return [
       {
-        key : "water",
-        value : 50,
-        nom : `eau`,
+        key : "faith",
+        value : 10,
+        nom : `foi`,
       }
     ];
   }
@@ -53,6 +52,7 @@ export class A_plantTree extends Action{
     }, function(waterRes) {
 
     });
+
 
   }
 

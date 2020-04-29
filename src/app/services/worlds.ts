@@ -48,29 +48,26 @@ export class Worlds{
     },2000 );
 
     Net.http.get(`${environment.backURL}/readWorlds`, {responseType:"json", headers: Net.headers}).subscribe((res)=>{
-      console.log(res);
-      console.log('init area ');
       Worlds.worlds = res ;
       Area.init(Worlds.worlds, function(areaRes) {
-        console.log(areaRes);
-        console.log('now try to enter in world');
+
         if ( Area.world !== null ){
           Worlds.enterIn( Area.world, function(enterInRes) {
-            callBack(res);
             if ( res ){
               Net.worldsStatus = true ;
             }else{
               Net.worldsStatus = false ;
             }
+            callBack(res);
           });
         }else{
           Worlds.enterIn(Worlds.worlds[0], function(enterInRes) {
-            callBack(res);
             if ( res ){
               Net.worldsStatus = true ;
             }else{
               Net.worldsStatus = false ;
             }
+            callBack(res);
           });
         }
       });
@@ -94,12 +91,8 @@ export class Worlds{
 
     Net.socket.on('instructions', function (instructions){
 
-
-      console.log(instructions);
-
       for ( let instruction of instructions ){
         if ( instruction.key === "add" ){
-
           Box.adds( instruction.boxes, function(boxes) {
             View.adds(boxes);
           });
@@ -140,10 +133,7 @@ export class Worlds{
   }
 
   static enterIn(world, callBack){
-    console.log('enter in ');
-    console.log(world);
-    console.log(Account.user );
-    Net.socket.emit('enterInWorld',  world, Account.user.id, function(res) {
+    Net.emitEnterInWorld( world, Account.user.id, function(res) {
       if ( res ){
         Area.setWorld(world);
         View.reset();
@@ -156,7 +146,7 @@ export class Worlds{
   }
   static getOut(callBack){
 
-    Net.socket.emit('getOutOfWorld', function(getOutRes) {
+    Net.emitLeaveWorld(function(getOutRes) {
 
       Area.leaveWorld() ;
       callBack('done');

@@ -51,7 +51,7 @@ export class A_giveResource extends Action{
         if ( user[GiveResourceComponent.resourceFocused] <= 0 ){
           alert(`tu n'a pas assez ${Translator.translate(GiveResourceComponent.resourceFocused, 'fr', 'designation')} pour en donner.`)
         }else{
-          Net.socket.emit('action', self.readKey(), {
+          Net.emitAction( self.readKey(), {
             user : user,
             target : target,
             resource : GiveResourceComponent.resourceFocused,

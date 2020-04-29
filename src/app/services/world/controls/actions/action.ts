@@ -1,6 +1,8 @@
 import {Net} from '../../../net';
 import {Translator} from '../../model/translator/translator';
 import {View} from '../../view/view';
+import {GetResourceComponent} from '../../../../game/dialogs/get-resource/get-resource.component';
+import {Box} from '../../model/box';
 
 export class Action{
 
@@ -20,6 +22,18 @@ export class Action{
     }
     return res ;
   }
+
+  static getSpellsFromReligion(religion){
+    let spells = [] ;
+    for ( let action of Action.ACTIONS ){
+      if ( Box.isSpell(action.readKey())
+        && ( !('religion' in action) || action['religion'] == religion) ){
+        spells.push(action);
+      }
+    }
+    return spells ;
+  }
+
   static getActionsFromObj(obj){
     let actions = [] ;
     for ( let key of Object.keys(obj) ){
@@ -54,6 +68,9 @@ export class Action{
       return Translator.translate(this.readKey(),"fr", "action" );
     }
   }
+  getDefaultName(language){
+    return Translator.translate(this.readKey(),language, 'default');
+  }
   matchActive(user){
     return true ;
   }
@@ -80,7 +97,7 @@ export class Action{
     }
 
     if ( canMakeAction ) {
-      Net.socket.emit('action', this.readKey(), {
+      Net.emitAction(  this.readKey(), {
         user: user,
         target: target
       }, function(res) {

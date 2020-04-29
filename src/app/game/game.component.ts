@@ -65,9 +65,11 @@ export class GameComponent implements OnInit {
   getCharacter(){
     return Area.character ;
   }
-
+  getCharacterJson(){
+    return JSON.stringify(Area.character) ;
+  }
   updates(){
-    if ( Box.lastUpdate !== GameComponent.lastUpdate) {
+    if ( Box.lastUpdate !== GameComponent.lastUpdate && Area.character ) {
 
 
       while(GameComponent.resources.length > 0 ){
@@ -138,7 +140,7 @@ export class GameComponent implements OnInit {
     }
 
     if ( name.length > 2 ){
-      Net.socket.emit('createUserCharacter', {
+      Net.emitCreateCharacter({
         key: "character",
         name: name,
         sexe: sexe,

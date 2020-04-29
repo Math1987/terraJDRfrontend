@@ -5,18 +5,20 @@ import {Box} from './../model/box';
 
 export class View{
 
-  static canvasWorld = null ;
+  private static canvasWorld = null ;
   static canvasFocus = null ;
   static moveControls = null ;
   static selectFunction = null ;
   static focused = null ;
 
   static init(patterns){
-    View.PATTERNS = patterns ;
-    View.initRounds();
-    View.initDrawer();
-    View.initControls();
-    View.initSelection();
+    if ( View.PATTERNS === null || View.PATTERNS.length <= 0 ){
+      View.PATTERNS = patterns ;
+      View.initRounds();
+      View.initDrawer();
+      View.initControls();
+      View.initSelection();
+    }
 
     for ( let pattern of View.PATTERNS ){
       pattern.init_();
@@ -75,6 +77,13 @@ export class View{
   static setCanvasWorld(canvas){
     View.canvasWorld = canvas ;
   }
+  static hasCanvasFocused(){
+    if ( View.canvasWorld ){
+      return true ;
+    }else{
+      return false ;
+    }
+  }
   static goOn(x,y){
     if ( Area.world !== null ) {
       let newX = Math.max(0, Math.min(Area.world.width - 1, x));
@@ -130,7 +139,7 @@ export class View{
 
       if ( 'state' in target && target.state == "notfound" ){
         if ( View.isIn(target.x, target.y) ) {
-          Net.socket.emit('readById', target.id, function(obj) {
+          Net.emitReadById( target.id, function(obj) {
             if (obj !== null) {
               Box.adds([obj], function(viewAdds) {
                 View.adds(viewAdds);
@@ -232,7 +241,6 @@ export class View{
       x : 0,
       y : 0
     };
-    console.log(View.focused);
     if ( View.focused ){
       for ( let obj of View.focused ){
         if ( 'x' in obj.box ){
@@ -486,7 +494,7 @@ export class View{
       }
       View.focusBox(View.ROUNDS[0]);
       if ( askPositions.length > 0 ){
-        Net.socket.emit('readPositions', askPositions, function(res) {});
+        Net.emitReadPositions(askPositions, function(res) {});
       }
 
     }

@@ -54,6 +54,13 @@ export class Box{
       return false;
     }
   }
+  static isSpell(key){
+    if ( key == "flame" || key == "levitation" ){
+      return true ;
+    }else{
+      return false ;
+    }
+  }
   static gotSolidInPosition(x,y){
     let bool = false ;
     for ( let box of Box.BOXES ){

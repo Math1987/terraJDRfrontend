@@ -33,6 +33,7 @@ import { MessageComponent } from './game/message/message.component';
 import { GiveResourceComponent } from './game/dialogs/give-resource/give-resource.component';
 import { GetResourceComponent } from './game/dialogs/get-resource/get-resource.component';
 import { EditorAddComponent } from './admin/dialogs/editor-add/editor-add.component';
+import { BewitchComponent } from './game/dialogs/bewitch/bewitch.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { EditorAddComponent } from './admin/dialogs/editor-add/editor-add.compon
     MessageComponent,
     GiveResourceComponent,
     GetResourceComponent,
-    EditorAddComponent
+    EditorAddComponent,
+    BewitchComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +81,7 @@ import { EditorAddComponent } from './admin/dialogs/editor-add/editor-add.compon
   entryComponents: [
     GiveResourceComponent,
     GetResourceComponent,
+    BewitchComponent,
 
     EditorAddComponent
   ]

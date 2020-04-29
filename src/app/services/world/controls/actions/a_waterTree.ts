@@ -48,7 +48,7 @@ export class A_waterTree extends Action{
   use(user, target){
     const self = this ;
 
-    Net.socket.emit('action', self.readKey(), {
+    Net.emitAction( self.readKey(), {
       user : user,
       target : target,
     }, function(waterRes) {

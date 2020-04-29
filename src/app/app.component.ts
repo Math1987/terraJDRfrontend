@@ -9,6 +9,8 @@ import {Area} from './services/world/area';
 import {Worlds} from './services/worlds';
 import {Router} from '@angular/router';
 import {NavComponent} from './nav/nav.component';
+import {Box} from './services/world/model/box';
+import {MapComponent} from './game/map/map.component';
 
 @Component({
   selector: 'app-root',
@@ -26,13 +28,12 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
 
     Net.init(this.http);
-    Account.init();
+    Account.init(function(res) {});
     Dialog.init(this.dialog);
 
     const self = this ;
 
     check();
-    console.log(self.router.url);
 
     let status = "connected" ;
 
@@ -40,22 +41,24 @@ export class AppComponent implements OnInit{
 
       setTimeout(function() {
 
-        console.log(status);
-
         if (status == "disconnect") {
 
 
           if ( Net.socket.connected ){
-            status = "connected";
-            Worlds.reset();
-            Worlds.init(function(res) {
-              if ( res ){
-                console.log('test');
-                check();
-              }else{
-                self.router.navigate(['u/jeu']);
-              }
+            Net.reset();
+            Account.init(function(accountInit) {
+              Box.reset();
+              Worlds.init(function(res) {
+                status = "connected";
+                if ( res ){
+                  MapComponent.reload();
+                  check();
+                }else{
+                  self.router.navigate(['u/jeu']);
+                }
+              });
             });
+
           }else{
             check();
           }
@@ -76,12 +79,12 @@ export class AppComponent implements OnInit{
           if ( !Net.socket.connected ){
             status = "disconnect" ;
             Net.worldsStatus = false ;
-            Net.reset();
+            //Net.socket.disconnect();
           }
           check();
         }
 
-      },1000);
+      },100);
 
 
     }

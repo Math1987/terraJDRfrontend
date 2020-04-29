@@ -66,7 +66,7 @@ export class A_getResource extends Action{
       .subscribe(value => {
 
 
-          Net.socket.emit('action', GetResourceComponent.resourceFocused, {
+          Net.emitAction( GetResourceComponent.resourceFocused, {
             user : user,
             target : target,
           }, function(giveResourceRes) {

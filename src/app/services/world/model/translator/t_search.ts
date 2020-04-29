@@ -15,7 +15,6 @@ export class T_search extends Translator{
   }
   asMessage(user, json, language) {
 
-    console.log('search mine');
 
     let message = '' ;
     let userBox = Box.readById(json.user);

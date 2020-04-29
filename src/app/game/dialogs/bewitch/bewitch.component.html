@@ -1,0 +1,30 @@
+
+
+<h1 mat-dialog-title>ensorceler</h1>
+
+<mat-dialog-content>
+
+
+
+  <div class="list-group-item list-group-item flexRow">
+    <div *ngFor="let spell of getSpells()">
+      <div [ngClass]="{
+     'btn': true,
+     'btn-dark': !isFocus(spell),
+     'btn-primary': isFocus(spell)
+      }"
+           (click)="setSpell(spell)"
+      >{{spell.getDefaultName('fr')}}</div>
+    </div>
+  </div>
+
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="btn btn-success" (click)="validate()">valider</div>
+</mat-dialog-actions>
+
+
+

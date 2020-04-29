@@ -10,7 +10,7 @@ export class Characters{
 
   static init(callBack){
 
-    Net.socket.emit('readAccountCharacters', function(res) {
+    Net.emitReadAccountCharacters( function(res) {
       Characters.characters = res ;
       callBack(res);
     });

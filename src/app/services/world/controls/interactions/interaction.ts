@@ -3,13 +3,14 @@ import {Action} from '../actions/action';
 import {Translator} from '../../model/translator/translator';
 import {View} from '../../view/view';
 import {Input} from '@angular/core';
+import {A_bewitch} from '../actions/a_bewitch';
 
 export class Interaction{
 
   static ID_BUILDER = 0 ;
 
   static VALUE_KEYS = [
-    'life', 'water', 'food', 'material', 'gold','faith', 'vitality', "search"
+    'life', 'water', 'food', 'material', 'gold','faith', 'vitality', "search", 'religion', 'flame'
   ];
 
   static getValue(key){
@@ -102,6 +103,9 @@ export class Interaction{
         }
       }
     }
+
+    //actions.push(new A_bewitch());
+
     interaction.values = [];
     for (let key of Object.keys(target)) {
       let patternValue = Interaction.getValue(key);

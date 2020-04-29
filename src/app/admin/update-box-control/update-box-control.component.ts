@@ -47,7 +47,7 @@ export class UpdateBoxControlComponent implements OnInit {
   }
   updateValue(view, key, value){
 
-    Net.socket.emit('updateValue', view.box.id, key, parseInt(value), function(res) {
+    Net.emitUpdateValue( view.box.id, key, parseInt(value), function(res) {
       alert('value updated');
     });
 
@@ -63,7 +63,7 @@ export class UpdateBoxControlComponent implements OnInit {
     return deletable ;
   }
   delete(target){
-    Net.socket.emit('deleteById', target.view.box.id, function(res) {
+    Net.emitDeleteById( target.view.box.id, function(res) {
       alert('objet supprimé avec succes');
     });
   }

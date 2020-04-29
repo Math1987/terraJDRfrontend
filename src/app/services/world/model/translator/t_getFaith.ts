@@ -12,8 +12,6 @@ export class T_getFaith extends Translator{
 
   asMessage(user, json, language) {
 
-    console.log('get faith message');
-
     let message = '' ;
     let userBox = Box.readById(json.user);
 

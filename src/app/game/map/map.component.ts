@@ -21,30 +21,32 @@ export class MapComponent implements OnInit {
   lastUpdate = 0 ;
   interactions: any = [] ;
 
+  static viewUpdated = false ;
+
   constructor(
     private router: Router
   ) {
 
-    console.log('constructor map');
-
-    View.canvasWorld = null ;
-    this.lastUpdate = 0 ;
-    this.update();
+    View.reset();
+    MapComponent.viewUpdated = false ;
 
   }
 
   ngOnInit() {
 
-    const self = this ;
+    /*const self = this ;
     View.canvasWorld = null ;
     NavComponent.setInitCallBack(function(worlds) {
       View.canvasWorld = null ;
       self.lastUpdate = 0 ;
-      self.update();
-    });
+    });*/
 
   }
-
+  static reload(){
+    Box.reset();
+    View.reset();
+    MapComponent.viewUpdated = false ;
+  }
 
   getMove(){
     if ( Area.character && 'mover' in Area.character ){
@@ -55,21 +57,21 @@ export class MapComponent implements OnInit {
   }
 
   updateViewer(){
+
+
     const self = this;
     let canvas = document.getElementById("worldViewGame") as HTMLCanvasElement ;
     if ( canvas ) {
       canvas.width = 780;
       canvas.height = 780 * 0.59;
-
-
       this.lastUpdate = 0;
       if (Area.world !== null && Area.character !== null) {
-        Worlds.reset();
+        Box.reset();
         View.setCanvasWorld(canvas);
         View.setRayon(5);
         View.moveControls = function(x, y, callBack) {
           if (Area.character.mover > 0) {
-            Net.socket.emit('action', 'move', {
+            Net.emitAction('move', {
               user: Area.character,
               x: x,
               y: y
@@ -97,8 +99,8 @@ export class MapComponent implements OnInit {
 
     if (Area.world && Area.character ) {
 
-      if ( !View.canvasWorld && Net.socket.connected && Net.worldsStatus ){
-        console.log('update Viewer');
+      if ( !View.hasCanvasFocused() && Net.socket.connected && Net.worldsStatus && !MapComponent.viewUpdated ){
+        MapComponent.viewUpdated = true ;
         this.updateViewer();
       }
 

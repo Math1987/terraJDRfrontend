@@ -46,6 +46,8 @@ export class LoginComponent implements OnInit {
     if (this.formLogin.valid) {
       const self = this;
 
+
+
       Account.login( this.formLogin.value.email, this.formLogin.value.password, function(res) {
         if ( res !== null ){
           self.router.navigate(['/u/jeu']);

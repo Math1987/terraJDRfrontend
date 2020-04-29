@@ -56,7 +56,7 @@ export class CharacterComponent implements OnInit {
     }
   }
   addSkill(skill){
-    Net.socket.emit('action', 'addSkill', {
+    Net.emitAction( 'addSkill', {
       user: Area.character,
       skill: skill.key,
       value : 1

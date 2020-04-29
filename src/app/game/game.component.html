@@ -1,36 +1,41 @@
+<div class="list-group-item list-group-item">
 
-<div *ngIf="getCharacter() && updates()" class="list-group-item">
+<h4>bivenue sur Terra</h4>
+  <div *ngIf="updates()" class="list-group-item">
 
-  <nav class="navbar navbar-expand-sm bg-light">
+    <div *ngIf="getCharacter()">
 
-    <ul class="nav navbar-nav ml-0">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/u/jeu/carte">carte</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/u/jeu/perso">perso</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://terrajdr.forumactif.com" target="_blank">forum</a>
-      </li>
-      <li class="nav-item">
-      <a class="nav-link" routerLink="/u/jeu/classement">classement</a>
-    </li>
-    </ul>
+      <nav class="navbar navbar-expand-sm bg-light">
+
+        <ul class="nav navbar-nav ml-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/u/jeu/carte">carte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/u/jeu/perso">perso</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://terrajdr.forumactif.com" target="_blank">forum</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/u/jeu/classement">classement</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+
+          <li *ngFor="let resource of getResources()" class="nav-item">
+            <div class="list-group-item list-group-item-primary">{{resource.nom}}: {{resource.value}}</div>
+          </li>
+        </ul>
 
 
-    <ul class="nav navbar-nav ml-auto">
+      </nav>
+      <p>tour {{getYear()}}</p>
 
-      <li *ngFor="let resource of getResources()" class="nav-item">
-        <div class="list-group-item list-group-item-primary">{{resource.nom}}: {{resource.value}}</div>
-      </li>
-    </ul>
+      <app-message></app-message>
 
+    </div>
 
-  </nav>
-  <p>tour {{getYear()}}</p>
-
-  <app-message></app-message>
-
+  </div>
 </div>
 <router-outlet></router-outlet>

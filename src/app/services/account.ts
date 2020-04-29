@@ -4,19 +4,43 @@ import {environment} from '../../environments/environment';
 export class Account{
 
   static user = null ;
+  static callBackInit = null ;
+  static initialisez = false ;
 
-  static init(){
+  static init(callBack){
+    Account.initialisez = false ;
     if ( localStorage.getItem("user")){
       Account.user = JSON.parse(localStorage.getItem("user"));
-      Account.connectAccount(function(res) {});
+      Account.connectAccount(function(res) {
+
+        if ( Account.callBackInit ){
+          Account.callBackInit(res);
+          Account.initialisez = true ;
+        }
+        callBack('done');
+
+      });
     }else{
       Account.user = null ;
+      if ( Account.callBackInit ){
+        Account.callBackInit(null);
+        Account.initialisez = true ;
+      }
     }
 
   }
   static connectAccount(callBack){
-    localStorage.setItem("user", JSON.stringify(Account.user));
-    Net.socket.emit('initAccount', Account.user, callBack);
+    Net.emitInitAccount(Account.user, function(connectionRes) {
+      localStorage.setItem("user", JSON.stringify(Account.user));
+      callBack(connectionRes);
+    });
+  }
+  static setCallBackInit(callBack){
+    if ( Account.initialisez ){
+      callBack('done');
+    }else{
+      Account.callBackInit = callBack ;
+    }
   }
 
   static create(email, password, pseudo, callBack){
@@ -38,7 +62,6 @@ export class Account{
   }
 
   static login(email, password, callBack){
-
     Net.http.get(`${environment.backURL}/readAccount?email=${email}&password=${password}`).subscribe((res)=>{
 
       if ( res !== null ){

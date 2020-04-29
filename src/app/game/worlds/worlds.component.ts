@@ -40,12 +40,13 @@ export class WorldsComponent implements OnInit {
   }
 
   getCharacters() {
-    if (this.getWorld()) {
-
+    if ( this.getWorld() ) {
       let charas = [];
-      for (let chara of Characters.characters) {
-        if (chara.world == this.getWorld().name) {
-          charas.push(chara);
+      if ( Characters.characters ){
+        for (let chara of Characters.characters) {
+          if (chara.world == this.getWorld().name) {
+            charas.push(chara);
+          }
         }
       }
       return charas;
@@ -106,7 +107,7 @@ export class WorldsComponent implements OnInit {
     }
 
     if (name.length > 2) {
-      Net.socket.emit('createUserCharacter', {
+      Net.emitCreateCharacter({
         key: "character",
         name: name,
         sexe: sexe,
