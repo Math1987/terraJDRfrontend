@@ -15,6 +15,7 @@ export class A_attack extends Action{
     if ( !Box.isInPositionOf('neutral', user.x, user.y)
       && key1 == "attack" && key2 == "life"
       && user.x == target.x && user.y == target.y
+      && (!('protection' in target) || target.protection <= 0 )
       && ( !('race' in target && 'race' in user) || target.race !== user.race )
     ){
       return true ;

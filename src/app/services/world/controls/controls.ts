@@ -10,6 +10,7 @@ import {A_levitation} from './actions/a_levitation';
 import {A_search} from './actions/a_search';
 import {A_flame} from './actions/a_flame';
 import {A_bewitch} from './actions/a_bewitch';
+import {A_protection} from './actions/a_protection';
 
 
 export class Controls{
@@ -30,6 +31,7 @@ export class Controls{
       new A_bewitch(),
       new A_levitation(),
       new A_flame(),
+      new A_protection(),
       //new A_getFood(),
       //new A_getWater(),
       new A_getResource(),

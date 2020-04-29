@@ -55,7 +55,7 @@ export class Box{
     }
   }
   static isSpell(key){
-    if ( key == "flame" || key == "levitation" ){
+    if ( key == "flame" || key == "levitation" || key == "protection" || key == "blesstree" || key == "luck" ){
       return true ;
     }else{
       return false ;
