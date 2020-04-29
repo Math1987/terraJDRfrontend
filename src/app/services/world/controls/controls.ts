@@ -14,6 +14,7 @@ import {A_protection} from './actions/a_protection';
 import {A_blesstree} from './actions/a_blesstree';
 import {A_luck} from './actions/a_luck';
 import {A_trade} from './actions/a_trade';
+import {A_openChest} from './actions/a_openChest';
 
 
 export class Controls{
@@ -30,6 +31,7 @@ export class Controls{
       new A_attack(),
       new A_heal(),
       new A_search(),
+      new A_openChest(),
 
       new A_bewitch(),
       new A_levitation(),

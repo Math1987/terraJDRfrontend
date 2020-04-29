@@ -23,6 +23,7 @@ import {T_search} from './translator/t_search';
 import {T_relic} from './translator/t_relic';
 import {T_trade} from './translator/t_trade';
 import {T_bewitch} from './translator/t_bewitch';
+import {T_openchest} from './translator/t_openChest';
 
 export class Model{
 
@@ -45,6 +46,7 @@ export class Model{
       new T_giveResource(),
       new T_waterTree(),
       new T_search(),
+      new T_openchest(),
       new T_bewitch(),
       new T_life(),
       new T_water(),
