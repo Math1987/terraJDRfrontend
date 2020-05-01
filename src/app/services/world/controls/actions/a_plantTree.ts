@@ -26,8 +26,10 @@ export class A_plantTree extends Action{
   }
   matchInteraction(user, key1, target, key2, contextViews : View[]){
 
-    if ( user.water >= 50 && Box.isGround(target.key)
+    if ( target.key !== 'neutral'
+      && user.water >= 50 && Box.isGround(target.key)
       && !Box.gotSolidInPosition(user.x, user.y)
+      && user.x == target.x && user.y == target.y
       && user.id === Area.character.id ){
 
       return true ;

@@ -8,6 +8,7 @@ export class View{
   private static canvasWorld = null ;
   static canvasFocus = null ;
   static moveControls = null ;
+  static canMove = null ;
   static selectFunction = null ;
   static focused = null ;
 
@@ -131,6 +132,7 @@ export class View{
     for ( let delBox of delet ){
       Box.removeByPosition(delBox.x, delBox.y);
     }
+    View.checkCanMove();
 
   }
   static updatePositions(boxes){
@@ -270,10 +272,9 @@ export class View{
 
   static TIME = {last:0, elapsed:0, animator:0} ;
   protected static SRC_IMAGE = './../../../../assets/images';
-  protected static ROUND_MATRIX = null ;
-  protected static VIEW_MATRIX = null ;
-  protected static VBOX_MODELS = null ;
-  protected static ROUNDS = null ;
+  static ROUND_MATRIX = null ;
+  static VIEW_MATRIX = null ;
+  static ROUNDS = null ;
   protected static VIEWS = null ;
   protected static PATTERNS = null ;
   protected static RATIOY = 0.59 ;
@@ -288,6 +289,10 @@ export class View{
   protected static y = 0 ;
   protected static rayon = 5 ;
   private static draw = null ;
+  private static canMoveTopLeft = true ;
+  private static canMoveTopRight = true ;
+  private static canMoveBottomRight = true ;
+  private static canMoveBootomLeft = true ;
 
   private static initRounds(){
     View.ROUND_MATRIX = [] ;
@@ -496,7 +501,7 @@ export class View{
       if ( askPositions.length > 0 ){
         Net.emitReadPositions(askPositions, function(res) {});
       }
-
+      View.checkCanMove();
     }
 
   }
@@ -556,21 +561,50 @@ export class View{
       context.fillStyle = "gray";
       context.textAlign = "left" ;
       context.font = `${size*0.5}px Arial`;
-      context.fillText(`${View.x - Math.floor(Area.world.width/2)}x,${View.y- Math.floor(Area.world.height/2)}y`, size*1.8,size*0.5);
+      context.fillText(`${View.x - Math.floor(Area.world.width/2)}x,${ - View.y+ Math.floor(Area.world.height/2)}y`, size*1.8,size*0.5);
     }
 
 
     size*=0.75;
 
-    View.moverTopLeft.draw(View.canvasWorld, 0, 0, size, size, {style:"white"});
-    View.moverToRight.draw(View.canvasWorld, View.canvasWorld.width-size*2, 0, size, size, {style:"white"});
-
-    View.moverBottomLeft.draw(View.canvasWorld, 0, View.canvasWorld.height-size*2, size, size, {style:"white"});
-    View.moverBottomRight.draw(View.canvasWorld, View.canvasWorld.width-size*2, View.canvasWorld.height-size*2, size, size, {style:"white"});
+    if ( View.canMoveTopLeft ){
+      View.moverTopLeft.draw(View.canvasWorld, 0, 0, size, size, {style:"white"});
+    }
+    if ( View.canMoveTopRight ) {
+      View.moverToRight.draw(View.canvasWorld, View.canvasWorld.width - size * 2, 0, size, size, {style: "white"});
+    }
+    if ( View.canMoveBootomLeft ) {
+      View.moverBottomLeft.draw(View.canvasWorld, 0, View.canvasWorld.height - size * 2, size, size, {style: "white"});
+    }
+    if ( View.canMoveBottomRight ) {
+      View.moverBottomRight.draw(View.canvasWorld, View.canvasWorld.width - size * 2, View.canvasWorld.height - size * 2, size, size, {style: "white"});
+    }
 
 
   }
   private static drawFocus(){}
+  private static checkCanMove(){
+    if ( View.canMove === null || View.canMove(0,-1) ){
+      View.canMoveTopLeft = true ;
+    }else{
+      View.canMoveTopLeft = false ;
+    }
+    if ( View.canMove === null || View.canMove(1, 0) ) {
+      View.canMoveTopRight = true ;
+    }else{
+      View.canMoveTopRight = false ;
+    }
+    if ( View.canMove === null || View.canMove(-1,0) ) {
+      View.canMoveBootomLeft = true ;
+    }else{
+      View.canMoveBootomLeft = false ;
+    }
+    if ( View.canMove === null || View.canMove(0,1) ) {
+      View.canMoveBottomRight = true ;
+    }else{
+      View.canMoveBottomRight = false ;
+    }
+  }
 
 
   box ;

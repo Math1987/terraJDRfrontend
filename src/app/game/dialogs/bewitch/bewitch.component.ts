@@ -15,10 +15,10 @@ export class BewitchComponent implements OnInit {
   static spells = [] ;
   static spellFocused = null ;
 
-  static build(user){
+  static build(user, target){
     BewitchComponent.spells = [];
 
-    let spells_ = Action.getSpellsFromReligion(user.religion) ;
+    let spells_ = Action.getSpellsFrom(user, target) ;
     for ( let spel of spells_ ){
       BewitchComponent.spells.push(spel);
     }

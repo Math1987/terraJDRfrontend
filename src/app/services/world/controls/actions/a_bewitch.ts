@@ -33,9 +33,16 @@ export class A_bewitch extends Action{
   matchInteraction(user, key1, target, key2, contextViews : View[]){
 
     if ( user.faith >= 10
-      && user.id === target.id
+      && (user.id === target.id || ( this.isCompatibleAsReligion(user, target)) )
       && user.id === Area.character.id ){
-      return true ;
+
+      let spells_ = Action.getSpellsFrom(user, target) ;
+      if ( spells_.length > 0 ){
+        return true ;
+      }else{
+        return false ;
+      }
+
     }else{
       return false ;
     }
@@ -52,7 +59,7 @@ export class A_bewitch extends Action{
   use(user, target){
     const self = this ;
 
-    BewitchComponent.build(user);
+    BewitchComponent.build(user, target);
 
     this.fileNameDialogRef = Dialog.dialog.open(BewitchComponent);
 
@@ -60,16 +67,19 @@ export class A_bewitch extends Action{
       .afterClosed()
       .subscribe(value => {
 
-        value = Math.max(1, value);
-
-        console.log(BewitchComponent.spellFocused);
+        console.log(BewitchComponent.spellFocused.readKey());
 
         Net.emitAction( BewitchComponent.spellFocused.readKey(), {
           user : user,
           target : target
         }, function(giveResourceRes) {
 
-          Box.lastUpdate = new Date().getTime();
+          console.log(giveResourceRes);
+          if ( giveResourceRes ){
+            console.log(giveResourceRes);
+          }
+
+          //Box.lastUpdate = new Date().getTime();
 
         });
 

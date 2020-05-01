@@ -23,6 +23,15 @@ export class Box{
     }
     return isProtected;
   }
+  static getByPosition(x,y){
+    let objs = [] ;
+    for ( let box of Box.BOXES ){
+      if ( 'x' in box && box.x == x && box.y == y ){
+        objs.push(box);
+      }
+    }
+    return objs ;
+  }
   static isInPositionOf(key, x, y){
     let bool = false ;
     for ( let box of Box.BOXES ){
@@ -41,21 +50,21 @@ export class Box{
     }
   }
   static isResource(key){
-    if ( key == "food" || key == "water" || key == "material" || key == "faith" ){
+    if ( key == "food" || key == "water" || key == "material" || key == "faith" || key == "gold" ){
       return true ;
     }else{
       return false;
     }
   }
   static isSolid(key){
-    if ( key == "field" || key == "well" || key == "tree" || key == "temple" ){
+    if ( key == "field" || key == "well" || key == "tree" || key == "temple" || key == "trader" ){
       return true ;
     }else{
       return false;
     }
   }
   static isSpell(key){
-    if ( key == "flame" || key == "levitation" || key == "protection" || key == "blesstree" || key == "luck" ){
+    if ( key == "flame" || key == "levitation" || key == "protection" || key == "blesstree" || key == "luck" || key == "spellRain" || key == "spellVision"){
       return true ;
     }else{
       return false ;

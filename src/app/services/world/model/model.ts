@@ -25,6 +25,8 @@ import {T_trade} from './translator/t_trade';
 import {T_bewitch} from './translator/t_bewitch';
 import {T_openchest} from './translator/t_openChest';
 import {T_build} from './translator/t_build';
+import {T_gold} from './translator/t_gold';
+import {T_trader} from './translator/T_trader';
 
 export class Model{
 
@@ -42,6 +44,7 @@ export class Model{
       new T_getWater(),
       new T_getFood(),
       new T_getMaterial(),
+      new T_gold(),
       new T_getFaith(),
       new T_getResource(),
       new T_giveResource(),
@@ -56,7 +59,8 @@ export class Model{
       new T_faith(),
       new T_relic(),
       new T_trade(),
-      new T_build()
+      new T_build(),
+      new T_trader()
     ]);
   }
 

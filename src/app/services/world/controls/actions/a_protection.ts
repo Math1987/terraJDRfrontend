@@ -8,7 +8,7 @@ import {View} from '../../view/view';
 
 export class A_protection extends Action{
 
-  religion = "athena" ;
+  religions = ["athena"] ;
 
   constructor(){
     super();

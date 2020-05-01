@@ -16,12 +16,17 @@ import {A_luck} from './actions/a_luck';
 import {A_trade} from './actions/a_trade';
 import {A_openChest} from './actions/a_openChest';
 import {A_build} from './actions/a_build';
+import {A_repair} from './actions/a_repair';
+import {A_disassemble} from './actions/a_disassemble';
+import {A_manage} from './actions/a_manage';
+import {A_spellRain} from './actions/a_spellRain';
+import {A_spellVision} from './actions/a_spellVision';
 
 
 export class Controls{
 
   static RESOURCES = [
-    'life' ,'water' ,'food' ,'material' ,'faith' ,'actions' ,'xp'
+    'life' ,'water' ,'food' ,'material' ,'faith' ,'actions' ,'xp', 'gold'
   ];
   static SKILLS = [
     'attack' ,"defense" ,"getWater" ,"getFood" ,"getMaterial" ,"getFaith"
@@ -33,6 +38,7 @@ export class Controls{
       new A_heal(),
       new A_search(),
       new A_openChest(),
+      new A_manage(),
 
       new A_bewitch(),
       new A_levitation(),
@@ -40,12 +46,16 @@ export class Controls{
       new A_protection(),
       new A_blesstree(),
       new A_luck(),
+      new A_spellRain(),
+      new A_spellVision(),
       //new A_getFood(),
       //new A_getWater(),
       new A_getResource(),
       new A_giveResource(),
       new A_trade(),
       new A_build(),
+      //new A_repair(),
+      new A_disassemble(),
 
       new A_waterTree(),
       new A_plantTree()

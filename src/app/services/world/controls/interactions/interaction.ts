@@ -88,17 +88,19 @@ export class Interaction{
 
     for (let key of Object.keys(user)) {
       for (let keyTarget of Object.keys(target)) {
-        let action = Action.getActionBetween(user, key, target, keyTarget, contextViews);
-        if (action) {
-          let alreadyGot = false ;
-          for ( let act of actions ){
-            if ( act.readKey() == action.readKey() ){
-              alreadyGot = true ;
-              break ;
+        let newActions = Action.getActionBetween( user, key, target, keyTarget, contextViews);
+        if (newActions.length > 0 ) {
+          for ( let na of newActions ) {
+            let alreadyGot = false;
+            for (let act of actions) {
+              if (act.readKey() == na.readKey()) {
+                alreadyGot = true;
+                break;
+              }
             }
-          }
-          if (!alreadyGot){
-            actions.push(action);
+            if (!alreadyGot) {
+              actions.push(na);
+            }
           }
         }
       }
@@ -155,6 +157,8 @@ export class Interaction{
   subTitle(){
     if ( 'race' in this.target ){
       return Translator.translate(this.target.race, 'fr', 'default' ) ;
+    }else if ( this.target.key == "trader" ){
+      return Translator.translate(this.target.skill, 'fr', "skill") ;
     }else{
       return null ;
     }

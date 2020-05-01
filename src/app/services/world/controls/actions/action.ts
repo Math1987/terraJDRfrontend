@@ -23,11 +23,11 @@ export class Action{
     return res ;
   }
 
-  static getSpellsFromReligion(religion){
+  static getSpellsFrom(user, target){
     let spells = [] ;
     for ( let action of Action.ACTIONS ){
-      if ( Box.isSpell(action.readKey())
-        && ( !('religion' in action) || action['religion'] == religion) ){
+      if ( Box.isSpell(action.readKey() )
+        && ( action.isCompatibleAsReligion(user, target)) ){
         spells.push(action);
       }
     }
@@ -47,14 +47,13 @@ export class Action{
 
 
   static getActionBetween(user, key1, target, key2, contextViews: View[]){
-    let actionFound = null ;
+    let actions = [] ;
     for ( let action of Action.ACTIONS ){
       if ( action.matchInteraction(user, key1, target, key2, contextViews)){
-        actionFound = action ;
-        break ;
+        actions.push(action) ;
       }
     }
-    return actionFound ;
+    return actions ;
   }
 
   constructor(){}
@@ -82,6 +81,64 @@ export class Action{
   }
   getCosts(){
     return [] ;
+  }
+  isCompatibleAsReligion(user, target){
+    const self = this ;
+
+    let json = JSON.parse(JSON.stringify(self));
+
+    if ( 'religions' in self ){
+      let bool = false ;
+
+      for ( let i = 0 ; i < Object.keys(json).length ; i ++ ){
+        let key = Object.keys(json)[i];
+        if ( Array.isArray(json[key])){
+          for ( let val of json[key] ){
+            if ( user.religion == val ){
+              if ( json.spellTargets ){
+
+                let sepllT = false ;
+                for ( let spellT of json.spellTargets ){
+                  if ( spellT == target.key ){
+                    sepllT = true ;
+                  }
+                }
+                if ( sepllT ){
+                  bool = true ;
+                  break ;
+                }
+
+              }else{
+                bool = true ;
+              }
+
+              break ;
+            }
+          }
+        }
+      }
+
+      return bool ;
+    }else{
+
+      let bool = false ;
+      if ( json.spellTargets ){
+
+        let sepllT = false ;
+        for ( let spellT of json.spellTargets ){
+          if ( spellT == target.key ){
+            sepllT = true ;
+          }
+        }
+        if ( sepllT ){
+          bool = true ;
+        }
+
+      }else{
+        bool = true ;
+      }
+      return bool ;
+    }
   }
 
   use(user, target){

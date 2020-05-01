@@ -8,6 +8,8 @@ import {View} from '../../view/view';
 
 export class A_flame extends Action{
 
+  spellTargets = ['character', 'squeleton', 'fortification'] ;
+
   constructor(){
     super();
   }

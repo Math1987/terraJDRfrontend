@@ -69,8 +69,63 @@ export class MapComponent implements OnInit {
         Box.reset();
         View.setCanvasWorld(canvas);
         View.setRayon(5);
+        View.canMove = function(x,y){
+
+          let canMove = false ;
+          let gotConstraint = false;
+          let canGoOut = true ;
+
+          let actuals = View.ROUNDS[0] ;
+          for ( let view of actuals ){
+            if ( view.box.key == "fortification"
+              && view.box.race !== Area.character.race
+              && !(Area.character.last_x == Area.character.x + x && Area.character.last_y == Area.character.y + y) ){
+              canGoOut = false ;
+              break ;
+            }
+          }
+          if ( canGoOut ) {
+
+            let nexts = null;
+            for (let i = 0; i < View.ROUND_MATRIX[2].length; i++) {
+              if (View.ROUND_MATRIX[2][i].x == x && View.ROUND_MATRIX[2][i].y == y) {
+                nexts = View.ROUNDS[i];
+                break;
+              }
+            }
+
+            for (let view of nexts) {
+              let obj = view.box;
+              if (obj.key == "neutral") {
+                canMove = true;
+                break;
+              } else if (obj.key == 'tree') {
+                gotConstraint = true;
+                if (Area.character.mover > 1) {
+                  canMove = true;
+                }
+                break;
+              } else if (obj.key == 'fortification') {
+                gotConstraint = true;
+                if ((Area.character.mover > 1 || obj.race == Area.character.race)) {
+                  canMove = true;
+                }
+                break;
+              }
+            }
+            if (!gotConstraint && !canMove && Area.character.mover > 0) {
+              canMove = true;
+            }
+          }
+
+          return canMove ;
+
+        }
         View.moveControls = function(x, y, callBack) {
-          if (Area.character.mover > 0) {
+          if ( View.canMove(x,y)) {
+
+
+
             Net.emitAction('move', {
               user: Area.character,
               x: x,

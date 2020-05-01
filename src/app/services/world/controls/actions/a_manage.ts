@@ -1,35 +1,28 @@
 import {Action} from './action';
-import {Area} from '../../area';
-import {Box} from '../../model/box';
+import {Net} from '../../../net';
 import {MatDialogRef} from '@angular/material';
 import {GiveResourceComponent} from '../../../../game/dialogs/give-resource/give-resource.component';
-import {BuildComponent} from '../../../../game/dialogs/build/build.component';
 import {Dialog} from '../../../dialog';
+import {filter} from 'rxjs/operators';
+import {Box} from '../../model/box';
 import {Translator} from '../../model/translator/translator';
-import {Net} from '../../../net';
 import {View} from '../../view/view';
-import {EditorAddComponent} from '../../../../admin/dialogs/editor-add/editor-add.component';
-import {Builder} from '../builder';
+import {ManageComponent} from '../../../../game/dialogs/manage/manage.component';
 
+export class A_manage extends Action{
 
-export class A_build extends Action{
-
-  fileNameDialogRef: MatDialogRef<BuildComponent>;
+  fileNameDialogRef: MatDialogRef<ManageComponent>;
 
   constructor(){
     super();
   }
   readKey(){
-    return "build";
-  }
-  isActive(): boolean {
-    return true;
+    return "manage";
   }
   matchInteraction(user, key1, target, key2, contextViews){
 
-    if ( Box.isGround(target.key)
-      && target.key !== "neutral"
-      && !Box.isSolid(target.key)
+    if ( target.key == "fortification"
+      && target.race == user.race
       && target.x == user.x && target.y == user.y
       && user.id !== target.id ){
 
@@ -38,7 +31,7 @@ export class A_build extends Action{
         for (let views of contextViews) {
           for ( let view of views ){
             if ( view && view.box.key == "character" && view.box.race !== user.race ){
-              canMatch = false;
+              //canMatch = false;
             }
           }
         }
@@ -50,29 +43,29 @@ export class A_build extends Action{
       return false ;
     }
   }
+  getCosts(){
+    return [
+      {
+        key : "actions",
+        value : 1,
+        nom : `point d'action`,
+      }
+    ];
+  }
   use(user, target){
-
-
-
     const self = this ;
 
-    BuildComponent.builds = [] ;
+    ManageComponent.user = user ;
+    ManageComponent.target = target ;
 
-    let newBuild = new Builder("fortification");
-    BuildComponent.builds.push(newBuild);
-
-    this.fileNameDialogRef = Dialog.dialog.open(BuildComponent);
-
+    this.fileNameDialogRef = Dialog.dialog.open(ManageComponent);
 
     this.fileNameDialogRef
       .afterClosed()
       .subscribe(value => {
 
-        console.log('build ' + BuildComponent.focused );
 
       });
-
-
   }
 
 }

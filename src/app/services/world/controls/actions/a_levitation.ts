@@ -8,7 +8,7 @@ import {View} from '../../view/view';
 
 export class A_levitation extends Action{
 
-  religion  = 'hermes';
+  religions  = ['hermes'] ;
 
   constructor(){
     super();

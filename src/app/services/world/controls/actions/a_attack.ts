@@ -1,6 +1,7 @@
 import {Action} from './action';
 import {View} from '../../view/view';
 import {Box} from '../../model/box';
+import {Net} from '../../../net';
 
 export class A_attack extends Action{
 
@@ -47,6 +48,21 @@ export class A_attack extends Action{
         nom : `point d'action`
       }
     ];
+  }
+
+  use(user, target){
+
+    if ( user.actions > 0 || user.flame > 0 ) {
+      Net.emitAction(  this.readKey(), {
+        user: user,
+        target: target
+      }, function(res) {
+
+      });
+    }else{
+      alert(`tu ne peux plus attaquer car tu n'as ni action ni sort de flame à utiliser.`);
+    }
+
   }
 
 

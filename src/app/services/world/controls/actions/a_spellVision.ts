@@ -6,26 +6,16 @@ import {Net} from '../../../net';
 import {Box} from '../../model/box';
 import {View} from '../../view/view';
 
-export class A_blesstree extends Action{
+export class A_spellVision extends Action{
 
-  religions = ['demeter'] ;
-  spellTargets = ['tree'] ;
+  //religions = ['athena','ephaistos'];
+  spellTargets = ['character'];
 
   constructor(){
     super();
   }
   readKey(){
-    return "blesstree";
-  }
-  isActive(): boolean {
-    return true;
-  }
-  matchActive(user): boolean {
-    if ( user.faith >= 10 ){
-      return false ;
-    }else{
-      return false ;
-    }
+    return "spellVision";
   }
   matchInteraction(user, key1, target, key2, contextViews : View[]){
 
@@ -36,15 +26,6 @@ export class A_blesstree extends Action{
     }else{
       return false ;
     }
-  }
-  getCosts(){
-    return [
-      {
-        key : "faith",
-        value : 10,
-        nom : `foi`,
-      }
-    ];
   }
   use(user, target){
     const self = this ;

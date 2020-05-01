@@ -36,6 +36,7 @@ import { EditorAddComponent } from './admin/dialogs/editor-add/editor-add.compon
 import { BewitchComponent } from './game/dialogs/bewitch/bewitch.component';
 import { TradeComponent } from './game/dialogs/trade/trade.component';
 import { BuildComponent } from './game/dialogs/build/build.component';
+import { ManageComponent } from './game/dialogs/manage/manage.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { BuildComponent } from './game/dialogs/build/build.component';
     EditorAddComponent,
     BewitchComponent,
     TradeComponent,
-    BuildComponent
+    BuildComponent,
+    ManageComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +90,7 @@ import { BuildComponent } from './game/dialogs/build/build.component';
     BewitchComponent,
     TradeComponent,
     BuildComponent,
+    ManageComponent,
 
     EditorAddComponent
   ]
