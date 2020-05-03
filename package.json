@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "release": "standard-version -s"
+    "release": "standard-version -s",
+    "backend": "cd ../terraJDRbackend && npm run dev"
   },
   "private": true,
   "dependencies": {
