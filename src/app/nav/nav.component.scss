@@ -1,0 +1,20 @@
+mat-toolbar{
+  justify-content: space-between;
+
+  .nav-left{
+    margin: 0;
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    padding-left: 0;
+
+    &>li{
+      padding: 5px;
+    }
+  }
+
+  .user{
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

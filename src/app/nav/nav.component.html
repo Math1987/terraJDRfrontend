@@ -1,28 +1,25 @@
-<nav class="navbar navbar-expand-sm bg-light">
-  <ul class="nav navbar-nav ml-0">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/u/jeu">mes mondes</a>
+<mat-toolbar color="primary">
+  <ul class="nav-left">
+    <li>
+      <a mat-icon-button routerLink="/u/jeu" matTooltip="Mondes">
+        <mat-icon>home</mat-icon>
+      </a>
     </li>
-    <li *ngIf="isAdmin()" class="nav-item">
-      <a class="nav-link" routerLink="/u/admin">admin</a>
+    <li *ngIf="isAdmin()">
+      <a mat-icon-button routerLink="/u/admin" matTooltip="Admin">
+        <mat-icon>tune</mat-icon>
+      </a>
     </li>
   </ul>
 
-
-  <ul class="nav navbar-nav ml-auto">
-
-    <li class="nav-item">
-      <div class="nav-link">{{getUserPseudo()}}</div>
-    </li>
-    <li class="nav-item">
-      <div class="nav-link"  (click)="deconnexion()">X</div>
-    </li>
-
-  </ul>
-
-</nav>
+  <div>
+    <span class="user">{{getUserPseudo()}} </span>
+    <button mat-icon-button (click)="deconnexion()" color="warn" matTooltip="Déconnexion">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
 <div class="container">
-  <img class="container-fluid list-group-item" src="./../../../assets/images/banniere1.png">
   <router-outlet></router-outlet>
 </div>
 

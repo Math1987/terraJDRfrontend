@@ -1,4 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+@import './theme';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: gray}
+//default palette forground/background:
+$light-foreground-palette: map-get($theme, foreground);
+$light-background-palette: map-get($theme, background);
+
+//dark palette forground/background:
+$dark-foreground-palette: map-get($dark-t, foreground);
+$dark-background-palette: map-get($dark-t, background);
+
+.light-colors{
+    background-color : mat-color($primary, default);
+    color: mat-color($light-foreground-palette, text);
+}
+.dark-colors{
+    background-color : mat-color($dark-p, default);
+    color: mat-color($dark-foreground-palette, text);
+}
+
+
+html{
+  min-height: 100%;
+  background-image: url('assets/images/background.jpg');
+}
+
+body {
+  min-height: 100%;
+  background-color: transparent;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-card{
+  border-top: 15px solid mat-color($accent, default);
+
+  mat-card-title{
+    margin-top: -38px !important;
+    text-transform: uppercase;
+
+    &>span{
+      background-color: mat-color($accent, darker);
+      padding: 4px 8px;
+      color: mat-color($dark-foreground-palette, text);
+      font-weight: 300;
+      font-size: 15px;
+      @include mat-elevation(2);
+    }
+  }
+
+  mat-card-content{
+    margin-top: 20px;
+  }
+}

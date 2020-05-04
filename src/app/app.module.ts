@@ -10,11 +10,14 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
+  MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
   MatMenuModule, MatSidenavModule,
-  MatDialogModule, MatCheckboxModule, MatRadioModule
+  MatDialogModule, MatCheckboxModule, MatRadioModule,
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { GameComponent } from './game/game.component';
@@ -71,6 +74,7 @@ import { HistoricComponent } from './game/historic/historic.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MatCardModule,
+    MatDividerModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -79,6 +83,8 @@ import { HistoricComponent } from './game/historic/historic.component';
     MatIconModule,
     MatButtonToggleModule,
     MatSidenavModule,
+    MatToolbarModule,
+    MatTooltipModule,
     FormsModule,
     MatDialogModule,
     MatCheckboxModule,
