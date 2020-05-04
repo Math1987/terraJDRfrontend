@@ -23,6 +23,16 @@ export class Action{
     return res ;
   }
 
+  static getSpells(){
+    let spells = [] ;
+    for ( let action of Action.ACTIONS ){
+      if ( Box.isSpell(action.readKey()) ){
+        spells.push(action);
+      }
+    }
+    return spells ;
+  }
+
   static getSpellsFrom(user, target){
     let spells = [] ;
     for ( let action of Action.ACTIONS ){
@@ -85,7 +95,16 @@ export class Action{
   isCompatibleAsReligion(user, target){
     const self = this ;
 
-    let json = JSON.parse(JSON.stringify(self));
+
+    let json = {spellTargets:[]} ;
+    delete json['spellTargets'];
+    if ( self['spellTargets']){
+      json.spellTargets = self['spellTargets'];
+    }
+    for ( let key of Object.keys(self)){
+      json[key] = self[key];
+    }
+
 
     if ( 'religions' in self ){
       let bool = false ;
@@ -95,7 +114,7 @@ export class Action{
         if ( Array.isArray(json[key])){
           for ( let val of json[key] ){
             if ( user.religion == val ){
-              if ( json.spellTargets ){
+              if ( 'spellTargets' in json && Array.isArray(json.spellTargets)){
 
                 let sepllT = false ;
                 for ( let spellT of json.spellTargets ){
@@ -139,6 +158,7 @@ export class Action{
       }
       return bool ;
     }
+    return true ;
   }
 
   use(user, target){

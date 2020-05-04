@@ -9,6 +9,8 @@ import {View} from '../../view/view';
 export class A_protection extends Action{
 
   religions = ["athena"] ;
+  spellTargets = ['character'];
+
 
   constructor(){
     super();

@@ -118,6 +118,10 @@ export class Worlds{
           Box.updatePositions( instruction.array, function(res) {
             View.updatePositions(res);
           });
+        }else if ( instruction.key === "deleteValues"){
+
+          Box.removeValues(instruction.array);
+
         }else if ( instruction.key === "delete"){
 
           Box.removeByIds(instruction.array);
@@ -126,6 +130,7 @@ export class Worlds{
         }
       }
       Box.lastUpdate = new Date().getTime();
+      View.checkCanMove();
 
 
 

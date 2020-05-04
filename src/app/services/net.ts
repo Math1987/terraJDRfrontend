@@ -60,6 +60,11 @@ export class Net{
       Net.socket.emit('readById', id, callBack);
     }
   }
+  static emitReadByIds(ids, callBack){
+    if ( Net.socket.connected && Net.worldsStatus ) {
+      Net.socket.emit('readByIds', ids, callBack);
+    }
+  }
   static emitUpdatePattern(pattern_key, key, value, type, callBack){
     if ( Net.socket.connected && Net.worldsStatus ){
       Net.socket.emit('updatePattern', pattern_key, key, value, type, callBack);
@@ -86,6 +91,12 @@ export class Net{
     }
   }
 
+
+  static test(key, json, callBack) {
+    console.log(key);
+    console.log(json);
+    Net.socket.emit('action', key, json, callBack);
+  }
 
   static emitAction(key, json, callBack){
     if ( Net.socket.connected && Net.worldsStatus ){

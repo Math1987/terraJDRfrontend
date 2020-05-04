@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
-import {Area} from '../../../services/world/area';
+import {Net} from '../../../services/net';
+import {Box} from '../../../services/world/model/box';
 
 @Component({
   selector: 'app-get-resource',
@@ -12,23 +12,18 @@ export class GetResourceComponent implements OnInit {
 
   static resourceFocused = 'getWater';
   static canGetMaterial = false ;
+  static user ;
+  static target ;
 
-  form: FormGroup;
   resource = 'getWater';
 
-
-
   constructor(
-    private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<GetResourceComponent>
   ) {}
 
   ngOnInit() {
     const self = this ;
     GetResourceComponent.resourceFocused = self.resource ;
-    this.form = this.formBuilder.group({
-      filename: ''
-    });
   }
   canGetMaterial(){
     return GetResourceComponent.canGetMaterial ;
@@ -36,7 +31,18 @@ export class GetResourceComponent implements OnInit {
   setResource(){
     GetResourceComponent.resourceFocused = this.resource ;
   }
-  submit(form) {
-    this.dialogRef.close(`${form.value.filename}`);
+  validate(){
+
+    this.dialogRef.close(``);
+    Net.emitAction( GetResourceComponent.resourceFocused, {
+      user : GetResourceComponent.user,
+      target : GetResourceComponent.target,
+    }, function(giveResourceRes) {
+
+      Box.lastUpdate = new Date().getTime();
+
+    });
+
+    console.log('test');
   }
 }

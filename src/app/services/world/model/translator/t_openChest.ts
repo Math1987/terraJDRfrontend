@@ -12,25 +12,19 @@ export class T_openchest extends Translator{
     return 'openChest' ;
   }
   asMessage(user, json, language) {
-    console.log('openChest message');
 
-    let message = '' ;
-    let userBox = Box.readById(json.user);
+    let message = null ;
 
-    if ( userBox !== null   ){
-
-      if ( userBox.id == user.id ){
-        if ( json.gold ){
-          message = `en ouvrant le coffre, tu trouve ${json.gold} or`;
-        }else{
-          message = `en ouvrant le coffre, tu trouve une superbe relique magique`;
-        }
-
+    if ( json.gold ){
+      if ( json.gold >= 50 ){
+        message = `en ouvrant un coffre mystérieux, tu trouve ${json.gold} or.`;
+      }else{
+        message = `en ouvrant un coffre, tu trouve ${json.gold} or.`;
       }
-
     }else{
-      message = null ;
+      message = `en ouvrant le coffre, tu trouve une superbe relique magique qui contient ${Translator.translate(json.relic,"fr","default")}`;
     }
+
 
 
     return message ;

@@ -155,7 +155,11 @@ export class Interaction{
     }
   }
   subTitle(){
-    if ( 'race' in this.target ){
+    if (this.target.key == "tree" && "builder" in this.target ){
+      return`planté par ${this.target.builder}` ;
+    }else if ( "builder" in this.target ){
+      return this.target.builder ;
+    }else if ( 'race' in this.target ){
       return Translator.translate(this.target.race, 'fr', 'default' ) ;
     }else if ( this.target.key == "trader" ){
       return Translator.translate(this.target.skill, 'fr', "skill") ;
@@ -165,6 +169,13 @@ export class Interaction{
   }
   useAction(action){
     action.use(this.user, this.target);
+  }
+  getPosition(){
+    if ( this.target ){
+      return {x : this.target.x, y:this.target.y};
+    }else{
+      return null ;
+    }
   }
 
   draw(){

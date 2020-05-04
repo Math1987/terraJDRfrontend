@@ -10,6 +10,8 @@ import {Interaction} from '../../services/world/controls/interactions/interactio
 import {Action} from '../../services/world/controls/actions/action';
 import {Worlds} from '../../services/worlds';
 import {Translator} from '../../services/world/model/translator/translator';
+import {Message} from '@angular/compiler/src/i18n/i18n_ast';
+import {MessageComponent} from '../message/message.component';
 
 @Component({
   selector: 'app-map',
@@ -29,17 +31,15 @@ export class MapComponent implements OnInit {
 
     View.reset();
     MapComponent.viewUpdated = false ;
-
+    const self = this ;
+    NavComponent.setInitCallBack(function(worlds) {
+      MessageComponent.init();
+    });
   }
 
   ngOnInit() {
 
-    /*const self = this ;
-    View.canvasWorld = null ;
-    NavComponent.setInitCallBack(function(worlds) {
-      View.canvasWorld = null ;
-      self.lastUpdate = 0 ;
-    });*/
+
 
   }
   static reload(){
@@ -113,7 +113,7 @@ export class MapComponent implements OnInit {
                 break;
               }
             }
-            if (!gotConstraint && !canMove && Area.character.mover > 0) {
+            if (!gotConstraint && !canMove && Area.character && Area.character.mover > 0) {
               canMove = true;
             }
           }

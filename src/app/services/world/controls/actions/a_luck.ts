@@ -9,6 +9,7 @@ import {View} from '../../view/view';
 export class A_luck extends Action{
 
   religions = ['ephaistos'] ;
+  spellTargets = ['character'];
 
   constructor(){
     super();

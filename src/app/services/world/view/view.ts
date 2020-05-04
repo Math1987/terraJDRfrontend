@@ -397,16 +397,16 @@ export class View{
         self.move(x,y);
       }
     }
-    View.moverTopLeft = new B_mover(-Math.PI / 4, function() {
+    View.moverTopLeft = new B_mover("+1x",-Math.PI / 4, function() {
       moveHere(0,-1);
     }) ;
-    View.moverToRight = new B_mover(Math.PI / 4, function() {
+    View.moverToRight = new B_mover("+1y",Math.PI / 4, function() {
       moveHere(1,0);
     }) ;
-    View.moverBottomRight  = new B_mover(Math.PI * 0.75, function() {
+    View.moverBottomRight  = new B_mover("-1x",Math.PI * 0.75, function() {
       moveHere(0,1);
     }) ;
-    View.moverBottomLeft  = new B_mover(-Math.PI * 0.75, function() {
+    View.moverBottomLeft  = new B_mover("-1y",-Math.PI * 0.75, function() {
       moveHere(-1,0);
     }) ;
 
@@ -557,11 +557,16 @@ export class View{
     }
     context.restore();
 
-    if ( Area.world ){
+    if ( Area.world && View.focused ){
+      let pos = View.getFocusedPosition();
       context.fillStyle = "gray";
       context.textAlign = "left" ;
       context.font = `${size*0.5}px Arial`;
-      context.fillText(`${View.x - Math.floor(Area.world.width/2)}x,${ - View.y+ Math.floor(Area.world.height/2)}y`, size*1.8,size*0.5);
+
+      let px = pos.x - Math.floor(Area.world.width/2);
+      let py = - pos.y+ Math.floor(Area.world.height/2);
+
+      context.fillText(`${py}x,${px}y`, size*1.8,size*0.5);
     }
 
 
@@ -583,7 +588,7 @@ export class View{
 
   }
   private static drawFocus(){}
-  private static checkCanMove(){
+  static checkCanMove(){
     if ( View.canMove === null || View.canMove(0,-1) ){
       View.canMoveTopLeft = true ;
     }else{

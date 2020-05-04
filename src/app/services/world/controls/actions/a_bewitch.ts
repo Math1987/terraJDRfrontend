@@ -1,13 +1,9 @@
 import {Action} from './action';
 import {Area} from '../../area';
 import {Dialog} from '../../../dialog';
-import {GetResourceComponent} from '../../../../game/dialogs/get-resource/get-resource.component';
-import {Net} from '../../../net';
-import {Box} from '../../model/box';
 import {View} from '../../view/view';
 import {MatDialogRef} from '@angular/material';
-import {GiveResourceComponent} from '../../../../game/dialogs/give-resource/give-resource.component';
-import {Translator} from '../../model/translator/translator';
+
 import {BewitchComponent} from '../../../../game/dialogs/bewitch/bewitch.component';
 
 export class A_bewitch extends Action{
@@ -60,31 +56,29 @@ export class A_bewitch extends Action{
     const self = this ;
 
     BewitchComponent.build(user, target);
-
+    BewitchComponent.user = user ;
+    BewitchComponent.target = target ;
     this.fileNameDialogRef = Dialog.dialog.open(BewitchComponent);
 
-    this.fileNameDialogRef
+    /*this.fileNameDialogRef
       .afterClosed()
       .subscribe(value => {
 
-        console.log(BewitchComponent.spellFocused.readKey());
+
+        console.log(user);
+        console.log(target);
+
 
         Net.emitAction( BewitchComponent.spellFocused.readKey(), {
           user : user,
           target : target
         }, function(giveResourceRes) {
 
-          console.log(giveResourceRes);
-          if ( giveResourceRes ){
-            console.log(giveResourceRes);
-          }
-
-          //Box.lastUpdate = new Date().getTime();
 
         });
 
 
-      });
+      });*/
   }
 
 }

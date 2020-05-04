@@ -1,10 +1,42 @@
 <div class="list-group-item list-group-item-primary">
   <div *ngIf="updates()" class="skills">
-    <div *ngFor="let skill of skills" class="list-group-item list-group-item-success">
-      <h5>{{skill.nom}}</h5>
-      <div class="list-group-item-success">{{skill.value}}</div>
-      <div *ngIf="getXp() > 0" class="btn btn-success" (click)="addSkill(skill)">+</div>
+    <div class="list-group-item list-group-item-success">
+    <h4>compétences:</h4>
+      <div class="list-group-item list-group-item-success flexRow">
+        <div *ngFor="let skill of skills" class="list-group-item list-group-item-success">
+          <h5>{{skill.nom}}</h5>
+          <div class="list-group-item-success">{{skill.value}}</div>
+          <div *ngIf="getXp() > 0" class="btn btn-success" (click)="addSkill(skill)">+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="list-group-item list-group-item-warning">religion: {{getReligion()}} </div>
+  <div class="list-group-item list-group-item-warning">
+    <h4>sorts:</h4>
+    <div class="flexRow">
+      <div  *ngFor="let spell of getSpells()">
+        <div class="list-group-item list-group-item-warning">
+          <p>{{getSpellNom(spell.readKey())}}</p>
+        </div>
+      </div>
     </div>
   </div>
 
+  <div class="list-group-item list-group-item-danger">
+    <h4>fortifications:</h4>
+    <div class="flexRow">
+      <div  *ngFor="let fortification of fortifications">
+        <div class="list-group-item list-group-item-danger">
+          <canvas id="{{fortification.id}}" class="canvasFortification"></canvas>
+          <p>pv:{{fortification.life}}/1000</p>
+          <p>position : {{fortification.x}}x, {{fortification.y}}y</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="list-group-item list-group-item-dark">
+    <h4>historique:</h4>
+    <app-historic></app-historic>
+  </div>
 </div>

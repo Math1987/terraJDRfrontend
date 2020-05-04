@@ -29,6 +29,7 @@ export class A_build extends Action{
 
     if ( Box.isGround(target.key)
       && target.key !== "neutral"
+      && user.material >= 1000
       && !Box.isSolid(target.key)
       && target.x == user.x && target.y == user.y
       && user.id !== target.id ){

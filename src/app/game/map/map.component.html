@@ -1,6 +1,7 @@
 <div class="list-group-item">
   <div class="list-group-item list-group-item align-content-center align-items-center text-center">
     <canvas id="worldViewGame"></canvas>
+    <app-message></app-message>
   </div>
   <div class="list-group-item list-group-item-primary">déplacements: {{getMove()}}</div>
 </div>
@@ -14,6 +15,7 @@
         <div *ngFor="let interaction of interactions" >
           <div *ngIf="interaction.draw()" class="align-content-center text-center list-group-item list-group-item">
             <h3>{{interaction.title()}}</h3>
+            <h4 *ngIf="interaction.getPosition()">{{interaction.getPosition().x}}x, {{interaction.getPosition().y}}y</h4>
             <h5>{{interaction.subTitle()}}</h5>
             <canvas id="{{interaction.id}}" class="canvasInteraction"></canvas>
             <div class="list-group-item list-group-item-warning">
@@ -44,5 +46,6 @@
       </div>
     </div>
   </div>
+
 </div>
 

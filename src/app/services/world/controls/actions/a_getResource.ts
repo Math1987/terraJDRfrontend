@@ -53,6 +53,8 @@ export class A_getResource extends Action{
   use(user, target){
     const self = this ;
     this.fileNameDialogRef = Dialog.dialog.open(GetResourceComponent);
+    GetResourceComponent.user = user ;
+    GetResourceComponent.target = target ;
 
     let tree = Box.isInPositionOf("tree", user.x, user.y );
     if ( tree ){
@@ -60,23 +62,5 @@ export class A_getResource extends Action{
     }else{
       GetResourceComponent.canGetMaterial = false ;
     }
-
-    this.fileNameDialogRef
-      .afterClosed()
-      .subscribe(value => {
-
-
-          Net.emitAction( GetResourceComponent.resourceFocused, {
-            user : user,
-            target : target,
-          }, function(giveResourceRes) {
-
-            Box.lastUpdate = new Date().getTime();
-
-          });
-
-
-
-      });
   }
 }

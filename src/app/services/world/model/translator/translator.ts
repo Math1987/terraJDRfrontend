@@ -32,6 +32,15 @@ export class Translator{
     }
     return message ;
   }
+  static asHistoricMessage(playerChara, json, language){
+    let message = null ;
+    for ( let ts of Translator.TRANSLATORS ){
+      if ( ts.readKey() == json.key ){
+        message = ts.asHistoric(playerChara, json, language);
+      }
+    }
+    return message ;
+  }
 
   constructor(){}
   readKey(){
@@ -45,6 +54,14 @@ export class Translator{
     return translate ;
   }
   asMessage(user, json, language){}
+  asHistoric(user,json, language){
 
+    let message = '' ;
+    let asMessage = this.asMessage(user, json, language) ;
+    if ( asMessage !== null && json.date ){
+      message = `le ${new Date(json.date).getDate()}/${new Date(json.date).getMonth()}/${new Date(json.date).getFullYear()} à ${new Date(json.date).toLocaleTimeString()}: ${asMessage}`;
+    }
+    return message ;
+  }
 
 }

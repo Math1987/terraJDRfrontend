@@ -153,6 +153,16 @@ export class Box{
       }
     }
   }
+  static removeValues(array){
+    console.log('removeValues' );
+    console.log(array);
+    for ( let ar of array ){
+      let obj = Box.readById(ar.id);
+      if ( obj ){
+        delete obj[ar.key];
+      }
+    }
+  }
   static removeById(id){
     for ( let i = Box.BOXES.length-1 ; i >= 0 ; i -- ){
       let box = Box.BOXES[i] ;

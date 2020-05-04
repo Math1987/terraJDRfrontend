@@ -13,7 +13,10 @@ export class B_mover  {
 
   functionTouch ;
 
-  constructor( angle, functionTouch) {
+  text_dirrection = "+1x" ;
+
+  constructor( text_dirrection, angle, functionTouch) {
+    this.text_dirrection = text_dirrection;
     this.angle = angle ;
     const self = this ;
     this.functionTouch = function(event) {
@@ -78,6 +81,11 @@ export class B_mover  {
     context.translate(-(left + width), -(top + width));
 
     context.fill();
+
+    context.fillStyle = "black" ;
+    context.textAlign = "center" ;
+    context.font = "24px Arial black";
+    context.fillText(this.text_dirrection, left+width,top+height*1.9);
 
   }
   mouseDown(px: number, py: number): any {

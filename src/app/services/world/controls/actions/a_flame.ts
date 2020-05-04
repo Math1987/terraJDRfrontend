@@ -8,7 +8,7 @@ import {View} from '../../view/view';
 
 export class A_flame extends Action{
 
-  spellTargets = ['character', 'squeleton', 'fortification'] ;
+  spellTargets = ['character', 'squeleton', 'fortification','enemy'] ;
 
   constructor(){
     super();
@@ -56,6 +56,14 @@ export class A_flame extends Action{
     });
 
 
+  }
+
+  isCompatibleAsReligion(user, target){
+    if ( target.life && user.race && (!target.race || target.race !== user.race )){
+      return true ;
+    }else{
+      return false ;
+    }
   }
 
 }

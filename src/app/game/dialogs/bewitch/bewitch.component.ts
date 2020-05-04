@@ -4,6 +4,7 @@ import {MatDialogRef} from '@angular/material';
 import {A_flame} from '../../../services/world/controls/actions/a_flame';
 import {Box} from '../../../services/world/model/box';
 import {Action} from '../../../services/world/controls/actions/action';
+import {Net} from '../../../services/net';
 
 @Component({
   selector: 'app-bewitch',
@@ -14,8 +15,15 @@ export class BewitchComponent implements OnInit {
 
   static spells = [] ;
   static spellFocused = null ;
+  static user = null ;
+  static target = null ;
 
   static build(user, target){
+
+
+    BewitchComponent.user = user ;
+    BewitchComponent.target = target ;
+
     BewitchComponent.spells = [];
 
     let spells_ = Action.getSpellsFrom(user, target) ;
@@ -27,7 +35,7 @@ export class BewitchComponent implements OnInit {
 
   }
 
-  form: FormGroup;
+
 
 
   constructor(
@@ -37,9 +45,6 @@ export class BewitchComponent implements OnInit {
 
   ngOnInit() {
     const self = this ;
-    this.form = this.formBuilder.group({
-      filename: ''
-    });
   }
   isFocus(spell){
     if (spell === BewitchComponent.spellFocused ){
@@ -60,6 +65,11 @@ export class BewitchComponent implements OnInit {
     this.dialogRef.close(`cancel`);
   }
   validate() {
+
+
     this.dialogRef.close(``);
+    Net.emitAction( BewitchComponent.spellFocused.readKey(), {user : BewitchComponent.user, target : BewitchComponent.target}, function(giveResourceRes) { });
+
+
   }
 }

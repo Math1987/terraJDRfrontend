@@ -27,6 +27,13 @@ import {T_openchest} from './translator/t_openChest';
 import {T_build} from './translator/t_build';
 import {T_gold} from './translator/t_gold';
 import {T_trader} from './translator/T_trader';
+import {T_mine} from './translator/t_mine';
+import {T_spellVision} from './translator/t_spellVision';
+import {T_spellRain} from './translator/t_spellRain';
+import {T_blesstree} from './translator/t_blesstree';
+import {T_luck} from './translator/t_luck';
+import {T_plantTree} from './translator/t_plantTree';
+import {T_tree} from './translator/T_tree';
 
 export class Model{
 
@@ -60,7 +67,14 @@ export class Model{
       new T_relic(),
       new T_trade(),
       new T_build(),
-      new T_trader()
+      new T_trader(),
+      new T_mine(),
+      new T_spellVision(),
+      new T_spellRain(),
+      new T_blesstree(),
+      new T_luck(),
+      new T_plantTree(),
+      new T_tree()
     ]);
   }
 

@@ -9,6 +9,7 @@ import {View} from '../../view/view';
 export class A_levitation extends Action{
 
   religions  = ['hermes'] ;
+  spellTargets = ['character'];
 
   constructor(){
     super();
