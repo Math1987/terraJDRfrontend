@@ -2,9 +2,23 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.14.
 
-## Development server
+## Back-end
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Grab the back-end server at [**Math1987/terraJDRbackend**](https://github.com/Math1987/terraJDRbackend).  
+Install the dependencies with `npm i`.  
+Setup a local MySQL database named `terrajdr_db`, accessible with a passwordless `root` user. *(The easiest way to do this on Windows is with a basic Wamp installation)*  
+Start the server with `npm run dev`.
+
+By default, the account `admin@terrajdr.com` with the password `terrajdr` is generated in your database for a quick start.
+
+## Front-end
+
+Install the dependencies with `npm i`.  
+Run `npm run start` to start the front-end locally.  
+Navigate to [`http://localhost:4200/`](http://localhost:4200/).  
+The app will automatically reload if you change any of the source files.
+
+*Note: If you don't wan't to open the back-end workspace everytime you work on the front-end, you can simply run `npm run backend` within your front-end workspace if you installed the back-end in the same folder as the front-end. This will start the back-end server.*
 
 ## Code scaffolding
 
@@ -26,41 +40,35 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-## Back-end connexion
-
-The dev server is automatically connected to the back-end service on `http://localhost:4200/`.
-You can get it on `https://github.com/Math1987/terraJDRbackend.git`
-Note that the back-end dev service needs a local mysql environment with a DB named `terrajdr_db`, with the username `root`
-
-By default, an account user `admin@terrajdr.com`, password `terrajdr` is generated from backend at first launch with admin rights.
+## /!\ THE INSTRUCTIONS BELOW NEED TO BE UPDATED
 
 ## structure of the app
 
-###routing 
+### routing 
 navigate to login component if the user is not connected, watching account in service folder.
 else use nav component sending to childrens "game" or "admin".
 
-###applications
-####admin
+### applications
+#### admin
 interface with closed access for level-design allowing modifications on:
 
--pattern's objects in each different world,
+- pattern's objects in each different world,
 
--calculation global,
+- calculation global,
 
--objects in each world in real time
+- objects in each world in real time
 
-####game
+#### game
 interface for players:
 
--map for the view and interactions,
+- map for the view and interactions,
 
--character to upgreat skills,
+- character to upgreat skills,
 
--rank 
+- rank 
 
 
-####service
+#### service
 Use http and socket.io to get and keep datas for user like account values or player's values and give objects to use them from the components.
 
 The worlds service manage the access to differents worlds and the instructions receiving from the backend with socket.io.
