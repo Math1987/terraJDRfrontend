@@ -15,7 +15,7 @@ export class T_mine extends Translator{
 
     if ( user.id === Area.character.id ){
 
-      message = `voici les coordonnée de la mine la plus proche: ${-Area.world.width/2 + json.x}x, ${Area.world.height/2 - json.y}y`;
+      message = `voici les coordonnée de la mine la plus proche: ${ - json.y + Area.world.height/2   }x, ${ json.x -Area.world.width/2 }y`;
 
     }else{
       message = null ;

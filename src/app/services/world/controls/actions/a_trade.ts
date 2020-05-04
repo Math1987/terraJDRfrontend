@@ -51,8 +51,6 @@ export class A_trade extends Action{
       .afterClosed()
       .subscribe(value => {
 
-        console.log(TradeComponent.skill);
-
         Net.emitAction( "trade", {
           user : user,
           target : target,

@@ -3,6 +3,8 @@ import {Translator} from '../../model/translator/translator';
 import {View} from '../../view/view';
 import {GetResourceComponent} from '../../../../game/dialogs/get-resource/get-resource.component';
 import {Box} from '../../model/box';
+import {Calculation} from '../../../calculation';
+import {Area} from '../../area';
 
 export class Action{
 
@@ -92,73 +94,85 @@ export class Action{
   getCosts(){
     return [] ;
   }
+  faithCost(): number {
+    let val = 0 ;
+    let calculs = Calculation.get(this.readKey());
+    if ( calculs ){
+      val = calculs.faith_cost + calculs.faith_adder* Area.character[this.readKey()] ;
+    }
+    return val;
+  }
   isCompatibleAsReligion(user, target){
     const self = this ;
 
 
-    let json = {spellTargets:[]} ;
-    delete json['spellTargets'];
-    if ( self['spellTargets']){
-      json.spellTargets = self['spellTargets'];
-    }
-    for ( let key of Object.keys(self)){
-      json[key] = self[key];
-    }
+    if ( user.faith >= this.faithCost() ) {
+      let json = {spellTargets: []};
+      delete json['spellTargets'];
+      if (self['spellTargets']) {
+        json.spellTargets = self['spellTargets'];
+      }
+      for (let key of Object.keys(self)) {
+        json[key] = self[key];
+      }
 
 
-    if ( 'religions' in self ){
-      let bool = false ;
+      if ('religions' in self) {
+        let bool = false;
 
-      for ( let i = 0 ; i < Object.keys(json).length ; i ++ ){
-        let key = Object.keys(json)[i];
-        if ( Array.isArray(json[key])){
-          for ( let val of json[key] ){
-            if ( user.religion == val ){
-              if ( 'spellTargets' in json && Array.isArray(json.spellTargets)){
+        for (let i = 0; i < Object.keys(json).length; i++) {
+          let key = Object.keys(json)[i];
+          if (Array.isArray(json[key])) {
+            for (let val of json[key]) {
+              if (user.religion == val) {
+                if ('spellTargets' in json && Array.isArray(json.spellTargets)) {
 
-                let sepllT = false ;
-                for ( let spellT of json.spellTargets ){
-                  if ( spellT == target.key ){
-                    sepllT = true ;
+                  let sepllT = false;
+                  for (let spellT of json.spellTargets) {
+                    if (spellT == target.key) {
+                      sepllT = true;
+                    }
                   }
-                }
-                if ( sepllT ){
-                  bool = true ;
-                  break ;
+                  if (sepllT) {
+                    bool = true;
+                    break;
+                  }
+
+                } else {
+                  bool = true;
                 }
 
-              }else{
-                bool = true ;
+                break;
               }
-
-              break ;
             }
           }
         }
-      }
 
-      return bool ;
-    }else{
+        return bool;
+      } else {
 
-      let bool = false ;
-      if ( json.spellTargets ){
+        let bool = false;
+        if (json.spellTargets) {
 
-        let sepllT = false ;
-        for ( let spellT of json.spellTargets ){
-          if ( spellT == target.key ){
-            sepllT = true ;
+          let sepllT = false;
+          for (let spellT of json.spellTargets) {
+            if (spellT == target.key) {
+              sepllT = true;
+            }
           }
-        }
-        if ( sepllT ){
-          bool = true ;
-        }
+          if (sepllT) {
+            bool = true;
+          }
 
-      }else{
-        bool = true ;
+        } else {
+          bool = true;
+        }
+        return bool;
       }
-      return bool ;
+      return true;
+    }else{
+      return false ;
     }
-    return true ;
   }
 
   use(user, target){

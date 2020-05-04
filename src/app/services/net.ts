@@ -93,8 +93,6 @@ export class Net{
 
 
   static test(key, json, callBack) {
-    console.log(key);
-    console.log(json);
     Net.socket.emit('action', key, json, callBack);
   }
 

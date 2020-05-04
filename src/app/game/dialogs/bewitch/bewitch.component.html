@@ -14,7 +14,10 @@
      'btn-primary': isFocus(spell)
       }"
            (click)="setSpell(spell)"
-      >{{spell.getDefaultName('fr')}}</div>
+      ><p>{{spell.getDefaultName('fr')}}</p>
+        <p>cout: {{spell.faithCost()}}</p>
+
+      </div>
     </div>
   </div>
 

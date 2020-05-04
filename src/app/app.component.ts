@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 import {NavComponent} from './nav/nav.component';
 import {Box} from './services/world/model/box';
 import {MapComponent} from './game/map/map.component';
+import {Calculation} from './services/calculation';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
 
     Net.init(this.http);
+    Calculation.init();
     Account.init(function(res) {});
     Dialog.init(this.dialog);
 

@@ -154,8 +154,6 @@ export class Box{
     }
   }
   static removeValues(array){
-    console.log('removeValues' );
-    console.log(array);
     for ( let ar of array ){
       let obj = Box.readById(ar.id);
       if ( obj ){

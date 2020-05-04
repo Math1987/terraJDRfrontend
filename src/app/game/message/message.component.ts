@@ -52,7 +52,7 @@ export class MessageComponent implements OnInit {
 
   update(){
 
-    console.log('update message');
+
 
   }
   getMessages(){

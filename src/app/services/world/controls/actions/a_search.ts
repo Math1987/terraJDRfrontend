@@ -78,7 +78,6 @@ export class A_search extends Action{
         user: user,
         target: target
       }, function(res) {
-        console.log(res);
         if ( user.searched ){
           if ( Array.isArray(user.searched) ){
             user.searched.push(target.id);

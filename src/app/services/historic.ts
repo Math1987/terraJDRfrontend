@@ -14,13 +14,10 @@ export class Historic{
 
     if ( Area.world && Area.character ) {
 
-      console.log('cherch ' + Area.character.id );
-
       Historic.HISTORIC = [] ;
       Net.http.get(`${environment.backURL}/readHistoricById?world=${Area.world.name}&id=${Area.character.id}`).subscribe((res)=>{
 
         for ( let row of res ){
-          console.log(row);
           Historic.HISTORIC.unshift(row);
         }
 
@@ -38,7 +35,6 @@ export class Historic{
     if ( Area.world && Area.character && (!Historic.HISTORIC || Historic.CHARACTER_FOCUSED !== Area.character) ){
       Historic.init();
       Historic.CHARACTER_FOCUSED = Area.character ;
-      console.log('init historic');
     }
   }
 

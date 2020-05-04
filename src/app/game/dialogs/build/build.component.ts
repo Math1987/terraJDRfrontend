@@ -67,8 +67,6 @@ export class BuildComponent implements OnInit {
       },
       function(resBuild) {
 
-      console.log(resBuild);
-
         if ( "fortifications" in Area.character ){
           Area.character.fortifications.push(resBuild.id);
         }else{
