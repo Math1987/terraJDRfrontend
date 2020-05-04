@@ -14,16 +14,11 @@ export class T_plantTree extends Translator{
   }
   asMessage(user, json, language) {
 
+
     let message = '' ;
-    let userBox = Box.readById(json.user);
-
-
     if ( json.user.id == Area.character.id ){
-
       message = `tu as planter un abre.`;
 
-    }else{
-      message = null ;
     }
 
 

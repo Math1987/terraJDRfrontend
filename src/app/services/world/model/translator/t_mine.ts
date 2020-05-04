@@ -9,7 +9,6 @@ export class T_mine extends Translator{
     return 'mine' ;
   }
   asMessage(user, json, language) {
-    console.log('openChest message');
 
     let message = '' ;
     let userBox = Box.readById(json.user);

@@ -152,6 +152,8 @@ export class MapComponent implements OnInit {
 
   update(){
 
+    MessageComponent.check();
+
     if (Area.world && Area.character ) {
 
       if ( !View.hasCanvasFocused() && Net.socket.connected && Net.worldsStatus && !MapComponent.viewUpdated ){

@@ -8,6 +8,8 @@ import {NavComponent} from '../nav/nav.component';
 import {Router} from '@angular/router';
 import {Box} from '../services/world/model/box';
 import {Controls} from '../services/world/controls/controls';
+import {HistoricComponent} from './historic/historic.component';
+import {Historic} from '../services/historic';
 
 /**
  * Game component:
@@ -69,6 +71,9 @@ export class GameComponent implements OnInit {
     return JSON.stringify(Area.character) ;
   }
   updates(){
+
+    Historic.check();
+
     if ( Box.lastUpdate !== GameComponent.lastUpdate && Area.character ) {
 
 
