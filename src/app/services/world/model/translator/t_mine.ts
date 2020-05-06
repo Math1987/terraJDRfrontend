@@ -8,7 +8,8 @@ export class T_mine extends Translator{
   readKey(){
     return 'mine' ;
   }
-  asMessage(user, json, language) {
+
+  /*asMessage(user, json, language) {
 
     let message = '' ;
     let userBox = Box.readById(json.user);
@@ -23,5 +24,5 @@ export class T_mine extends Translator{
 
 
     return message ;
-  }
+  }*/
 }

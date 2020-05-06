@@ -1,4 +1,5 @@
 import {Translator} from './translator';
+import {Area} from '../../area';
 
 export class T_bewitch extends Translator{
 
@@ -10,4 +11,6 @@ export class T_bewitch extends Translator{
   readKey() {
     return 'bewitch' ;
   }
+
+
 }

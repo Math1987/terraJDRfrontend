@@ -11,7 +11,7 @@ export class T_water extends Translator{
   readKey(){
     return 'water' ;
   }
-  asMessage(user, json, language) {
+  /*asMessage(user, json, language) {
 
     let message = '' ;
     let userBox = Box.readById(json.user);
@@ -28,6 +28,6 @@ export class T_water extends Translator{
 
 
     return message ;
-  }
+  }*/
 
 }

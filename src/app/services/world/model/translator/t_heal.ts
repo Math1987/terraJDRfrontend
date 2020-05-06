@@ -9,8 +9,21 @@ export class T_heal extends Translator{
   readKey(){
     return 'heal' ;
   }
-
   asMessage(user, json, language) {
+
+    let message = '' ;
+
+    console.log(json);
+    if ( user.id == json.target ){
+      message += `${this.writeMessageInfos(json)}, vous vous êtes soigné avec un D100 de ${json.D100}, vous rajoutant ${json.power} de vie.`;
+    }else{
+      message += `${this.writeMessageInfos(json)}, vous avez soigné ${json.target_name} avec un D100 de ${json.D100}, lui ajoutant ${json.power} de vie. Il est reconnaissant.`;
+    }
+
+
+    return message ;
+  }
+  /*asMessage(user, json, language) {
 
     let message = '' ;
     let userBox = Box.readById(json.user);
@@ -43,6 +56,6 @@ export class T_heal extends Translator{
 
 
     return message ;
-  }
+  }*/
 
 }

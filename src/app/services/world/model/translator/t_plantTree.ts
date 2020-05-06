@@ -14,6 +14,17 @@ export class T_plantTree extends Translator{
   }
   asMessage(user, json, language) {
 
+    let message = '' ;
+
+    if ( user.id == json.user ){
+      message += `${this.writeMessageInfos(json)}, vous plantez un abre le coeur plein d'espoir...d'en tirer un maximum de matériel.`;
+    }
+
+
+    return message ;
+  }
+  /*asMessage(user, json, language) {
+
 
     let message = '' ;
     if ( json.user.id == Area.character.id ){
@@ -23,5 +34,5 @@ export class T_plantTree extends Translator{
 
 
     return message ;
-  }
+  }*/
 }

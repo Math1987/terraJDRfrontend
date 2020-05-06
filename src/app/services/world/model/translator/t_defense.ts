@@ -14,4 +14,5 @@ export class T_defense extends Translator{
   }
 
 
+
 }

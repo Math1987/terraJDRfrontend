@@ -1,3 +1,5 @@
+import {Area} from '../../area';
+
 export class Translator{
 
   static TRANSLATORS = [];
@@ -53,15 +55,26 @@ export class Translator{
     }
     return translate ;
   }
+
+  writeMessageInfos(json){
+    if( json.date && json.x && json.y){
+      let py = json.x - Math.floor(Area.world.width/2);
+      let px = - json.y+ Math.floor(Area.world.height/2);
+      return `Le ${new Date(json.date).getDate()}/${new Date(json.date).getMonth()}/${new Date(json.date).getFullYear()} à ${new Date(json.date).toLocaleTimeString()}, en case ${px}x, ${py}y` ;
+    }else{
+      return '';
+    }
+  }
+
   asMessage(user, json, language){}
   asHistoric(user,json, language){
 
-    let message = '' ;
+    /*let message = '' ;
     let asMessage = this.asMessage(user, json, language) ;
     if ( asMessage !== null && json.date ){
       message = `le ${new Date(json.date).getDate()}/${new Date(json.date).getMonth()}/${new Date(json.date).getFullYear()} à ${new Date(json.date).toLocaleTimeString()}: ${asMessage}`;
-    }
-    return message ;
+    }*/
+    return this.asMessage(user, json, language) ;
   }
 
 }

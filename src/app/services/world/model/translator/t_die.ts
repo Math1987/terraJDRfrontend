@@ -10,7 +10,7 @@ export class T_die extends Translator{
     return 'die' ;
   }
 
-  asMessage(user, json, language) {
+  /*asMessage(user, json, language) {
 
     let message = '' ;
     let userBox = Box.readById(json.user);
@@ -43,6 +43,6 @@ export class T_die extends Translator{
 
 
     return message ;
-  }
+  }*/
 
 }

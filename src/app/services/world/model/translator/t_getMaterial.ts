@@ -13,15 +13,9 @@ export class T_getMaterial extends Translator{
   asMessage(user, json, language) {
 
     let message = '' ;
-    let userBox = Box.readById(json.user);
 
-
-    if ( userBox !== null ){
-
-      message = `tu as coupé du bois avec un D100 de ${json.D100}, récoltant ${json.power} de matériel.`;
-
-    }else{
-      message = null ;
+    if ( user.id == json.user ){
+      message += `${this.writeMessageInfos(json)}, vous avez coupé ${json.power} de bois avec un D100 de ${json.D100}.`;
     }
 
 

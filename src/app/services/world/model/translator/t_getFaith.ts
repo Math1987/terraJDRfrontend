@@ -13,6 +13,19 @@ export class T_getFaith extends Translator{
   asMessage(user, json, language) {
 
     let message = '' ;
+
+    if ( user.id == json.user ){
+      message += `${this.writeMessageInfos(json)}, vous avez trouvé ${json.power} de foi avec un D100 de ${json.D100}.`;
+    }
+
+
+    return message ;
+  }
+
+
+  /*asMessage(user, json, language) {
+
+    let message = '' ;
     let userBox = Box.readById(json.user);
 
 
@@ -26,6 +39,6 @@ export class T_getFaith extends Translator{
 
 
     return message ;
-  }
+  }*/
 
 }

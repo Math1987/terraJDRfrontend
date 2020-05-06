@@ -15,6 +15,26 @@ export class T_search extends Translator{
   }
   asMessage(user, json, language) {
 
+    let message = '' ;
+
+    if ( user.id == json.user ){
+      message += `${this.writeMessageInfos(json)}, vous avez trouvé ${json.power} de foi avec un D100 de ${json.D100}.`;
+      if ( json.type == "gold"){
+        message = `${this.writeMessageInfos(json)}, en fouillant dans une mine, vous trouvez ${json.power} d'or avec un D100 de ${json.D100}`;
+      }else if ( json.type == "superGold"){
+        message = `${this.writeMessageInfos(json)}, en fouillant dans une mine, vous trouvez ${json.power} d'or avec un D100 de ${json.D100}`;
+      }else if ( json.type == "relic"){
+        message = `${this.writeMessageInfos(json)}, en fouillant dans une mine, vous trouvez une relique magique`;
+      }else if ( json.type == "xp" ){
+        message = `${this.writeMessageInfos(json)}, en fouillant dans une mine, vous vous faites une crampe aux bras et ne trouvez rien...mais gagnez 1 en xp`;
+      }
+    }
+
+
+    return message ;
+  }
+  /*asMessage(user, json, language) {
+
 
     let message = '' ;
     let userBox = Box.readById(json.user);
@@ -40,6 +60,6 @@ export class T_search extends Translator{
 
 
     return message ;
-  }
+  }*/
 
 }

@@ -34,6 +34,9 @@ import {T_blesstree} from './translator/t_blesstree';
 import {T_luck} from './translator/t_luck';
 import {T_plantTree} from './translator/t_plantTree';
 import {T_tree} from './translator/T_tree';
+import {T_kill} from './translator/t_kill';
+import {T_squeleton} from './translator/t_squeleton';
+import {T_fortification} from './translator/t_fortification';
 
 export class Model{
 
@@ -74,7 +77,10 @@ export class Model{
       new T_blesstree(),
       new T_luck(),
       new T_plantTree(),
-      new T_tree()
+      new T_tree(),
+      new T_kill(),
+      new T_squeleton(),
+      new T_fortification()
     ]);
   }
 

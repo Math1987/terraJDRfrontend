@@ -24,10 +24,19 @@ export class Historic{
       });
     }
     Net.socket.on('historic', function(json) {
+      let got = false ;
+      for ( let hist of Historic.HISTORIC ){
+        if ( hist.id == json.i ){
+          got = true ;
+          break ;
+        }
+      }
+      if ( !got ){
         Historic.HISTORIC.unshift(json);
         if ( Historic.callBackNewRow ){
           Historic.callBackNewRow(json);
         }
+      }
     });
 
   }
