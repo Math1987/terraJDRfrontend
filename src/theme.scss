@@ -4,7 +4,7 @@
 
 // default theme:
 $primary: mat-palette($mat-indigo,400, 10, 700);
-$accent: mat-palette($mat-brown, 500, 100, 700);
+$accent: mat-palette($mat-blue-grey, 500, 100, 700);
 $theme: mat-light-theme($primary, $accent);
 
 @include angular-material-theme($theme);
