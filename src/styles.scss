@@ -17,10 +17,14 @@ $dark-background-palette: map-get($dark-t, background);
     color: mat-color($dark-foreground-palette, text);
 }
 
+// Utilities
+.dib{
+  display: inline-block;
+}
 
+// Main
 html{
   min-height: 100%;
-  background-image: url('assets/images/background.jpg');
 }
 
 body {
@@ -31,14 +35,15 @@ body {
 }
 
 mat-card{
-  border-top: 15px solid mat-color($accent, default);
+  border-top: 15px solid mat-color($primary, default);
 
   mat-card-title{
     margin-top: -38px !important;
     text-transform: uppercase;
+    text-align: center;
 
     &>span{
-      background-color: mat-color($accent, darker);
+      background-color: mat-color($primary, darker);
       padding: 4px 8px;
       color: mat-color($dark-foreground-palette, text);
       font-weight: 300;
@@ -49,5 +54,10 @@ mat-card{
 
   mat-card-content{
     margin-top: 20px;
+  }
+
+  mat-card-title, mat-card-content{
+    display: flex !important;
+    justify-content: center;
   }
 }
