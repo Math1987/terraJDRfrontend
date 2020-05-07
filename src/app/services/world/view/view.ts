@@ -563,8 +563,8 @@ export class View{
       context.textAlign = "left" ;
       context.font = `${size*0.5}px Arial`;
 
-      let px = pos.x - Math.floor(Area.world.width/2);
-      let py = - pos.y+ Math.floor(Area.world.height/2);
+      let px = View.x- Math.floor(Area.world.width/2);// pos.x - Math.floor(Area.world.width/2);
+      let py = -View.y+ Math.floor(Area.world.height/2) ;//- pos.y+ Math.floor(Area.world.height/2);
 
       context.fillText(`${py}x,${px}y`, size*1.8,size*0.5);
     }

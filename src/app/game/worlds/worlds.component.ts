@@ -91,8 +91,8 @@ export class WorldsComponent implements OnInit {
    */
   createCharacter(){
     const
-      form = <HTMLFormElement> document.getElementById('character-creation');
-      let formData = new FormData(form);
+      form = <HTMLFormElement> document.getElementById('character-creation'),
+      formData = new FormData(form);
 
     if(formData.get('charName').toString().length > 2){
       Net.emitCreateCharacter({
