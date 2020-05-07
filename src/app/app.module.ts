@@ -17,7 +17,10 @@ import {
   MatMenuModule, MatSidenavModule,
   MatDialogModule, MatCheckboxModule, MatRadioModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatTabsModule,
+  MatChipsModule,
+  MatSelectModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { GameComponent } from './game/game.component';
@@ -88,7 +91,10 @@ import { HistoricComponent } from './game/historic/historic.component';
     FormsModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTabsModule,
+    MatChipsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],

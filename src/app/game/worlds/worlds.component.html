@@ -1,58 +1,69 @@
-<div class="jumbotron text-center">
-  <div class="worlds" >
-    <div *ngFor="let world of getWorlds()" class="list-group-item list-group-item-success">
-      <h3 [ngClass]="{
-     'btn': true,
-     'btn-dark': !isFocus(world),
-     'btn-success': isFocus(world)
+<mat-card>
+  <mat-card-title><span>Mondes</span></mat-card-title>
+  <mat-card-content>
+    <mat-button-toggle-group name="world">
+      <mat-button-toggle *ngFor="let world of getWorlds()" [checked]="isFocus(world)" (click)="enterInWorld(world)">
+        {{world.name}}</mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-card-content>
+</mat-card>
 
-      }" (click)="enterInWorld(world)">{{world.name}}</h3>
 
-    </div>
-  </div>
+<mat-card *ngIf="isInitialized() && getWorld() && getCharacters().length == 0">
+  <mat-card-title><span>Crée ton personnage</span></mat-card-title>
+  <mat-card-content>
+    <form id="character-creation" (ngSubmit)="createCharacter()">
+      <mat-form-field appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input type="text" matInput name="charName">
+      </mat-form-field>
 
-  <div *ngIf="isInitialized() && getWorld() && getCharacters().length <= 0" class="list-group-item list-group-item-success">
-    <h3>crée ton personnage</h3>
-    <div class="list-group-item list-group-item-success">
-      <div class="list-group-item-success">
-        <h5>nom:</h5>
-        <input id="createName">
-      </div>
-      <div class="list-group-item-success">
-        <h5>sexe:</h5>
-        <form name ="sexe">
-          <input type="radio" name="checker" value="Masculin" checked="checked"/>Masculin<br />
-          <input type="radio" name="checker" value="Féminin"/>Féminin<br />
-        </form>
-
-      </div>
-      <div class="list-group-item-success">
-        <h5>race:</h5>
-        <form name ="race">
-          <input type="radio" name="checker" value="human" checked="checked"/>Humain<br />
-          <input type="radio" name="checker" value="dwarf"/>Nain<br />
-          <input type="radio" name="checker" value="vampire"/>Vampire<br />
-          <input type="radio" name="checker" value="elf"/>Elfe<br />
-        </form>
+      <div class="dib">
+        <h5 class="mat-h5">Sexe</h5>
+        <mat-radio-group name="gender" required>
+          <mat-radio-button value="M">
+            <mat-icon style="clip-path: inset(0% 50% 0% 0%);" matTooltip="Masculin">wc</mat-icon>
+          </mat-radio-button>
+          <mat-radio-button value="F">
+            <mat-icon style="clip-path: inset(0% 0% 0% 50%);" matTooltip="Féminin">wc</mat-icon>
+          </mat-radio-button>
+        </mat-radio-group>
       </div>
 
-      <h5>religion:</h5>
-      <form name ="religion">
-        <input type="radio" name="checker" value="hermes" checked="checked"/>Hermès<br />
-        <input type="radio" name="checker" value="demeter"/>Déméter<br />
-        <input type="radio" name="checker" value="athena"/>Athéna<br />
-        <input type="radio" name="checker" value="ephaistos"/>Héphaïstos<br />
-      </form>
-    </div>
-    <div class="btn btn-success" (click)="create()">créer</div>
-  </div>
+      <mat-form-field>
+        <mat-label>Race</mat-label>
+        <mat-select name="race">
+          <mat-option value="human">Humain</mat-option>
+          <mat-option value="dwarf">Nain</mat-option>
+          <mat-option value="vampire">Vampire</mat-option>
+          <mat-option value="elf">Elf</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <div *ngIf="getCharacters().length > 0">
-    <div class="list-group-item-success row">
-      <div *ngFor="let character of getCharacters()">
-        <div class="btn btn-success" (click)="chooseCharacter(character)">{{character.name}}</div>
+      <mat-form-field>
+        <mat-label>Religion</mat-label>
+        <mat-select name="religion">
+          <mat-option value="hermes">Hermès</mat-option>
+          <mat-option value="demeter">Déméter</mat-option>
+          <mat-option value="athena">Athéna</mat-option>
+          <mat-option value="ephaistos">Héphaïstos</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <button type="submit" mat-raised-button matRipple color="accent">Créer</button>
       </div>
-    </div>
-  </div>
+    </form>
+  </mat-card-content>
+</mat-card>
 
-</div>
+<mat-card *ngIf="getCharacters().length > 0">
+  <mat-card-title><span>Personnages</span></mat-card-title>
+  <mat-card-content>
+    <mat-button-toggle-group name="character">
+      <mat-button-toggle *ngFor="let character of getCharacters()" (click)="chooseCharacter(character)">{{character.name}}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-card-content>
+</mat-card>
+
