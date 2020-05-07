@@ -123,14 +123,20 @@ export class CharacterComponent implements OnInit {
   getSpells(){
     return this.spells ;
   }
+  canAddSkill = true ;
   addSkill(skill){
-    Net.emitAction( 'addSkill', {
-      user: Area.character,
-      skill: skill.key,
-      value : 1
-    }, function(res) {
+    const self = this ;
+    if ( self.canAddSkill ){
+      self.canAddSkill = false ;
+      Net.emitAction( 'addSkill', {
+        user: Area.character,
+        skill: skill.key,
+        value : 1
+      }, function(res) {
+        self.canAddSkill = true ;
+      });
+    }
 
-    });
   }
 
 }
