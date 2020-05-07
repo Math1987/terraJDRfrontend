@@ -20,11 +20,11 @@
 
       <div class="dib">
         <h5 class="mat-h5">Sexe</h5>
-        <mat-radio-group name="gender" required>
-          <mat-radio-button value="M">
+        <mat-radio-group name="gender" required value="man">
+          <mat-radio-button value="Masculin">
             <mat-icon style="clip-path: inset(0% 50% 0% 0%);" matTooltip="Masculin">wc</mat-icon>
           </mat-radio-button>
-          <mat-radio-button value="F">
+          <mat-radio-button value="Féminin">
             <mat-icon style="clip-path: inset(0% 0% 0% 50%);" matTooltip="Féminin">wc</mat-icon>
           </mat-radio-button>
         </mat-radio-group>
@@ -32,21 +32,21 @@
 
       <mat-form-field>
         <mat-label>Race</mat-label>
-        <mat-select name="race">
-          <mat-option value="human">Humain</mat-option>
-          <mat-option value="dwarf">Nain</mat-option>
-          <mat-option value="vampire">Vampire</mat-option>
-          <mat-option value="elf">Elf</mat-option>
+        <mat-select name="race" [(ngModel)]="race">
+          <mat-option [value]="'human'">Humain</mat-option>
+          <mat-option [value]="'dwarf'">Nain</mat-option>
+          <mat-option [value]="'vampire'">Vampire</mat-option>
+          <mat-option [value]="'elf'">Elf</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Religion</mat-label>
-        <mat-select name="religion">
-          <mat-option value="hermes">Hermès</mat-option>
-          <mat-option value="demeter">Déméter</mat-option>
-          <mat-option value="athena">Athéna</mat-option>
-          <mat-option value="ephaistos">Héphaïstos</mat-option>
+        <mat-select name="religion"  [(ngModel)]="religion">
+          <mat-option [value]="'hermes'">Hermès</mat-option>
+          <mat-option [value]="'demeter'">Déméter</mat-option>
+          <mat-option [value]="'athena'">Athéna</mat-option>
+          <mat-option [value]="'ephaistos'">Héphaïstos</mat-option>
         </mat-select>
       </mat-form-field>
 

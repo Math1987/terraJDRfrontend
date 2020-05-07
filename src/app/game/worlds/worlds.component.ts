@@ -15,6 +15,9 @@ export class WorldsComponent implements OnInit {
 
   static initialized = false;
 
+  race = 'human' ;
+  religion = 'hermes';
+
   constructor(
     private router: Router
   ) {
@@ -81,21 +84,23 @@ export class WorldsComponent implements OnInit {
     }
   }
 
+  setRace(obj){}
+
   /**
    * Creates character
    */
   createCharacter(){
     const
-      form = <HTMLFormElement> document.getElementById('character-creation'),
-      formData = new FormData(form);
+      form = <HTMLFormElement> document.getElementById('character-creation');
+      let formData = new FormData(form);
 
     if(formData.get('charName').toString().length > 2){
       Net.emitCreateCharacter({
         key: "character",
         name: formData.get('charName'),
         sexe: formData.get('gender'),
-        race: formData.get('race'),
-        religion: formData.get('religion')
+        race: this.race,
+        religion: this.religion
       }, (createUserCharaRes) => {
         Characters.add(createUserCharaRes);
         this.chooseCharacter(createUserCharaRes);
