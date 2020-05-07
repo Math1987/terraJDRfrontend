@@ -2,7 +2,7 @@ import {Translator} from './translator';
 
 export class T_neutral extends Translator{
 
-  default = "zonne neutre" ;
+  default = "zone neutre" ;
 
 
   readKey(){
