@@ -26,7 +26,7 @@ export class Historic{
     Net.socket.on('historic', function(json) {
       let got = false ;
       for ( let hist of Historic.HISTORIC ){
-        if ( hist.id == json.i ){
+        if ( hist.id == json.i || hist.date == json.date ){
           got = true ;
           break ;
         }
@@ -39,6 +39,9 @@ export class Historic{
       }
     });
 
+  }
+  static reset(){
+    Historic.HISTORIC = [] ;
   }
   static check(){
     if ( Area.world && Area.character && (!Historic.HISTORIC || Historic.CHARACTER_FOCUSED !== Area.character) ){

@@ -18,6 +18,7 @@ import {V_mine} from './world/view/v_mine';
 import {V_trader} from './world/view/v_trader';
 import {V_chest} from './world/view/v_chest';
 import {V_fortification} from './world/view/v_fortification';
+import {Historic} from './historic';
 
 export class Worlds{
 
@@ -148,6 +149,7 @@ export class Worlds{
       if ( res ){
         Area.setWorld(world);
         View.reset();
+        Historic.reset();
         callBack(res);
       }else{
         callBack(null);
