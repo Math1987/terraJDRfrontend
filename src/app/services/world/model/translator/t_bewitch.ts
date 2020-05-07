@@ -3,9 +3,9 @@ import {Area} from '../../area';
 
 export class T_bewitch extends Translator{
 
-  action = "ensorceller" ;
-  selfAction = "ensorceller";
-  default = "ensorceller" ;
+  action = "ensorceler" ;
+  selfAction = "ensorceler";
+  default = "ensorceler" ;
   value = "foi" ;
 
   readKey() {
