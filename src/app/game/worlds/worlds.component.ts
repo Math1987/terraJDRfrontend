@@ -81,47 +81,27 @@ export class WorldsComponent implements OnInit {
     }
   }
 
-  create() {
+  /**
+   * Creates character
+   */
+  createCharacter(){
+    const
+      form = <HTMLFormElement> document.getElementById('character-creation'),
+      formData = new FormData(form);
 
-    const self = this;
-
-    let name = (document.getElementById("createName") as HTMLInputElement).value;
-    let sexe = null;
-    let race = null;
-    let religion = null;
-
-    for (let i = 0; i < 2; i++) {
-      if (document.forms.namedItem("sexe").checker[i].checked == true) {
-        sexe = document.forms.namedItem("sexe").checker[i].value;
-      }
-    }
-    for (let i = 0; i < document.forms.namedItem("race").checker.length; i++) {
-      if (document.forms.namedItem("race").checker[i].checked == true) {
-        race = document.forms.namedItem("race").checker[i].value;
-      }
-    }
-    for (let i = 0; i < document.forms.namedItem("religion").checker.length; i++) {
-      if (document.forms.namedItem("religion").checker[i].checked == true) {
-        religion = document.forms.namedItem("religion").checker[i].value;
-      }
-    }
-
-    if (name.length > 2) {
+    if(formData.get('charName').toString().length > 2){
       Net.emitCreateCharacter({
         key: "character",
-        name: name,
-        sexe: sexe,
-        race: race,
-        religion: religion
-      }, function(createUserCharaRes) {
-
+        name: formData.get('charName'),
+        sexe: formData.get('gender'),
+        race: formData.get('race'),
+        religion: formData.get('religion')
+      }, (createUserCharaRes) => {
         Characters.add(createUserCharaRes);
-        self.chooseCharacter(createUserCharaRes);
-
+        this.chooseCharacter(createUserCharaRes);
       });
-    } else {
-      alert('choisi un nom plus long.');
+    }else{
+      alert('Choisis un nom plus long.');
     }
-
   }
 }
