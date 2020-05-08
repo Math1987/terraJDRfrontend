@@ -4,6 +4,7 @@ import {Translator} from '../../model/translator/translator';
 import {View} from '../../view/view';
 import {Input} from '@angular/core';
 import {A_bewitch} from '../actions/a_bewitch';
+import {Area} from '../../area';
 
 export class Interaction{
 
@@ -171,8 +172,11 @@ export class Interaction{
     action.use(this.user, this.target);
   }
   getPosition(){
-    if ( this.target ){
-      return {x : this.target.x, y:this.target.y};
+    if ( this.target && Area.world ){
+      let px = this.target.x- Math.floor(Area.world.width/2);// pos.x - Math.floor(Area.world.width/2);
+      let py = -this.target.y+ Math.floor(Area.world.height/2) ;//- pos.y+ Math.floor(Area.world.height/2);
+
+      return {x : py, y: px};
     }else{
       return null ;
     }
