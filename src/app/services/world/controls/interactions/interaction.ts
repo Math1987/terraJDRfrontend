@@ -251,6 +251,8 @@ export class Interaction{
 
   updateFromModel(interaction){
 
+    this.target = interaction.target ;
+    this.user = interaction.user ;
 
     for ( let i = this.actions.length ; i >= 0 ; i -- ){
       let mustErase = true ;
@@ -275,30 +277,39 @@ export class Interaction{
       }
     }
 
-
-
-    for ( let i = this.items.length ; i >= 0 ; i -- ){
-      let mustErase = true ;
+    if ( this.items ){
+      for ( let i = this.items.length ; i >= 0 ; i -- ){
+        let mustErase = true ;
+        console.log(this.items[i]);
+        if ( this.items[i]) {
+          for (let nitem of interaction.items) {
+            if (nitem.id === this.items[i].id) {
+              mustErase = false;
+            }
+          }
+          if (mustErase) {
+            this.items.splice(i, 1);
+          }
+        }
+      }
+    }
+    if ( interaction.items ){
+      if ( !this.items ){
+        this.items = [] ;
+      }
       for ( let nitem of interaction.items ){
-        if ( nitem.id === this.items[i].id ){
-          mustErase = false ;
+        let got = false ;
+        for ( let item of this.items ){
+          if ( item == nitem ){
+            got = true ;
+          }
+        }
+        if ( !got ){
+          this.items.push(nitem);
         }
       }
-      if ( mustErase ){
-        this.items.splice(i, 1);
-      }
     }
-    for ( let nitem of interaction.items ){
-      let got = false ;
-      for ( let item of this.items ){
-        if ( item == nitem ){
-          got = true ;
-        }
-      }
-      if ( !got ){
-        this.items.push(nitem);
-      }
-    }
+
 
 
 
