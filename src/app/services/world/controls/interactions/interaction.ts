@@ -26,7 +26,13 @@ export class Interaction{
   }
 
   static init(){}
-  static buildInteractionsFromView(user, views){
+  static buildInteractionsFromView(actualInteractions, user, views){
+
+    /**
+     * check all the interactions between the user and the selected view.
+     * create a container with all params of eatch objects,
+     * then compare new container to actual container and remove, or push objects.
+     */
 
     let interactions = [] ;
 
@@ -79,7 +85,41 @@ export class Interaction{
       }
     }
 
-    return tri ;
+    function isSameInteraction(interaction1, interaction2){
+      if ( interaction1.user.id == interaction2.user.id && interaction1.target.id == interaction2.target.id ){
+        return true ;
+      }else{
+        return false ;
+      }
+    }
+
+    for ( let i = actualInteractions.length-1 ; i >= 0 ; i -- ){
+      let actu = actualInteractions[i] ;
+      let mustRemove = true ;
+      for ( let newInteraction of tri ){
+        if ( isSameInteraction(actu, newInteraction) ){
+          mustRemove = false ;
+          break ;
+        }
+      }
+      if ( mustRemove ){
+        actualInteractions.splice(i,1);
+      }
+    }
+
+    for ( let newInteraction of tri ){
+      let got = false ;
+      for ( let actu of actualInteractions ){
+        if ( isSameInteraction(actu, newInteraction)){
+          got = true ;
+        }
+      }
+      if ( !got ){
+        actualInteractions.push(newInteraction);
+      }
+    }
+
+    return actualInteractions ;
 
   }
   static buildInteraction(user, target : Box, views : View[], contextViews : View[] ): Interaction {

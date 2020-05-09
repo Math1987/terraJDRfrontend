@@ -66,6 +66,7 @@ export class MapComponent implements OnInit {
       canvas.height = 780 * 0.59;
       this.lastUpdate = 0;
       if (Area.world !== null && Area.character !== null) {
+
         Box.reset();
         View.setCanvasWorld(canvas);
         View.setRayon(5);
@@ -162,6 +163,7 @@ export class MapComponent implements OnInit {
       }
 
       if ( Box.lastUpdate !== this.lastUpdate ){
+        console.log('update selection');
         this.updateSelection();
         this.lastUpdate = Box.lastUpdate ;
       }
@@ -175,7 +177,7 @@ export class MapComponent implements OnInit {
 
     if (View.focused) {
 
-      let interactions = Interaction.buildInteractionsFromView(Area.character, View.focused) ;
+      let interactions = Interaction.buildInteractionsFromView(this.interactions, Area.character, View.focused) ;
 
       this.interactions = interactions ;
 

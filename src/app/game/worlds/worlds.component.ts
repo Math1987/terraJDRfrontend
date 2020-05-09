@@ -102,8 +102,12 @@ export class WorldsComponent implements OnInit {
         race: this.race,
         religion: this.religion
       }, (createUserCharaRes) => {
-        Characters.add(createUserCharaRes);
-        this.chooseCharacter(createUserCharaRes);
+        if ( createUserCharaRes){
+          Characters.add(createUserCharaRes);
+          this.chooseCharacter(createUserCharaRes);
+        }else{
+          alert(`Ce pseudo est déjà utilisé.`);
+        }
       });
     }else{
       alert('Choisis un nom plus long.');
