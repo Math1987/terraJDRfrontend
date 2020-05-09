@@ -32,6 +32,16 @@ export class Box{
     }
     return objs ;
   }
+  static gotSameBox(newBox){
+    let got = false ;
+    for ( let box of Box.BOXES ){
+      if ( box.id == newBox.id && (!('x' in box) || ( box.x == newBox.x && box.y == newBox.y)) ){
+        got = true ;
+        break ;
+      }
+    }
+    return got ;
+  }
   static isInPositionOf(key, x, y){
     let bool = false ;
     for ( let box of Box.BOXES ){
@@ -87,8 +97,17 @@ export class Box{
     }
   }
   static adds(boxesJson, callBack){
+    /**
+     * add an object in the user's view.
+     * WARNING: this function is supposed to be called for only new Objects added.
+     * For security and avoid to get duplicated objects, the function "gotSameBox(box)"
+     * is called to check if box already exist.
+     * This case is an error not yet localized. This solution cost performances and wait better option.
+     **/
     for ( let box of boxesJson ){
+      if ( !Box.gotSameBox(box) ){
         Box.BOXES.push(box);
+      }
     }
     callBack(boxesJson);
   }
