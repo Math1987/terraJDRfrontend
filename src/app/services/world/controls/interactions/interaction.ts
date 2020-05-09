@@ -109,8 +109,10 @@ export class Interaction{
 
     for ( let newInteraction of tri ){
       let got = false ;
-      for ( let actu of actualInteractions ){
+      for ( let i = 0 ; i < actualInteractions.length ; i ++ ){
+        let actu = actualInteractions[i] ;
         if ( isSameInteraction(actu, newInteraction)){
+          actualInteractions[i] = newInteraction;
           got = true ;
         }
       }
