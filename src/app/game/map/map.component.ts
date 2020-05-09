@@ -163,7 +163,6 @@ export class MapComponent implements OnInit {
       }
 
       if ( Box.lastUpdate !== this.lastUpdate ){
-        console.log('update selection');
         this.updateSelection();
         this.lastUpdate = Box.lastUpdate ;
       }

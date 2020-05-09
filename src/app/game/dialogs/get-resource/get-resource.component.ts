@@ -43,6 +43,5 @@ export class GetResourceComponent implements OnInit {
 
     });
 
-    console.log('test');
   }
 }

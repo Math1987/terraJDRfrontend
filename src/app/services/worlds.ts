@@ -97,10 +97,6 @@ export class Worlds{
     });
 
     Net.socket.on('instructions', function (instructions){
-
-
-      console.log('receive instruction');
-
       for ( let instruction of instructions ){
         if ( instruction.key === "add" ){
           Box.adds( instruction.boxes, function(boxes) {

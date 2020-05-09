@@ -7,9 +7,6 @@ export class T_flame extends Translator{
   }
   asMessage(user, json, language) {
 
-    console.log('flame receive historic');
-
-
     let message = '' ;
 
     if ( user.id == json.user ){

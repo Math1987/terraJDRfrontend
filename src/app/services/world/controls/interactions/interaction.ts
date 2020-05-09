@@ -280,7 +280,6 @@ export class Interaction{
     if ( this.items ){
       for ( let i = this.items.length ; i >= 0 ; i -- ){
         let mustErase = true ;
-        console.log(this.items[i]);
         if ( this.items[i]) {
           for (let nitem of interaction.items) {
             if (nitem.id === this.items[i].id) {

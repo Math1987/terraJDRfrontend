@@ -69,7 +69,6 @@ export class A_build extends Action{
       .afterClosed()
       .subscribe(value => {
 
-        console.log('build ' + BuildComponent.focused );
 
       });
 
