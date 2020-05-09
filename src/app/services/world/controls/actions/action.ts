@@ -106,7 +106,7 @@ export class Action{
     const self = this ;
 
 
-    if ( user.faith >= this.faithCost() ) {
+    if ( user.x == target.x && user.y == target.y && user.faith >= this.faithCost() ) {
       let json = {spellTargets: []};
       delete json['spellTargets'];
       if (self['spellTargets']) {

@@ -13,7 +13,6 @@ export class T_heal extends Translator{
 
     let message = '' ;
 
-    console.log(json);
     if ( user.id == json.target ){
       message += `${this.writeMessageInfos(json)}, vous vous êtes soigné avec un D100 de ${json.D100}, vous rajoutant ${json.power} de vie.`;
     }else{
