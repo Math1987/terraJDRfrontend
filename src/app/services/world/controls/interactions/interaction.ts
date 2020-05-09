@@ -112,7 +112,7 @@ export class Interaction{
       for ( let i = 0 ; i < actualInteractions.length ; i ++ ){
         let actu = actualInteractions[i] ;
         if ( isSameInteraction(actu, newInteraction)){
-          actualInteractions[i] = newInteraction;
+          actu.updateFromModel(newInteraction);
           got = true ;
         }
       }
@@ -247,6 +247,70 @@ export class Interaction{
     }
 
     return true ;
+  }
+
+  updateFromModel(interaction){
+
+
+    for ( let i = this.actions.length ; i >= 0 ; i -- ){
+      let mustErase = true ;
+      for ( let naction of interaction.actions ){
+        if ( naction === this.actions[i]){
+          mustErase = false ;
+        }
+      }
+      if ( mustErase ){
+        this.actions.splice(i, 1);
+      }
+    }
+    for ( let naction of interaction.actions ){
+      let got = false ;
+      for ( let action of this.actions ){
+        if ( action == naction ){
+          got = true ;
+        }
+      }
+      if ( !got ){
+        this.actions.push(naction);
+      }
+    }
+
+
+
+    for ( let i = this.items.length ; i >= 0 ; i -- ){
+      let mustErase = true ;
+      for ( let nitem of interaction.items ){
+        if ( nitem.id === this.items[i].id ){
+          mustErase = false ;
+        }
+      }
+      if ( mustErase ){
+        this.items.splice(i, 1);
+      }
+    }
+    for ( let nitem of interaction.items ){
+      let got = false ;
+      for ( let item of this.items ){
+        if ( item == nitem ){
+          got = true ;
+        }
+      }
+      if ( !got ){
+        this.items.push(nitem);
+      }
+    }
+
+
+
+
+    for ( let value of interaction.values ){
+      for ( let val of this.values ){
+        if ( val.key == value.key ){
+          val.value = value.value ;
+        }
+      }
+    }
+
   }
 
 

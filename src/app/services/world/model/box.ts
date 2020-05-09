@@ -163,6 +163,12 @@ export class Box{
     }
     callBack(updateds);
   }
+  static updateBox(boxToUpdate, model){
+    for ( let key of Object.keys(model) ){
+
+      boxToUpdate[key] = model[key] ;
+    }
+  }
 
   static removeByPosition(x,y){
     for ( let i = Box.BOXES.length-1 ; i >= 0 ; i -- ){
