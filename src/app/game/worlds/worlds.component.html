@@ -1,7 +1,7 @@
 <h2 class="mat-h2 text-center mb-0" *ngIf="isInitialized() && getWorld()">Bienvenue sur ENIGMA.</h2>
 <h3 class="mat-h3 text-center" *ngIf="isInitialized() && getWorld()">Pour commencer votre aventure, créez votre personnage</h3>
 
-<form id="character-creation" (ngSubmit)="createCharacter()" *ngIf="isInitialized() && getWorld()">
+<form id="character-creation" (ngSubmit)="createCharacter()" *ngIf="isInitialized() && getWorld() && getCharacters().length == 0">
   <mat-grid-list cols="4" gutterSize="20px" rowHeight="1.7:1">
     <mat-grid-tile colspan="2">
       <mat-card id="gender-selection" class="w-100">
