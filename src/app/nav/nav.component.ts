@@ -1,11 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Account} from '../services/account';
-import {Router} from '@angular/router';
-import {Worlds} from '../services/worlds';
-import {View} from '../services/world/view/view';
-import {Characters} from '../services/characters';
-import {Area} from '../services/world/area';
-import {Net} from '../services/net';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Account } from '../services/account';
+import { Router } from '@angular/router';
+import { Worlds } from '../services/worlds';
+import { View } from '../services/world/view/view';
+import { Characters } from '../services/characters';
+import { Area } from '../services/world/area';
+import { Net } from '../services/net';
+import { version } from '../../../package.json';
 
 /**
  * Nav Component:
@@ -20,21 +21,21 @@ import {Net} from '../services/net';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit{
+export class NavComponent implements OnInit {
 
-  static functionInit = null ;
-  static initialized = false ;
+  static functionInit = null;
+  static initialized = false;
 
   constructor(
     private router: Router
   ) {
 
-    const self = this ;
+    const self = this;
 
-    if ( Account.user ){
+    if (Account.user) {
       self.initPage();
-    }else {
-      Account.setCallBackInit(function(res) {
+    } else {
+      Account.setCallBackInit(function (res) {
         if (Account.user === null) {
           self.router.navigate(['/login']);
         } else {
@@ -48,7 +49,7 @@ export class NavComponent implements OnInit{
   }
   ngOnInit() {
 
-    const self = this ;
+    const self = this;
 
     /*let interval = setInterval(function() {
 
@@ -60,18 +61,18 @@ export class NavComponent implements OnInit{
     },100);*/
 
   }
-  static setInitCallBack(callBackFunction){
-    if ( NavComponent.initialized ){
+  static setInitCallBack(callBackFunction) {
+    if (NavComponent.initialized) {
       callBackFunction();
-    }else{
+    } else {
       NavComponent.functionInit = callBackFunction;
     }
   }
 
-  initPage(){
+  initPage() {
 
-    Worlds.init(function(worlds) {
-      Characters.init(function(characters) {
+    Worlds.init(function (worlds) {
+      Characters.init(function (characters) {
         NavComponent.initialized = true;
         if (NavComponent.functionInit !== null) {
           NavComponent.functionInit();
@@ -81,19 +82,19 @@ export class NavComponent implements OnInit{
 
   }
 
-  isAdmin(){
+  isAdmin() {
     return Account.isAdmin();
   }
-  getUserPseudo(){
-    if ( Account.user !== null && 'pseudo' in Account.user ){
-      return Account.user.pseudo ;
-    }else{
-      return '' ;
+  getUserPseudo() {
+    if (Account.user !== null && 'pseudo' in Account.user) {
+      return Account.user.pseudo;
+    } else {
+      return '';
     }
   }
-  deconnexion(){
-    const self = this ;
-    Net.emitDeconnection( Account.user,function( res) {
+  deconnexion() {
+    const self = this;
+    Net.emitDeconnection(Account.user, function (res) {
 
       console.log(res);
 
@@ -106,6 +107,14 @@ export class NavComponent implements OnInit{
 
     });
 
+  }
+
+  /**
+   * Gets version
+   * @returns String version
+   */
+  getVersion() {
+    return version;
   }
 
 
