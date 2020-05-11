@@ -32,21 +32,15 @@
 
       <mat-form-field>
         <mat-label>Race</mat-label>
-        <mat-select name="race" [(ngModel)]="race">
-          <mat-option [value]="'human'">Humain</mat-option>
-          <mat-option [value]="'dwarf'">Nain</mat-option>
-          <mat-option [value]="'vampire'">Vampire</mat-option>
-          <mat-option [value]="'elf'">Elf</mat-option>
+        <mat-select name="race" [(ngModel)]="race" >
+          <mat-option *ngFor="let race_ of getRaces()" [value]="'human'">{{race_['name_fr']}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Religion</mat-label>
         <mat-select name="religion"  [(ngModel)]="religion">
-          <mat-option [value]="'hermes'">Hermès</mat-option>
-          <mat-option [value]="'demeter'">Déméter</mat-option>
-          <mat-option [value]="'athena'">Athéna</mat-option>
-          <mat-option [value]="'ephaistos'">Héphaïstos</mat-option>
+          <mat-option *ngFor="let religion_ of getReligions()" [value]="'human'">{{religion_['name_fr']}}</mat-option>
         </mat-select>
       </mat-form-field>
 

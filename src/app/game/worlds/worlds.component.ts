@@ -5,6 +5,7 @@ import {Area} from '../../services/world/area';
 import {Worlds} from '../../services/worlds';
 import {Characters} from '../../services/characters';
 import {Net} from '../../services/net';
+import {Translator} from '../../services/world/model/translator/translator';
 
 @Component({
   selector: 'app-worlds',
@@ -40,6 +41,15 @@ export class WorldsComponent implements OnInit {
 
   getWorld() {
     return Area.world;
+  }
+  getSexes(){
+    return Translator.METADATAS['sexes'];
+  }
+  getRaces(){
+    return Translator.METADATAS['races'] ;
+  }
+  getReligions(){
+    return Translator.METADATAS['religions'];
   }
 
   getCharacters() {
