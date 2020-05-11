@@ -1,13 +1,5 @@
 @import './theme';
 
-//default palette forground/background:
-$light-foreground-palette: map-get($theme, foreground);
-$light-background-palette: map-get($theme, background);
-
-//dark palette forground/background:
-$dark-foreground-palette: map-get($dark-t, foreground);
-$dark-background-palette: map-get($dark-t, background);
-
 .light-colors{
     background-color : mat-color($primary, default);
     color: mat-color($light-foreground-palette, text);
