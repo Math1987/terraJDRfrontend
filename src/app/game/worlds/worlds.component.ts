@@ -44,7 +44,7 @@ export class WorldsComponent implements OnInit {
   getWorld() {
     return Area.world;
   }
-  getSexes(){
+  getGenders(){
     return Translator.METADATAS['sexes'];
   }
   getRaces(){

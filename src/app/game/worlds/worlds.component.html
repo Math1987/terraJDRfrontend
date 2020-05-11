@@ -7,8 +7,7 @@
       <mat-card id="gender-selection" class="w-100">
         <mat-card-title><span>Choix du sexe</span></mat-card-title>
         <mat-card-content class="d-flex justify-content-around">
-          <img (click)="setGender('Masculin')" src="/assets/images/cat.png" matTooltip="Masculin" [class.active]="gender === 'Masculin'">
-          <img (click)="setGender('Féminin')" src="/assets/images/cat.png" matTooltip="Féminin" [class.active]="gender === 'Féminin'">
+          <img *ngFor="let currentGender of getGenders()" (click)="setGender(currentGender.key)" [src]="currentGender.img" [matTooltip]="currentGender.name_fr" [class.active]="gender === currentGender.key">
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -29,10 +28,7 @@
       <mat-card id="race-selection" class="w-100">
         <mat-card-title><span>Choix de la race</span></mat-card-title>
         <mat-card-content class="d-flex justify-content-around">
-          <img (click)="setRace('human')" src="/assets/images/cat.png" matTooltip="Humain" [class.active]="race === 'human'">
-          <img (click)="setRace('dwarf')" src="/assets/images/cat.png" matTooltip="Nain" [class.active]="race === 'dwarf'">
-          <img (click)="setRace('vampire')" src="/assets/images/cat.png" matTooltip="Vampire" [class.active]="race === 'vampire'">
-          <img (click)="setRace('elf')" src="/assets/images/cat.png" matTooltip="Elf" [class.active]="race === 'elf'">
+          <img *ngFor="let currentRace of getRaces()" (click)="setRace(currentRace.key)" [src]="currentRace.img" [matTooltip]="currentRace.name_fr" [class.active]="race === currentRace.key">
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -50,7 +46,7 @@
       <mat-card id="religion-selection" class="w-100">
         <mat-card-title><span>Choix de la religion</span></mat-card-title>
         <mat-card-content class="d-flex justify-content-around">
-          <img *ngFor="let currentReligion of getReligions()" (click)="setReligion(currentReligion)" src="/assets/images/cat.png" matTooltip="currentReligion" [class.active]="religion === currentReligion">
+          <img *ngFor="let currentReligion of getReligions()" (click)="setReligion(currentReligion.key)" [src]="currentReligion.img" [matTooltip]="currentReligion.name_fr" [class.active]="religion === currentReligion.key">
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
