@@ -1,11 +1,24 @@
 import {Area} from '../../area';
+import {Net} from '../../../net';
+import {environment} from '../../../../../environments/environment';
 
 export class Translator{
+
+  static METADATAS = {} ;
 
   static TRANSLATORS = [];
 
   static init(translators){
     Translator.TRANSLATORS = translators;
+
+    Net.http.get(`${environment.backURL}/readMetadatas`, { responseType : 'json', headers : Net.headers } ).subscribe((res)=>{
+
+      Translator.METADATAS = res ;
+
+      console.log(res);
+
+    });
+
   }
 
   static translate(key, language, type ){

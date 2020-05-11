@@ -43,49 +43,7 @@ import {T_well} from './translator/t_well';
 export class Model{
 
   static init(){
-    Translator.init([
-      new T_ground(),
-      new T_neutral(),
-      new T_field(),
-      new T_defense(),
-      new T_attack(),
-      new T_attack_counter(),
-      new T_die(),
-      new T_heal(),
-      new T_getFood(),
-      new T_getWater(),
-      new T_getFood(),
-      new T_getMaterial(),
-      new T_gold(),
-      new T_getFaith(),
-      new T_getResource(),
-      new T_giveResource(),
-      new T_waterTree(),
-      new T_search(),
-      new T_openchest(),
-      new T_bewitch(),
-      new T_life(),
-      new T_water(),
-      new T_food(),
-      new T_material(),
-      new T_faith(),
-      new T_relic(),
-      new T_trade(),
-      new T_build(),
-      new T_trader(),
-      new T_mine(),
-      new T_spellVision(),
-      new T_spellRain(),
-      new T_blesstree(),
-      new T_luck(),
-      new T_plantTree(),
-      new T_tree(),
-      new T_kill(),
-      new T_squeleton(),
-      new T_fortification(),
-      new T_flame(),
-      new T_well()
-    ]);
+
   }
 
 }

@@ -50,10 +50,7 @@
       <mat-card id="religion-selection" class="w-100">
         <mat-card-title><span>Choix de la religion</span></mat-card-title>
         <mat-card-content class="d-flex justify-content-around">
-          <img (click)="setReligion('hermes')" src="/assets/images/cat.png" matTooltip="Hermès" [class.active]="religion === 'hermes'">
-          <img (click)="setReligion('demeter')" src="/assets/images/cat.png" matTooltip="Déméter" [class.active]="religion === 'demeter'">
-          <img (click)="setReligion('athena')" src="/assets/images/cat.png" matTooltip="Athéna" [class.active]="religion === 'athena'">
-          <img (click)="setReligion('ephaistos')" src="/assets/images/cat.png" matTooltip="Héphaïstos" [class.active]="religion === 'ephaistos'">
+          <img *ngFor="let currentReligion of getReligions()" (click)="setReligion(currentReligion)" src="/assets/images/cat.png" matTooltip="currentReligion" [class.active]="religion === currentReligion">
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
