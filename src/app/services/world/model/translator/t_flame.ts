@@ -2,6 +2,10 @@ import {Translator} from './translator';
 
 export class T_flame extends Translator{
 
+  default = "flamme" ;
+  action = "flamme" ;
+  selfAction = "flamme" ;
+
   readKey() {
     return 'flame' ;
   }

@@ -11,7 +11,7 @@ export class Account{
     Account.initialisez = false ;
     if ( localStorage.getItem("user")){
       Account.user = JSON.parse(localStorage.getItem("user"));
-      Account.connectAccount(function(res) {
+      Account.connectAccount(JSON.parse(localStorage.getItem("user")),function(res) {
 
         if ( Account.callBackInit ){
           Account.callBackInit(res);
@@ -29,9 +29,14 @@ export class Account{
     }
 
   }
-  static connectAccount(callBack){
+  static connectAccount(user, callBack){
+    Account.user = user ;
     Net.emitInitAccount(Account.user, function(connectionRes) {
-      localStorage.setItem("user", JSON.stringify(Account.user));
+      if ( connectionRes ){
+        localStorage.setItem("user", JSON.stringify(Account.user));
+      }else{
+        Account.deconnexion();
+      }
       callBack(connectionRes);
     });
   }
@@ -48,8 +53,7 @@ export class Account{
     Net.http.get(`${environment.backURL}/createAccount?email=${email}&password=${password}&pseudo=${pseudo}`).subscribe((res)=>{
 
       if ( res !== null ){
-        Account.user = res ;
-        Account.connectAccount(function(connexionRes) {
+        Account.connectAccount(res, function(connexionRes) {
           callBack(res) ;
         });
       }else{
@@ -62,11 +66,11 @@ export class Account{
   }
 
   static login(email, password, callBack){
+
     Net.http.get(`${environment.backURL}/readAccount?email=${email}&password=${password}`).subscribe((res)=>{
 
       if ( res !== null ){
-        Account.user = res ;
-        Account.connectAccount(function(connexionRes) {
+        Account.connectAccount(res,function(connexionRes) {
           callBack(res) ;
         });
       }else{
@@ -79,6 +83,8 @@ export class Account{
 
   static deconnexion(){
     localStorage.removeItem("user");
+    localStorage.removeItem("world");
+    localStorage.removeItem("character");
     Account.user = null ;
   }
 

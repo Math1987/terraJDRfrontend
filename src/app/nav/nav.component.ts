@@ -36,7 +36,7 @@ export class NavComponent implements OnInit{
     }else {
       Account.setCallBackInit(function(res) {
         if (Account.user === null) {
-          this.router.navigate(['/login']);
+          self.router.navigate(['/login']);
         } else {
           self.initPage();
         }
@@ -46,7 +46,20 @@ export class NavComponent implements OnInit{
 
 
   }
-  ngOnInit() {}
+  ngOnInit() {
+
+    const self = this ;
+
+    /*let interval = setInterval(function() {
+
+      if ( !Account.user ){
+        self.deconnexion();
+        clearInterval(interval);
+      }
+
+    },100);*/
+
+  }
   static setInitCallBack(callBackFunction){
     if ( NavComponent.initialized ){
       callBackFunction();
@@ -80,7 +93,9 @@ export class NavComponent implements OnInit{
   }
   deconnexion(){
     const self = this ;
-    Net.emitDeconnection( function(res) {
+    Net.emitDeconnection( Account.user,function( res) {
+
+      console.log(res);
 
       Account.deconnexion();
       Area.reset();

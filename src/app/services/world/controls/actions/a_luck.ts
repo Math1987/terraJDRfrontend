@@ -58,5 +58,12 @@ export class A_luck extends Action{
 
 
   }
+  isCompatibleAsReligion(user, target): boolean | boolean {
+    if ( user.luck <= 0 ){
+      return super.isCompatibleAsReligion(user, target);
+    }else{
+      return false ;
+    }
+  }
 
 }

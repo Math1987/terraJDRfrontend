@@ -10,7 +10,7 @@ export class Area{
 
   static init(worlds, callBack){
 
-    if ( localStorage.getItem("world")){
+    if ( localStorage.getItem("user") && localStorage.getItem("world")){
       let worldStored = JSON.parse(localStorage.getItem("world")) ;
       for ( let world of worlds ){
         if ( worldStored.name == world.name ){

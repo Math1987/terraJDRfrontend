@@ -9,7 +9,7 @@ export class T_luck extends Translator{
 
 
   readKey(){
-    return 'chance' ;
+    return 'luck' ;
   }
 
 }

@@ -28,12 +28,27 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
 
+    const self = this ;
+
     Net.init(this.http);
     Calculation.init();
     Account.init(function(res) {});
     Dialog.init(this.dialog);
 
-    const self = this ;
+
+    /*Net.socket.on('disconnect', function () {
+      alert('test');
+      Net.socket.disconnect();
+      Account.init(function(res) {
+        if ( res ) {
+
+        }else{
+          Account.deconnexion();
+          self.router.navigate(['login']);
+        }
+      });
+
+    });*/
 
     check();
 
@@ -44,7 +59,6 @@ export class AppComponent implements OnInit{
       setTimeout(function() {
 
         if (status == "disconnect") {
-
 
           if ( Net.socket.connected ){
             Net.reset();
@@ -62,6 +76,7 @@ export class AppComponent implements OnInit{
             });
 
           }else{
+            console.log()
             check();
           }
           /*let checkStatus = false ;

@@ -33,8 +33,8 @@ export class Net{
     Net.socket = io.connect(environment.backURL);
   }
 
-  static emitDeconnection(callBack){
-    Net.socket.emit('deconnexion', callBack);
+  static emitDeconnection(user, callBack){
+    Net.socket.emit('logout', user, callBack);
   }
 
   static emitInitAccount(user, callBack){

@@ -38,6 +38,7 @@ import {T_kill} from './translator/t_kill';
 import {T_squeleton} from './translator/t_squeleton';
 import {T_fortification} from './translator/t_fortification';
 import {T_flame} from './translator/t_flame';
+import {T_well} from './translator/t_well';
 
 export class Model{
 
@@ -82,7 +83,8 @@ export class Model{
       new T_kill(),
       new T_squeleton(),
       new T_fortification(),
-      new T_flame()
+      new T_flame(),
+      new T_well()
     ]);
   }
 

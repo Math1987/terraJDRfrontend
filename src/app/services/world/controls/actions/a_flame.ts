@@ -19,22 +19,17 @@ export class A_flame extends Action{
   isActive(): boolean {
     return true;
   }
-  matchActive(user): boolean {
-    if ( user.faith >= 10 ){
-      return false ;
-    }else{
-      return false ;
-    }
-  }
   matchInteraction(user, key1, target, key2, contextViews : View[]){
 
-    if ( user.faith >= 10
-      && user.id === target.id
-      && user.id === Area.character.id ){
-      return false ;
+    /*if (user.id !== target.id
+    && (target.key == "squeleton" || (target.key == "character" && target.race !== user.race))
+    && user.x == target.x && user.y == target.y
+    && this.faithCost() <= user.faith ){
+      return true ;
     }else{
       return false ;
-    }
+    }*/
+    return false ;
   }
   getCosts(){
     return [
