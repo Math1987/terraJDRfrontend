@@ -16,8 +16,10 @@ export class WorldsComponent implements OnInit {
 
   static initialized = false;
 
-  race = 'human' ;
-  religion = 'hermes';
+  gender: string;
+  name: string = '';
+  race: string = 'human' ;
+  religion: string = 'hermes';
 
   constructor(
     private router: Router
@@ -42,7 +44,7 @@ export class WorldsComponent implements OnInit {
   getWorld() {
     return Area.world;
   }
-  getSexes(){
+  getGenders(){
     return Translator.METADATAS['sexes'];
   }
   getRaces(){
@@ -94,21 +96,48 @@ export class WorldsComponent implements OnInit {
     }
   }
 
-  setRace(obj){}
+  /**
+   * Sets race
+   * @param race
+   */
+  setRace(race: string){
+    this.race = race;
+  }
+
+  /**
+   * Sets gender
+   * @param {String} gender
+   */
+  setGender(gender: string){
+    this.gender = gender;
+  }
+
+  /**
+   * Sets religion
+   * @param religion
+   */
+  setReligion(religion: string){
+    this.religion = religion;
+  }
+
+  /**
+   * Sets name
+   * @param name
+   */
+  setName(name: string){
+    this.name = name;
+  }
 
   /**
    * Creates character
    */
   createCharacter(){
-    const
-      form = <HTMLFormElement> document.getElementById('character-creation'),
-      formData = new FormData(form);
-
-    if(formData.get('charName').toString().length > 2){
+    console.log(this.name);
+    if(this.name.length > 2){
       Net.emitCreateCharacter({
         key: "character",
-        name: formData.get('charName'),
-        sexe: formData.get('gender'),
+        name: this.name,
+        sexe: this.gender,
         race: this.race,
         religion: this.religion
       }, (createUserCharaRes) => {

@@ -1,13 +1,5 @@
 @import './theme';
 
-//default palette forground/background:
-$light-foreground-palette: map-get($theme, foreground);
-$light-background-palette: map-get($theme, background);
-
-//dark palette forground/background:
-$dark-foreground-palette: map-get($dark-t, foreground);
-$dark-background-palette: map-get($dark-t, background);
-
 .light-colors{
     background-color : mat-color($primary, default);
     color: mat-color($light-foreground-palette, text);
@@ -24,12 +16,12 @@ $dark-background-palette: map-get($dark-t, background);
 
 // Main
 html{
-  min-height: 100%;
+  height: 100%;
   background-color: #ECEFF1;
 }
 
 body {
-  min-height: 100%;
+  height: 100%;
   background-color: transparent;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;

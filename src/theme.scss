@@ -3,8 +3,8 @@
 @include mat-core();
 
 // default theme:
-$primary: mat-palette($mat-indigo,400, 10, 700);
-$accent: mat-palette($mat-blue-grey, 500, 100, 700);
+$primary: mat-palette($mat-brown,400, 200, 600);
+$accent: mat-palette($mat-indigo, 400, 100, 800);
 $theme: mat-light-theme($primary, $accent);
 
 @include angular-material-theme($theme);
@@ -17,3 +17,11 @@ $dark-t: mat-dark-theme($dark-p, $dark-a);
 .darkTheme {
   @include angular-material-theme($dark-t);
 }
+
+//default palette forground/background:
+$light-foreground-palette: map-get($theme, foreground);
+$light-background-palette: map-get($theme, background);
+
+//dark palette forground/background:
+$dark-foreground-palette: map-get($dark-t, foreground);
+$dark-background-palette: map-get($dark-t, background);

@@ -20,7 +20,8 @@ import {
   MatTooltipModule,
   MatTabsModule,
   MatChipsModule,
-  MatSelectModule, MatListModule
+  MatSelectModule, MatListModule,
+  MatGridListModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { GameComponent } from './game/game.component';
@@ -95,7 +96,8 @@ import { HistoricComponent } from './game/historic/historic.component';
     MatTabsModule,
     MatChipsModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent],

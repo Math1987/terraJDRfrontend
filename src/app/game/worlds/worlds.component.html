@@ -1,55 +1,61 @@
-<mat-card>
-  <mat-card-title><span>Mondes</span></mat-card-title>
-  <mat-card-content>
-    <mat-button-toggle-group name="world">
-      <mat-button-toggle *ngFor="let world of getWorlds()" [checked]="isFocus(world)" (click)="enterInWorld(world)">
-        {{world.name}}</mat-button-toggle>
-    </mat-button-toggle-group>
-  </mat-card-content>
-</mat-card>
+<h2 class="mat-h2 text-center mb-0" *ngIf="isInitialized() && getWorld() && getCharacters().length == 0">Bienvenue sur ENIGMA.</h2>
+<h3 class="mat-h3 text-center" *ngIf="isInitialized() && getWorld() && getCharacters().length == 0">Pour commencer votre aventure, créez votre personnage</h3>
 
+<form id="character-creation" (ngSubmit)="createCharacter()" *ngIf="isInitialized() && getWorld() && getCharacters().length == 0">
+  <mat-grid-list cols="4" gutterSize="20px" rowHeight="1.7:1">
+    <mat-grid-tile colspan="2">
+      <mat-card id="gender-selection" class="w-100">
+        <mat-card-title><span>Choix du sexe</span></mat-card-title>
+        <mat-card-content class="d-flex justify-content-around">
+          <img *ngFor="let currentGender of getGenders()" (click)="setGender(currentGender.key)" [src]="currentGender.img" [matTooltip]="currentGender.name_fr" [class.active]="gender === currentGender.key">
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
 
-<mat-card *ngIf="isInitialized() && getWorld() && getCharacters().length == 0">
-  <mat-card-title><span>Crée ton personnage</span></mat-card-title>
-  <mat-card-content>
-    <form id="character-creation" (ngSubmit)="createCharacter()">
-      <mat-form-field appearance="fill">
-        <mat-label>Nom</mat-label>
-        <input type="text" matInput name="charName">
-      </mat-form-field>
+    <mat-grid-tile colspan="2">
+      <mat-card id="name-selection" class="w-100">
+        <mat-card-title><span>Choix du nom</span></mat-card-title>
+        <mat-card-content class="pl-5 pr-5">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Nom</mat-label>
+            <input type="text" matInput name="charName" #charName (keyup)="setName(charName.value)">
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
 
-      <div class="dib">
-        <h5 class="mat-h5">Sexe</h5>
-        <mat-radio-group name="gender" required value="man">
-          <mat-radio-button value="Masculin">
-            <mat-icon style="clip-path: inset(0% 50% 0% 0%);" matTooltip="Masculin">wc</mat-icon>
-          </mat-radio-button>
-          <mat-radio-button value="Féminin">
-            <mat-icon style="clip-path: inset(0% 0% 0% 50%);" matTooltip="Féminin">wc</mat-icon>
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
+    <mat-grid-tile colspan="2">
+      <mat-card id="race-selection" class="w-100">
+        <mat-card-title><span>Choix de la race</span></mat-card-title>
+        <mat-card-content class="d-flex justify-content-around">
+          <img *ngFor="let currentRace of getRaces()" (click)="setRace(currentRace.key)" [src]="currentRace.img" [matTooltip]="currentRace.name_fr" [class.active]="race === currentRace.key">
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
 
-      <mat-form-field>
-        <mat-label>Race</mat-label>
-        <mat-select name="race" [(ngModel)]="race" >
-          <mat-option *ngFor="let race_ of getRaces()" [value]="'human'">{{race_['name_fr']}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-grid-tile colspan="2" rowspan="2">
+      <mat-card id="gender-selection" class="w-100 h-75">
+        <mat-card-title><span>Histoire du personnage</span></mat-card-title>
+        <mat-card-content>
+          <p>[PROCHAINEMENT]</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
 
-      <mat-form-field>
-        <mat-label>Religion</mat-label>
-        <mat-select name="religion"  [(ngModel)]="religion">
-          <mat-option *ngFor="let religion_ of getReligions()" [value]="'human'">{{religion_['name_fr']}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-grid-tile colspan="2">
+      <mat-card id="religion-selection" class="w-100">
+        <mat-card-title><span>Choix de la religion</span></mat-card-title>
+        <mat-card-content class="d-flex justify-content-around">
+          <img *ngFor="let currentReligion of getReligions()" (click)="setReligion(currentReligion.key)" [src]="currentReligion.img" [matTooltip]="currentReligion.name_fr" [class.active]="religion === currentReligion.key">
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
 
-      <div>
-        <button type="submit" mat-raised-button matRipple color="accent">Créer</button>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+    <mat-grid-tile colspan="4">
+      <button type="submit" mat-raised-button matRipple color="accent">Créer</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
 
 <mat-card *ngIf="getCharacters().length > 0">
   <mat-card-title><span>Personnages</span></mat-card-title>
