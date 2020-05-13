@@ -45,6 +45,7 @@ import { TradeComponent } from './game/dialogs/trade/trade.component';
 import { BuildComponent } from './game/dialogs/build/build.component';
 import { ManageComponent } from './game/dialogs/manage/manage.component';
 import { HistoricComponent } from './game/historic/historic.component';
+import { PlayersComponent } from './admin/players/players.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { HistoricComponent } from './game/historic/historic.component';
     TradeComponent,
     BuildComponent,
     ManageComponent,
-    HistoricComponent
+    HistoricComponent,
+    PlayersComponent
   ],
   imports: [
     BrowserModule,

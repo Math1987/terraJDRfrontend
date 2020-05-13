@@ -1,0 +1,8 @@
+<div class="list-group-item list-group-item-success">
+  <p>activité des joueurs inscrits</p>
+  <div class="list-group-item list-group-item">
+    <div *ngFor="let user of getUsers()">
+      <p>tour : {{user.pass}}, pseudo: {{user.pseudo}}, email : {{user.email}}, date : {{user.date}}, action : {{user.key}}</p>
+    </div>
+
+</div>

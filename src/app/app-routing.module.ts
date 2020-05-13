@@ -14,6 +14,7 @@ import {PatternsComponent} from './admin/patterns/patterns.component';
 import {CalculationComponent} from './admin/calculation/calculation.component';
 import {RankingComponent} from './game/ranking/ranking.component';
 import {MartyrComponent} from './game/ranking/martyr/martyr.component';
+import {PlayersComponent} from './admin/players/players.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
       {path:"", component:GameComponent},
       {path:"admin", component:AdminComponent, children:[
           {path:"carte", component: AdminMapComponent},
+          {path:"joueurs", component: PlayersComponent},
           {path:"models", component: PatternsComponent},
           {path:"calculs", component: CalculationComponent},
         ]},

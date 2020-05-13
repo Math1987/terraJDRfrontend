@@ -2,6 +2,75 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/Math1987/terraJDRfrontend/compare/v0.0.7...v0.0.10) (2020-05-13)
+
+
+### Features
+
+* Use dynamic gender/race/religion generation ([3309049](https://github.com/Math1987/terraJDRfrontend/commit/33090496cb35e402beea32b100c977abfbbfb019))
+
+
+### Bug Fixes
+
+* add precisions if cannot create account (doublon mail or pseudo) ([bce5e98](https://github.com/Math1987/terraJDRfrontend/commit/bce5e98e74aef3fd241ee4d16afaa347f5519bbc))
+* Added char verif before displaying creation message ([dcaf846](https://github.com/Math1987/terraJDRfrontend/commit/dcaf84694cd457e3f81ef952e95fa9af558b458b))
+* Added char verification before displaying form ([18f9809](https://github.com/Math1987/terraJDRfrontend/commit/18f980927dcfda1a3fd5a11cd36e361a103c1ee2))
+* graphisme, set new mine ([c3ed973](https://github.com/Math1987/terraJDRfrontend/commit/c3ed9739d0f3cdcb2768ec045f442d07a8d5f29d))
+* religions, set new spells ([e8c6cf9](https://github.com/Math1987/terraJDRfrontend/commit/e8c6cf9091117983a24aa2b8697dff46c3ad9abf))
+
+
+### Visual updates
+
+* Added footer + display version ([38cec6d](https://github.com/Math1987/terraJDRfrontend/commit/38cec6dea7b9f3cb510fa2d083e506e2dde594eb))
+* Changed char creation form ([947739d](https://github.com/Math1987/terraJDRfrontend/commit/947739d0ceaa782209755fc4fc96f5d68df48b07))
+* Tweaked cards border + header ([97321d0](https://github.com/Math1987/terraJDRfrontend/commit/97321d0daf254b8e51c8c74cae96ef403d06e01c))
+
+### [0.0.9](https://github.com/Math1987/terraJDRfrontend/compare/v0.0.7...v0.0.9) (2020-05-13)
+
+
+### Features
+
+* Use dynamic gender/race/religion generation ([3309049](https://github.com/Math1987/terraJDRfrontend/commit/33090496cb35e402beea32b100c977abfbbfb019))
+
+
+### Bug Fixes
+
+* add precisions if cannot create account (doublon mail or pseudo) ([bce5e98](https://github.com/Math1987/terraJDRfrontend/commit/bce5e98e74aef3fd241ee4d16afaa347f5519bbc))
+* Added char verif before displaying creation message ([dcaf846](https://github.com/Math1987/terraJDRfrontend/commit/dcaf84694cd457e3f81ef952e95fa9af558b458b))
+* Added char verification before displaying form ([18f9809](https://github.com/Math1987/terraJDRfrontend/commit/18f980927dcfda1a3fd5a11cd36e361a103c1ee2))
+* graphisme, set new mine ([c3ed973](https://github.com/Math1987/terraJDRfrontend/commit/c3ed9739d0f3cdcb2768ec045f442d07a8d5f29d))
+* religions, set new spells ([e8c6cf9](https://github.com/Math1987/terraJDRfrontend/commit/e8c6cf9091117983a24aa2b8697dff46c3ad9abf))
+
+
+### Visual updates
+
+* Added footer + display version ([38cec6d](https://github.com/Math1987/terraJDRfrontend/commit/38cec6dea7b9f3cb510fa2d083e506e2dde594eb))
+* Changed char creation form ([947739d](https://github.com/Math1987/terraJDRfrontend/commit/947739d0ceaa782209755fc4fc96f5d68df48b07))
+* Tweaked cards border + header ([97321d0](https://github.com/Math1987/terraJDRfrontend/commit/97321d0daf254b8e51c8c74cae96ef403d06e01c))
+
+### [0.0.8](https://github.com/Math1987/terraJDRfrontend/compare/v0.0.7...v0.0.8) (2020-05-13)
+
+
+### Features
+
+* Use dynamic gender/race/religion generation ([3309049](https://github.com/Math1987/terraJDRfrontend/commit/33090496cb35e402beea32b100c977abfbbfb019))
+
+
+### Bug Fixes
+
+* add precisions if cannot create account (doublon mail or pseudo) ([bce5e98](https://github.com/Math1987/terraJDRfrontend/commit/bce5e98e74aef3fd241ee4d16afaa347f5519bbc))
+* Added char verif before displaying creation message ([dcaf846](https://github.com/Math1987/terraJDRfrontend/commit/dcaf84694cd457e3f81ef952e95fa9af558b458b))
+* Added char verification before displaying form ([18f9809](https://github.com/Math1987/terraJDRfrontend/commit/18f980927dcfda1a3fd5a11cd36e361a103c1ee2))
+* graphisme, set new mine ([c3ed973](https://github.com/Math1987/terraJDRfrontend/commit/c3ed9739d0f3cdcb2768ec045f442d07a8d5f29d))
+* religions, set new spells ([e8c6cf9](https://github.com/Math1987/terraJDRfrontend/commit/e8c6cf9091117983a24aa2b8697dff46c3ad9abf))
+
+
+### Visual updates
+
+* Added footer + display version ([38cec6d](https://github.com/Math1987/terraJDRfrontend/commit/38cec6dea7b9f3cb510fa2d083e506e2dde594eb))
+* Changed char creation form ([947739d](https://github.com/Math1987/terraJDRfrontend/commit/947739d0ceaa782209755fc4fc96f5d68df48b07))
+* Tweaked cards border + header ([97321d0](https://github.com/Math1987/terraJDRfrontend/commit/97321d0daf254b8e51c8c74cae96ef403d06e01c))
+
 ### [0.0.7](https://github.com/Math1987/terraJDRfrontend/compare/v0.0.6...v0.0.7) (2020-05-11)
 
 ### 0.0.6 (2020-05-11)
