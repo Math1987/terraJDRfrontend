@@ -43,7 +43,7 @@ export class Controls{
       new A_bewitch(),
       new A_levitation(),
       new A_flame(),
-      new A_protection(),
+      //new A_protection(),
       new A_blesstree(),
       new A_luck(),
       new A_spellRain(),

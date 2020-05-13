@@ -8,7 +8,7 @@ import {View} from '../../view/view';
 
 export class A_spellRain extends Action{
 
-  religions = ['hermes','demeter'];
+  religions = ['demeter','athena'];
   spellTargets = ['well'];
 
   constructor(){

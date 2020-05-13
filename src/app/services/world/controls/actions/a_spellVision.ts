@@ -8,7 +8,7 @@ import {View} from '../../view/view';
 
 export class A_spellVision extends Action{
 
-  religions = ['athena','ephaistos'];
+  religions = ['hermes','hephaistos'];
   spellTargets = ['character'];
 
   constructor(){

@@ -8,6 +8,7 @@ import {View} from '../../view/view';
 
 export class A_flame extends Action{
 
+  religions = ['hermes', 'hades'] ;
   spellTargets = ['character', 'squeleton', 'fortification','enemy'] ;
 
   constructor(){

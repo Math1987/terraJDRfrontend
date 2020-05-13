@@ -111,7 +111,14 @@ export class CharacterComponent implements OnInit {
   }
   getReligion(){
     if ( Area.character ){
-      return Area.character.religion ;
+      console.log(Translator.METADATAS['religions']);
+      let rel = Area.character.religion ;
+      for ( let religion of Translator.METADATAS['religions'] ){
+        if ( religion.key == Area.character.religion ){
+          rel = religion.name_fr ;
+        }
+      }
+      return rel  ;
     }else{
       return '';
     }

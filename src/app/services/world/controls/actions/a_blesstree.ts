@@ -8,7 +8,7 @@ import {View} from '../../view/view';
 
 export class A_blesstree extends Action{
 
-  religions = ['demeter'] ;
+  religions = ['demeter', 'hephaistos'] ;
   spellTargets = ['tree'] ;
 
   constructor(){

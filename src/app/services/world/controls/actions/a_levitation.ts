@@ -9,7 +9,7 @@ import {Calculation} from '../../../calculation';
 
 export class A_levitation extends Action{
 
-  religions  = ['hermes'] ;
+  religions  = ['athena','hades'] ;
   spellTargets = ['character'];
 
   constructor(){
