@@ -27,6 +27,8 @@ export class NavComponent implements OnInit {
   static functionInit = null;
   static initialized = false;
 
+  gameNav = 'carte' ;
+
   constructor(
     private router: Router
   ) {
@@ -83,6 +85,14 @@ export class NavComponent implements OnInit {
       });
     });
 
+  }
+
+  getCharacter(){
+    if ( Area.character ){
+      return true ;
+    }else{
+      return false ;
+    }
   }
 
   isAdmin() {

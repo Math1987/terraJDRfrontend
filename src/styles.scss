@@ -1,5 +1,10 @@
 @import './theme';
 
+@font-face {
+  font-family: Roboto;
+  src: url("https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap") format("opentype");
+}
+
 .light-colors{
     background-color : mat-color($primary, default);
     color: mat-color($light-foreground-palette, text);
@@ -55,6 +60,11 @@ mat-card{
     display: flex !important;
     justify-content: center;
   }
+}
+
+
+mat-button-toggle{
+  background-color: red;
 }
 
 .flexRow{

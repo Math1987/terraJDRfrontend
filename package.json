@@ -1,6 +1,6 @@
 {
   "name": "terra-jdrfrontend",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "release": "standard-version -s",
+    "release": "standard-version",
     "backend": "cd ../terraJDRbackend && npm run dev",
     "backend-update": "cd ../terraJDRbackend && git pull upstream master"
   },

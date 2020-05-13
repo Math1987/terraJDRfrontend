@@ -12,6 +12,30 @@
     </li>
   </ul>
 
+  <ul class="nav" *ngIf="getCharacter()" >
+
+    <li >
+      <a routerLink="/u/jeu/carte">
+        <mat-button-toggle (click)="gameNav = 'carte'" [class.active]="gameNav === 'carte'">CARTE</mat-button-toggle>
+      </a>
+    </li>
+    <li >
+      <a routerLink="/u/jeu/perso">
+        <mat-button-toggle (click)="gameNav = 'perso'" [class.active]="gameNav === 'perso'" >PERSO</mat-button-toggle>
+      </a>
+    </li>
+    <li >
+      <a href="https://terrajdr.forumactif.com"  target="_blank">
+        <mat-button-toggle (click)="gameNav = 'forum'" [class.active]="gameNav === 'forum'">FORUM</mat-button-toggle>
+      </a>
+    </li>
+    <li >
+      <a routerLink="/u/jeu/classement">
+        <mat-button-toggle (click)="gameNav = 'classement'" [class.active]="gameNav === 'classement'">CLASSEMENT</mat-button-toggle>
+      </a>
+    </li>
+  </ul>
+
   <div>
     <span class="user">{{getUserPseudo()}} </span>
     <button mat-icon-button (click)="deconnexion()" color="warn" matTooltip="Déconnexion">

@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/Math1987/terraJDRfrontend/compare/v0.0.7...v0.0.12) (2020-05-13)
+
+
+### Features
+
+* Use dynamic gender/race/religion generation ([3309049](https://github.com/Math1987/terraJDRfrontend/commit/33090496cb35e402beea32b100c977abfbbfb019))
+
+
+### Bug Fixes
+
+* add precisions if cannot create account (doublon mail or pseudo) ([bce5e98](https://github.com/Math1987/terraJDRfrontend/commit/bce5e98e74aef3fd241ee4d16afaa347f5519bbc))
+* Added char verif before displaying creation message ([dcaf846](https://github.com/Math1987/terraJDRfrontend/commit/dcaf84694cd457e3f81ef952e95fa9af558b458b))
+* Added char verification before displaying form ([18f9809](https://github.com/Math1987/terraJDRfrontend/commit/18f980927dcfda1a3fd5a11cd36e361a103c1ee2))
+* commit with gpg ([5e2b4eb](https://github.com/Math1987/terraJDRfrontend/commit/5e2b4ebecf2c71072816d8432d4199d6c5489fde))
+* graphisme, set new mine ([c3ed973](https://github.com/Math1987/terraJDRfrontend/commit/c3ed9739d0f3cdcb2768ec045f442d07a8d5f29d))
+* religions, set new spells ([e8c6cf9](https://github.com/Math1987/terraJDRfrontend/commit/e8c6cf9091117983a24aa2b8697dff46c3ad9abf))
+
+
+### Visual updates
+
+* Added footer + display version ([38cec6d](https://github.com/Math1987/terraJDRfrontend/commit/38cec6dea7b9f3cb510fa2d083e506e2dde594eb))
+* Changed char creation form ([947739d](https://github.com/Math1987/terraJDRfrontend/commit/947739d0ceaa782209755fc4fc96f5d68df48b07))
+* Tweaked cards border + header ([97321d0](https://github.com/Math1987/terraJDRfrontend/commit/97321d0daf254b8e51c8c74cae96ef403d06e01c))
+
+### [0.0.11](https://github.com/Math1987/terraJDRfrontend/compare/v0.0.7...v0.0.11) (2020-05-13)
+
+
+### Features
+
+* Use dynamic gender/race/religion generation ([3309049](https://github.com/Math1987/terraJDRfrontend/commit/33090496cb35e402beea32b100c977abfbbfb019))
+
+
+### Bug Fixes
+
+* add precisions if cannot create account (doublon mail or pseudo) ([bce5e98](https://github.com/Math1987/terraJDRfrontend/commit/bce5e98e74aef3fd241ee4d16afaa347f5519bbc))
+* Added char verif before displaying creation message ([dcaf846](https://github.com/Math1987/terraJDRfrontend/commit/dcaf84694cd457e3f81ef952e95fa9af558b458b))
+* Added char verification before displaying form ([18f9809](https://github.com/Math1987/terraJDRfrontend/commit/18f980927dcfda1a3fd5a11cd36e361a103c1ee2))
+* commit with gpg ([5e2b4eb](https://github.com/Math1987/terraJDRfrontend/commit/5e2b4ebecf2c71072816d8432d4199d6c5489fde))
+* graphisme, set new mine ([c3ed973](https://github.com/Math1987/terraJDRfrontend/commit/c3ed9739d0f3cdcb2768ec045f442d07a8d5f29d))
+* religions, set new spells ([e8c6cf9](https://github.com/Math1987/terraJDRfrontend/commit/e8c6cf9091117983a24aa2b8697dff46c3ad9abf))
+
+
+### Visual updates
+
+* Added footer + display version ([38cec6d](https://github.com/Math1987/terraJDRfrontend/commit/38cec6dea7b9f3cb510fa2d083e506e2dde594eb))
+* Changed char creation form ([947739d](https://github.com/Math1987/terraJDRfrontend/commit/947739d0ceaa782209755fc4fc96f5d68df48b07))
+* Tweaked cards border + header ([97321d0](https://github.com/Math1987/terraJDRfrontend/commit/97321d0daf254b8e51c8c74cae96ef403d06e01c))
+
 ### [0.0.10](https://github.com/Math1987/terraJDRfrontend/compare/v0.0.7...v0.0.10) (2020-05-13)
 
 
@@ -139,6 +187,7 @@ All notable changes to this project will be documented in this file. See [standa
 * correction spelling ensorceler ([ca88982](https://github.com/Math1987/terraJDRfrontend/commit/ca8898243270250845a8b759ee76a0b877d72204))
 * empeach doublons when add Boxes. This solution cost performance an is temporary ([8197ac4](https://github.com/Math1987/terraJDRfrontend/commit/8197ac4c4fdaf41ff0ff0d842f501681fc2836db))
 * historic, correction of doublons, initialisation of historic when world loaded ([4eb09b1](https://github.com/Math1987/terraJDRfrontend/commit/4eb09b1cf8c0af1c3af6f4da21afeeaec7d37337))
+
 * README instructions ([1dfea6b](https://github.com/Math1987/terraJDRfrontend/commit/1dfea6b90a6676300e016c2d4896592905d3c682))
 * spelling neutral ([4b7eeaf](https://github.com/Math1987/terraJDRfrontend/commit/4b7eeaf77b6c6b240b51ebec0db3aae0f988e505))
 * translator flame, well, luck, correction constraints flame, luck, strat cession implementation ([484df5f](https://github.com/Math1987/terraJDRfrontend/commit/484df5ff099cceb95d79525a219bb21874f616b2))

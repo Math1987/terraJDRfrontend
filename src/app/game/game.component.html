@@ -5,20 +5,6 @@
 
     <nav class="navbar navbar-expand-sm bg-light">
 
-      <ul class="nav navbar-nav ml-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/u/jeu/carte">carte</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/u/jeu/perso">perso</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://terrajdr.forumactif.com" target="_blank">forum</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/u/jeu/classement">classement</a>
-        </li>
-      </ul>
       <ul class="nav navbar-nav ml-auto">
 
         <li *ngFor="let resource of getResources()" class="nav-item">

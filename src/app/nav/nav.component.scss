@@ -32,4 +32,22 @@ mat-toolbar{
   &.footer{
     height: 32px;
   }
+
+  mat-button-toggle{
+    border-radius: 0;
+
+  }
+
 }
+.mat-button-toggle{
+   font-family:  Roboto, "Helvetica Neue", sans-serif;
+   background-color: #1A237E;
+   color : rgba(255,255,255,0.75) ;
+
+   text-transform: uppercase;
+   height: 95% ;
+
+  &.active{
+    color: white ;
+  }
+ }
