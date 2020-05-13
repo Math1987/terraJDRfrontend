@@ -52,7 +52,13 @@ export class Account{
 
     Net.http.get(`${environment.backURL}/createAccount?email=${email}&password=${password}&pseudo=${pseudo}`).subscribe((res)=>{
 
-      if ( res !== null ){
+      console.log(res);
+
+      if ( res && res['error'] && res['error'] === "doublon_mail"){
+        alert('ce mail est déjà pris.');
+      }else if ( res && res['error'] && res['error'] === "doublon_pseudo"){
+        alert('ce pseudo est déjà pris.');
+      }else if ( res !== null ){
         Account.connectAccount(res, function(connexionRes) {
           callBack(res) ;
         });

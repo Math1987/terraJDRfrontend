@@ -33,6 +33,7 @@ export class MapComponent implements OnInit {
     MapComponent.viewUpdated = false ;
     const self = this ;
     NavComponent.setInitCallBack(function(worlds) {
+
       MessageComponent.init();
     });
   }

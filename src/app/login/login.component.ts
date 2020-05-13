@@ -73,7 +73,9 @@ export class LoginComponent implements OnInit {
 
           Account.create(this.formCreate.value.email, this.formCreate.value.password, this.formCreate.value.pseudo, function(res) {
             if (res !== null) {
-              self.router.navigate(['/u/jeu']);
+              Account.connectAccount(res, function(account) {
+                self.router.navigate(['/u/jeu']);
+              });
             } else {
               alert('erreur de connexion.');
             }

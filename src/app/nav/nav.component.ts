@@ -7,6 +7,7 @@ import { Characters } from '../services/characters';
 import { Area } from '../services/world/area';
 import { Net } from '../services/net';
 import { version } from '../../../package.json';
+import {GameComponent} from '../game/game.component';
 
 /**
  * Nav Component:
@@ -71,10 +72,12 @@ export class NavComponent implements OnInit {
 
   initPage() {
 
+    const self = this ;
+
     Worlds.init(function (worlds) {
       Characters.init(function (characters) {
         NavComponent.initialized = true;
-        if (NavComponent.functionInit !== null) {
+        if (NavComponent.functionInit) {
           NavComponent.functionInit();
         }
       });

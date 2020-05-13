@@ -34,9 +34,14 @@ export class GameComponent implements OnInit {
 
   constructor(
     private router: Router
-  ) { }
+  ) {
+
+
+
+  }
 
   ngOnInit() {
+
 
   }
   isInitialized(){
