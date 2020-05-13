@@ -28,19 +28,21 @@ body {
 }
 
 mat-card{
-  border-top: 15px solid mat-color($primary, default);
+  border-top: 15px solid mat-color($primary, lighter);
 
   mat-card-title{
-    margin-top: -38px !important;
+    margin-top: -36px !important;
     text-transform: uppercase;
     text-align: center;
 
     &>span{
+      display: inline-block;
+      width: 150px;
       background-color: mat-color($primary, darker);
       padding: 4px 8px;
       color: mat-color($dark-foreground-palette, text);
       font-weight: 300;
-      font-size: 15px;
+      font-size: 12px;
       @include mat-elevation(2);
     }
   }
