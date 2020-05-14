@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-title><span>Resources</span></mat-card-title>
+  <mat-card-content class="row">
+    <div class="col-4">
+      <div class="list-group-item list-group-item-success">deplacement : {{deplacement}}</div>
+      <div class="list-group-item list-group-item-success">actions : {{actions}}</div>
+    </div>
+    <div class="row col-8">
+      <div *ngFor="let resource of resources">
+        <div class="list-group-item list-group-item-success">
+          {{resource.fr}}
+          {{resource.value}}</div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

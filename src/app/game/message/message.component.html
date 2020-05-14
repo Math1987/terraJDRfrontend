@@ -1,6 +1,9 @@
-<div class="list-group-item list-group-item-primary message">
+<mat-card>
+  <mat-card-title><span>Dialogue</span></mat-card-title>
+  <mat-card-content class="row">
   <div *ngFor="let message of getMessages()" class="list-group-item list-group-item">
     <p>{{message}}</p>
   </div>
-</div>
+  </mat-card-content>
+</mat-card>
 

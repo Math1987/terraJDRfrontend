@@ -26,7 +26,7 @@ import {A_spellVision} from './actions/a_spellVision';
 export class Controls{
 
   static RESOURCES = [
-    'life' ,'water' ,'food' ,'material' ,'faith' ,'actions' ,'xp', 'gold'
+    'water' ,'food' ,'material' ,'faith', 'gold' //, 'life','actions' ,'xp'
   ];
   static SKILLS = [
     'attack' ,"defense" ,"getWater" ,"getFood" ,"getMaterial" ,"getFaith"

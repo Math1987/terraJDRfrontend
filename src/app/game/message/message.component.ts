@@ -14,6 +14,7 @@ import {Historic} from '../../services/historic';
 export class MessageComponent implements OnInit {
 
   static messages = [] ;
+  static infos = [] ;
 
   static init(){
 
@@ -32,6 +33,7 @@ export class MessageComponent implements OnInit {
       }
     };
 
+    console.log(Historic.HISTORIC);
 
   }
   static check(){

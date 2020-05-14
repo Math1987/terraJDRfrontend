@@ -1,51 +1,61 @@
-<div class="list-group-item">
-  <div class="list-group-item list-group-item align-content-center align-items-center text-center">
-    <canvas id="worldViewGame"></canvas>
+<div class="row">
+  <div class="col-md-7 row h-auto d-inline-block">
+    <mat-card class="col-12">
+      <mat-card-title><span>Carte</span></mat-card-title>
+        <mat-card-content class="row">
+          <canvas id="worldViewGame"></canvas>
+        </mat-card-content>
+    </mat-card>
     <app-message></app-message>
   </div>
-  <div class="list-group-item list-group-item-primary">déplacements: {{getMove()}}</div>
-</div>
+  <div class="col-md-5 row">
+    <div class="container-fluid">
 
-<div *ngIf="update()">
-
-  <div class="list-group-item flexRow">
-    <div class="list-group-item list-group-item">
-      <h3>interactions</h3>
-      <div class="list-group-item list-group-item-success flexRow">
-        <div *ngFor="let interaction of interactions" >
-          <div *ngIf="interaction.draw()" class="align-content-center text-center list-group-item list-group-item">
-            <h3>{{interaction.title()}}</h3>
-            <h4 *ngIf="interaction.getPosition()">{{interaction.getPosition().x}}x, {{interaction.getPosition().y}}y</h4>
-            <h5>{{interaction.subTitle()}}</h5>
-            <canvas id="{{interaction.id}}" class="canvasInteraction"></canvas>
-            <div class="list-group-item list-group-item-warning">
-              <div *ngFor="let action of interaction.actions">
-                <div class="btn btn-warning" (click)="useInteraction(interaction, action)">{{action.getNom(interaction.user, interaction.target)}}</div>
+      <app-resources></app-resources>
+      <p></p>
+      <mat-card>
+        <mat-card-title><span>interactions</span></mat-card-title>
+        <mat-card-content class="row">
+          <div class="col-4">
+            <div *ngIf="caseFocused" class="row flex-column text-center">
+              <canvas id="{{caseFocused.id}}" class="canvasInteraction" ></canvas>
+              <h3>{{caseFocused.title()}}</h3>
+              <p>Coordonnées {{caseFocused.getPosition().x}}/{{caseFocused.getPosition().y}}</p>
+              <div *ngFor="let action of caseFocused.actions">
+                <div class="btn btn-warning" (click)="useInteraction(caseFocused, action)">{{action.getNom(caseFocused.user, caseFocused.target)}}</div>
               </div>
-              <ul class="list-group-item list-group-item-primary">
-                <div *ngFor="let value of interaction.values">
-                  <li>{{value.nom}}: {{value.value}}</li>
+              </div>
+          </div>
+          <div class="col-8 row">
+
+            <div *ngFor="let interaction of interactions" class="col-4">
+
+              <div *ngIf="interaction.draw()" class="text-center">
+                <canvas id="{{interaction.id}}" class="canvasInteraction"></canvas>
+                <h5>{{interaction.title()}}</h5>
+                <p *ngIf="interaction.target.life">{{interaction.target.life}}/{{interaction.target.life_max}}pv</p>
+                <div class="row flex-column">
+                  <div *ngFor="let action of interaction.actions">
+                    <div class="btn btn-warning" (click)="useInteraction(interaction, action)">{{action.getNom(interaction.user, interaction.target)}}</div>
+                  </div>
                 </div>
-              </ul>
+              </div>
 
             </div>
-            <ul class="list-group-item flexRow itemsChara flex-wrap">
-              <div *ngFor="let item of interaction.items">
-                <div class="list-group-item list-group-item-danger">
-                  <p>
-                    {{translate(item, 'fr', 'default')}}
-                    {{getItemInfos(item)}}
-                  </p>
-                </div>
 
-              </div>
-            </ul>
+
           </div>
 
-        </div>
-      </div>
+        </mat-card-content>
+      </mat-card>
+
+
     </div>
+
+
   </div>
 
 </div>
+
+
 

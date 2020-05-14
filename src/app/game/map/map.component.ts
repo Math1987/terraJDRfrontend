@@ -12,6 +12,8 @@ import {Worlds} from '../../services/worlds';
 import {Translator} from '../../services/world/model/translator/translator';
 import {Message} from '@angular/compiler/src/i18n/i18n_ast';
 import {MessageComponent} from '../message/message.component';
+import {Model} from '../../services/world/model/model';
+import {Historic} from '../../services/historic';
 
 @Component({
   selector: 'app-map',
@@ -22,6 +24,9 @@ export class MapComponent implements OnInit {
 
   lastUpdate = 0 ;
   interactions: any = [] ;
+  caseFocused = null ;
+
+  updateInterval = null ;
 
   static viewUpdated = false ;
 
@@ -40,7 +45,10 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
 
-
+    const self = this ;
+    this.updateInterval = setInterval(function() {
+      self.update();
+    },10);
 
   }
   static reload(){
@@ -154,6 +162,7 @@ export class MapComponent implements OnInit {
 
   update(){
 
+    Historic.check();
     MessageComponent.check();
 
     if (Area.world && Area.character ) {
@@ -178,6 +187,11 @@ export class MapComponent implements OnInit {
     if (View.focused) {
 
       let interactions = Interaction.buildInteractionsFromView(this.interactions, Area.character, View.focused) ;
+      for ( let interaction of interactions ){
+        if ( Box.isGround(interaction.target.key) ){
+          this.caseFocused = interaction;
+        }
+      }
 
       this.interactions = interactions ;
 

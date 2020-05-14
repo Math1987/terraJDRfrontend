@@ -47,6 +47,15 @@ export class Translator{
     }
     return message ;
   }
+  static fromHistoricToInfos(playerChara, json, language){
+    let message = null ;
+    for ( let ts of Translator.TRANSLATORS ){
+      if ( ts.readKey() == json.key ){
+        message = ts.asInfos(playerChara, json, language);
+      }
+    }
+    return message ;
+  }
   static asHistoricMessage(playerChara, json, language){
     let message = null ;
     for ( let ts of Translator.TRANSLATORS ){
@@ -88,6 +97,9 @@ export class Translator{
       message = `le ${new Date(json.date).getDate()}/${new Date(json.date).getMonth()}/${new Date(json.date).getFullYear()} à ${new Date(json.date).toLocaleTimeString()}: ${asMessage}`;
     }*/
     return this.asMessage(user, json, language) ;
+  }
+  asInfos(){
+
   }
 
 }

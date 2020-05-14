@@ -46,6 +46,7 @@ import { BuildComponent } from './game/dialogs/build/build.component';
 import { ManageComponent } from './game/dialogs/manage/manage.component';
 import { HistoricComponent } from './game/historic/historic.component';
 import { PlayersComponent } from './admin/players/players.component';
+import { ResourcesComponent } from './game/resources/resources.component';
 
 
 const MATERIAL = [
@@ -96,7 +97,8 @@ const MATERIAL = [
     BuildComponent,
     ManageComponent,
     HistoricComponent,
-    PlayersComponent
+    PlayersComponent,
+    ResourcesComponent
   ],
   imports: [
     BrowserModule,
