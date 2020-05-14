@@ -19,6 +19,7 @@
         <mat-card-content class="row">
           <div class="col-4">
             <div *ngIf="caseFocused" class="row flex-column text-center">
+
               <canvas id="{{caseFocused.id}}" class="canvasInteraction" ></canvas>
               <h3>{{caseFocused.title()}}</h3>
               <p>Coordonnées {{caseFocused.getPosition().x}}/{{caseFocused.getPosition().y}}</p>
