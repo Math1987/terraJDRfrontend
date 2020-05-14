@@ -47,6 +47,30 @@ import { ManageComponent } from './game/dialogs/manage/manage.component';
 import { HistoricComponent } from './game/historic/historic.component';
 import { PlayersComponent } from './admin/players/players.component';
 
+
+const MATERIAL = [
+  MatCardModule,
+  MatDividerModule,
+  ReactiveFormsModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule,
+  MatMenuModule,
+  MatIconModule,
+  MatButtonToggleModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatDialogModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatTabsModule,
+  MatChipsModule,
+  MatSelectModule,
+  MatListModule,
+  MatGridListModule
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,27 +103,8 @@ import { PlayersComponent } from './admin/players/players.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatCardModule,
-    MatDividerModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonToggleModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatTooltipModule,
     FormsModule,
-    MatDialogModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatTabsModule,
-    MatChipsModule,
-    MatSelectModule,
-    MatListModule,
-    MatGridListModule
+    MATERIAL,
   ],
   providers: [],
   bootstrap: [AppComponent],

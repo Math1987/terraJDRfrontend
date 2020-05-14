@@ -15,12 +15,12 @@
   <ul class="nav" *ngIf="getCharacter()" >
 
     <li >
-      <a routerLink="/u/jeu/carte">
+      <a [routerLink]="['/','u','jeu','carte']">
         <mat-button-toggle (click)="gameNav = 'carte'" [class.active]="gameNav === 'carte'">CARTE</mat-button-toggle>
       </a>
     </li>
     <li >
-      <a routerLink="/u/jeu/perso">
+      <a  [routerLink]="['/','u','jeu','perso']">
         <mat-button-toggle (click)="gameNav = 'perso'" [class.active]="gameNav === 'perso'" >PERSO</mat-button-toggle>
       </a>
     </li>

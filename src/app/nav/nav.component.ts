@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Account } from '../services/account';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Worlds } from '../services/worlds';
 import { View } from '../services/world/view/view';
 import { Characters } from '../services/characters';
