@@ -4,6 +4,8 @@ import {Area} from '../../area';
 
 export class T_attack_counter extends Translator{
 
+  info = 'contre attaque' ;
+
   constructor(){
     super();
   }
@@ -19,7 +21,7 @@ export class T_attack_counter extends Translator{
     let py = json.x - Math.floor(Area.world.width/2);
     let px = - json.y+ Math.floor(Area.world.height/2);
 
-    if ( user.id == json.target ){
+    /*if ( user.id == json.target ){
       if ( json.target_key == 'character' ){
         if ( json.kill ) {
           message += `${this.writeMessageInfos(json)}, vous avez contre-attaqué ${json.target_name} avec un D100 de ${json.D100}, infligeant ${json.power} de dégâts`;
@@ -39,7 +41,19 @@ export class T_attack_counter extends Translator{
       }else{
         message += `${this.writeMessageInfos(json)}, votre attaque a lamentablement échoué et vous vous êtes fait contre-attaqué par ${Translator.translate(json.target_key, 'fr', 'designation')} avec un D100 de ${json.D100}, subissant ${json.power} de dégâts`;
       }
+    }*/
+
+
+    if ( json.target_key == 'character' ){
+      if ( json.kill ) {
+        message += `${json.target_name} tue ${user.name} en contre-attaquant, infligeant ${json.power} de dégâts`;
+      }else{
+        message += `${json.target_name} contre-attaque ${user.name} infligeant ${json.power} de dégâts`;
+      }
+    }else{
+      message += `${user.name}, tue ${Translator.translate(json.target_key, 'fr', 'designation')} en contre-attaquant, infligeant ${json.power} de dégâts`;
     }
+
 
 
     return message ;

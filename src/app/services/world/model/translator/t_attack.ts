@@ -4,6 +4,7 @@ import {Area} from '../../area';
 
 export class T_attack extends Translator{
 
+  info = "attaque" ;
   action = "attaquer" ;
   skill = "attaque" ;
 
@@ -19,7 +20,7 @@ export class T_attack extends Translator{
       let message = '' ;
 
       if ( user.id == user.id ){
-        if ( json.target_key == 'character' ){
+        /*if ( json.target_key == 'character' ){
           if ( json.kill ){
             message += `${this.writeMessageInfos(json)}, vous avez massacré ${json.target_name} sans pitié, lui assénant un coup fatal avec un D100 de ${json.D100}, générant ${json.power} de dégâts.`;
             if ( json.gold && json.gold > 0 ){
@@ -37,7 +38,21 @@ export class T_attack extends Translator{
             }else{
               message += `${this.writeMessageInfos(json)}, vous avez attaqué ${Translator.translate(json.target_key, 'fr', 'designation')} avec un D100 de ${json.D100}, infligeant ${json.power} de dégâts.`;
             }
+        }*/
+        if ( json.target_key == 'character' ) {
+          if ( json.kill ) {
+            message = `${user.name} a tué ${json.target_name} en infligeant ${json.power} de dégâts.`;
+          }else{
+            message = `${user.name} attaque ${json.target_name} infligeant ${json.power} de dégâts.`;
+          }
+        }else{
+          if ( json.kill ) {
+            message = `${user.name} a tué ${Translator.translate(json.target_key, 'fr', 'designation')} en infligeant ${json.power} de dégâts.`;
+          }else {
+            message = `${user.name} attaque ${Translator.translate(json.target_key, 'fr', 'designation')} infligeant ${json.power} de dégâts.`;
+          }
         }
+
       }
 
 
@@ -67,5 +82,4 @@ export class T_attack extends Translator{
 
       return message ;
   }
-
 }

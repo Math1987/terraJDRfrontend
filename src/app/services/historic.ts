@@ -44,7 +44,6 @@ export class Historic{
     Historic.HISTORIC = [] ;
   }
   static check(){
-    console.log("check historique");
     if ( Area.world && Area.character && (!Historic.HISTORIC || Historic.CHARACTER_FOCUSED !== Area.character) ){
       Historic.init();
       Historic.CHARACTER_FOCUSED = Area.character ;

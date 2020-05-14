@@ -4,6 +4,7 @@ import {Area} from '../../area';
 
 export class T_waterTree extends Translator{
 
+  ionfo = "arrosage" ;
   default = "arroser" ;
   value = "arroser" ;
   designation = `d'eau` ;
@@ -17,7 +18,7 @@ export class T_waterTree extends Translator{
     let message = '' ;
 
     if ( user.id == json.user ){
-      message += `${this.writeMessageInfos(json)}, vous arrosez un arbre. Il pourra vous fournir plus de bois.`;
+      message += `${user.name} arrose un arbre.`;
     }
 
 

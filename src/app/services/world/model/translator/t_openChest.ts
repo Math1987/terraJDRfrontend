@@ -4,6 +4,7 @@ import {Area} from '../../area';
 
 export class T_openchest extends Translator{
 
+  info = "coffre" ;
   action = "ouvrir le coffre" ;
   selfAction = "ouvrir le coffre" ;
   default = "trésor" ;
@@ -17,16 +18,15 @@ export class T_openchest extends Translator{
     let message = '' ;
 
     if ( user.id == json.user ) {
-      message += `${this.writeMessageInfos(json)}, vous avez invoqué le sort de "vision divine", et trouvé que la mine la plus proche se trouve à  ${-json.y + Area.world.height / 2}x, ${json.x - Area.world.width / 2}y.`;
 
       if (json.gold) {
         if (json.gold >= 50) {
-          message = `${this.writeMessageInfos(json)}, vous ouvrez un coffre mystérieux, et trouvez ${json.gold} or.`;
+          message = `${user.name} ouvre un coffre mystérieux et trouve ${json.gold} or.`;
         } else {
-          message = `${this.writeMessageInfos(json)}, vous ouvrez un coffre mystérieux, et trouvez ${json.gold} or.`;
+          message = `${user.name} ouvre un coffre mystérieux et trouve ${json.gold} or.`;
         }
       } else {
-        message = `${this.writeMessageInfos(json)}, vous trouvez une superbe relique magique qui contient ${Translator.translate(json.relic, "fr", "default")}`;
+        message = `${user.name} ouvre un coffre mystérieux et trouve une superbe relique magique qui contient ${Translator.translate(json.relic, "fr", "default")}`;
       }
     }
 

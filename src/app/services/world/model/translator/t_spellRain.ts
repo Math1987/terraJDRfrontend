@@ -2,6 +2,7 @@ import {Translator} from './translator';
 
 export class T_spellRain extends Translator{
 
+  info = "pluie sacrée";
   action = "pluie sacré" ;
   selfAction  = "pluie sacré" ;
   default = "pluie sacré" ;
@@ -16,7 +17,7 @@ export class T_spellRain extends Translator{
     let message = '' ;
 
     if ( user.id == json.user ){
-      message += `${this.writeMessageInfos(json)}, vous invoquez la pluie magique qui remplie la nappe fréatique sur laquel se trouve le puit que vous comptez exploiter.`;
+      message += `${user.name} invoque pluie sacrée.`;
     }
 
 

@@ -13,8 +13,8 @@ import {Historic} from '../../services/historic';
 })
 export class MessageComponent implements OnInit {
 
-  static messages = [] ;
-  static infos = [] ;
+  private static messages = [] ;
+  private static infos = [] ;
 
   static init(){
 
@@ -24,16 +24,25 @@ export class MessageComponent implements OnInit {
       if ( message ){
         MessageComponent.messages.push(message);
       }
+      let info = Translator.fromHistoricToInfos(Area.character, json, 'fr');
+      if ( info ){
+        MessageComponent.infos.push(info);
+      }
     }
     Historic.callBackNewRow = function(json) {
+
+      let bodyMessage = document.getElementById("bodyMessage") as HTMLElement ;
+      bodyMessage.scrollTo(0,0);
 
       let message = Translator.fromHistoricToMessage(Area.character,json, 'fr');
       if ( message ){
         MessageComponent.messages.unshift(message);
       }
+      let info = Translator.fromHistoricToInfos(Area.character, json, 'fr');
+      if ( info ){
+        MessageComponent.infos.unshift(info);
+      }
     };
-
-    console.log(Historic.HISTORIC);
 
   }
   static check(){
@@ -58,7 +67,7 @@ export class MessageComponent implements OnInit {
 
   }
   getMessages(){
-    return MessageComponent.messages ;
+    return MessageComponent.infos ;
   }
 
 }

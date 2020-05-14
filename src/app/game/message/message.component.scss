@@ -1,6 +1,19 @@
 .message{
-  height : 128px ;
+  display:block;
+  height : 256px ;
   width: auto;
   overflow-y: auto;
-  text-align: center;
+}
+tbody {
+  display:block;
+  height:256px;
+  overflow:auto;
+}
+thead, tbody tr {
+  display:table;
+  width:100%;
+  table-layout:fixed;
+}
+thead {
+  width: calc( 100% - 1em )
 }

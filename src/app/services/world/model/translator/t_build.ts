@@ -4,6 +4,7 @@ import {Area} from '../../area';
 
 export class T_build extends Translator{
 
+  info = "construction" ;
   action = "construire" ;
   selfAction = "construire"
 
@@ -18,7 +19,7 @@ export class T_build extends Translator{
     let message = '' ;
 
     if ( user.id == json.user ){
-        message += `${this.writeMessageInfos(json)}, vous avez construit ${Translator.translate(json.build_key,'fr','designation')}.`;
+        message += `${user.name} a construit ${Translator.translate(json.build_key,'fr','designation')}.`;
     }
 
 

@@ -3,6 +3,7 @@ import {Box} from '../box';
 
 export class T_getFaith extends Translator{
 
+  info = "prière" ;
   default = "trouver la foi" ;
   skill = "prêtre" ;
 
@@ -15,7 +16,7 @@ export class T_getFaith extends Translator{
     let message = '' ;
 
     if ( user.id == json.user ){
-      message += `${this.writeMessageInfos(json)}, vous avez trouvé ${json.power} de foi avec un D100 de ${json.D100}.`;
+      message += `${user.name} a trouvé ${json.power} de foi.`;
     }
 
 

@@ -3,6 +3,7 @@ import {Area} from '../../area';
 
 export class T_spellVision extends Translator{
 
+  info = "vision divine" ;
   action = "vision divine" ;
   selfAction  = "vision divine" ;
   default = "vision divine" ;
@@ -17,7 +18,7 @@ export class T_spellVision extends Translator{
     let message = '' ;
 
     if ( user.id == json.user ){
-      message += `${this.writeMessageInfos(json)}, vous avez invoqué le sort de "vision divine", et trouvé que la mine la plus proche se trouve à  ${ - json.mine_y + Area.world.height/2   }x, ${ json.mine_x -Area.world.width/2 }y.`;
+      message += `${user.name} invoque "vision divine" et voit la mine la plus proche à  ${ - json.mine_y + Area.world.height/2   }x, ${ json.mine_x -Area.world.width/2 }y.`;
     }
 
 

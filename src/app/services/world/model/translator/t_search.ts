@@ -3,6 +3,7 @@ import {Box} from '../box';
 
 export class T_search extends Translator{
 
+  info = "fouille";
   default = "fouiller" ;
   value = "fouiller" ;
   designation = `de fouille` ;
@@ -18,15 +19,15 @@ export class T_search extends Translator{
     let message = '' ;
 
     if ( user.id == json.user ){
-      message += `${this.writeMessageInfos(json)}, vous avez trouvé ${json.power} de foi avec un D100 de ${json.D100}.`;
+      message += `${user.name} trouve ${json.power} de foi avec.`;
       if ( json.type == "gold"){
-        message = `${this.writeMessageInfos(json)}, en fouillant dans une mine, vous trouvez ${json.power} d'or avec un D100 de ${json.D100}`;
+        message =  `${user.name} trouve ${json.power} d'or.}`;
       }else if ( json.type == "superGold"){
-        message = `${this.writeMessageInfos(json)}, en fouillant dans une mine, vous trouvez ${json.power} d'or avec un D100 de ${json.D100}`;
+        message = `${user.name} trouve ${json.power} d'or.`;
       }else if ( json.type == "relic"){
-        message = `${this.writeMessageInfos(json)}, en fouillant dans une mine, vous trouvez une relique magique`;
+        message = `${user.name} trouve une relique.`;
       }else if ( json.type == "xp" ){
-        message = `${this.writeMessageInfos(json)}, en fouillant dans une mine, vous vous faites une crampe aux bras et ne trouvez rien...mais gagnez 1 en xp`;
+        message = `${user.name} trouve 1 xp.`;
       }
     }
 

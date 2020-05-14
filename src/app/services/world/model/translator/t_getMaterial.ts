@@ -3,6 +3,7 @@ import {Box} from '../box';
 
 export class T_getMaterial extends Translator{
 
+  info = "bûcheronage" ;
   default = "chercher du matériel" ;
   skill = "bûcheron" ;
 
@@ -15,7 +16,7 @@ export class T_getMaterial extends Translator{
     let message = '' ;
 
     if ( user.id == json.user ){
-      message += `${this.writeMessageInfos(json)}, vous avez coupé ${json.power} de bois avec un D100 de ${json.D100}.`;
+      message += `${user.name} a coupé ${json.power} de bois.`;
     }
 
 

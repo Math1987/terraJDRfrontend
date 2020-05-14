@@ -98,8 +98,24 @@ export class Translator{
     }*/
     return this.asMessage(user, json, language) ;
   }
-  asInfos(){
-
+  getTypeOfMessage(user, json, language){
+    return Translator.translate(this.readKey(), language, "info") ;
+  }
+  asInfos(user, json, language){
+    if ( json.date && json.x ) {
+      let py = json.x - Math.floor(Area.world.width / 2);
+      let px = -json.y + Math.floor(Area.world.height / 2);
+      return {
+        date: json.date,
+        date_fr: `${new Date(json.date).getDate()}/${new Date(json.date).getMonth()} à ${new Date(json.date).getHours()}h${new Date(json.date).getMinutes()}`,
+        position: {x:px,y:py},
+        type : this.getTypeOfMessage(this.readKey(), "fr",'info'),
+        D100 : json.D100,
+        message : this.asMessage(user, json, language)
+      };
+    }else{
+      return null ;
+    }
   }
 
 }

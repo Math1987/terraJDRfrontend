@@ -3,6 +3,7 @@ import {Box} from '../box';
 
 export class T_getWater extends Translator{
 
+  info = "sourcier" ;
   selfAction = "puiser de l'eau";
   skill = "sourcier" ;
 
@@ -19,7 +20,7 @@ export class T_getWater extends Translator{
     let message = '' ;
 
     if ( user.id == json.user ){
-      message += `${this.writeMessageInfos(json)}, vous avez trouvé ${json.power} d'eau avec un D100 de ${json.D100}.`;
+      message += `${user.name} a trouvé ${json.power} d'eau.`;
     }
 
 

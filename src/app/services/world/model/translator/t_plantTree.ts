@@ -4,6 +4,7 @@ import {Area} from '../../area';
 
 export class T_plantTree extends Translator{
 
+  info = "plantation" ;
   default = "arbre" ;
   action = "planter un arbre" ;
   selfAction = "planter un arbre";
@@ -17,7 +18,7 @@ export class T_plantTree extends Translator{
     let message = '' ;
 
     if ( user.id == json.user ){
-      message += `${this.writeMessageInfos(json)}, vous plantez un abre le coeur plein d'espoir...d'en tirer un maximum de matériel.`;
+      message += `${user.name} plante un abre.`;
     }
 
 
