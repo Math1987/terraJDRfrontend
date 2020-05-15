@@ -10,6 +10,7 @@ import {Net} from '../../../net';
 import {View} from '../../view/view';
 import {EditorAddComponent} from '../../../../admin/dialogs/editor-add/editor-add.component';
 import {Builder} from '../builder';
+import {DialogueService} from '../../../../game/dialogs/dialogue.service';
 
 
 export class A_build extends Action{
@@ -62,8 +63,11 @@ export class A_build extends Action{
     let newBuild = new Builder("fortification");
     BuildComponent.builds.push(newBuild);
 
+    DialogueService.open = true ;
     this.fileNameDialogRef = Dialog.dialog.open(BuildComponent);
-
+    this.fileNameDialogRef.afterClosed().subscribe(()=>{
+      DialogueService.open = false ;
+    });
 
     this.fileNameDialogRef
       .afterClosed()

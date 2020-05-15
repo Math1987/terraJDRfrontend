@@ -8,6 +8,7 @@ import {View} from '../../view/view';
 import {MatDialogRef} from '@angular/material';
 import {BewitchComponent} from '../../../../game/dialogs/bewitch/bewitch.component';
 import {TradeComponent} from '../../../../game/dialogs/trade/trade.component';
+import {DialogueService} from '../../../../game/dialogs/dialogue.service';
 
 export class A_trade extends Action{
 
@@ -43,7 +44,11 @@ export class A_trade extends Action{
   use(user, target){
     const self = this ;
 
+    DialogueService.open = true ;
     this.fileNameDialogRef = Dialog.dialog.open(TradeComponent);
+    this.fileNameDialogRef.afterClosed().subscribe(()=>{
+      DialogueService.open = false ;
+    });
 
     TradeComponent.skill = target.skill ;
 

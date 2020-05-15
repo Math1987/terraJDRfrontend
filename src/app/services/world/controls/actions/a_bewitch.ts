@@ -5,6 +5,7 @@ import {View} from '../../view/view';
 import {MatDialogRef} from '@angular/material';
 
 import {BewitchComponent} from '../../../../game/dialogs/bewitch/bewitch.component';
+import {DialogueService} from '../../../../game/dialogs/dialogue.service';
 
 export class A_bewitch extends Action{
 
@@ -58,8 +59,11 @@ export class A_bewitch extends Action{
     BewitchComponent.build(user, target);
     BewitchComponent.user = user ;
     BewitchComponent.target = target ;
+    DialogueService.open = true ;
     this.fileNameDialogRef = Dialog.dialog.open(BewitchComponent);
-
+    this.fileNameDialogRef.afterClosed().subscribe(()=>{
+      DialogueService.open = false ;
+    });
     /*this.fileNameDialogRef
       .afterClosed()
       .subscribe(value => {

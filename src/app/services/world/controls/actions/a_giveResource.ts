@@ -7,6 +7,7 @@ import {filter} from 'rxjs/operators';
 import {Box} from '../../model/box';
 import {Translator} from '../../model/translator/translator';
 import {View} from '../../view/view';
+import {DialogueService} from '../../../../game/dialogs/dialogue.service';
 
 export class A_giveResource extends Action{
 
@@ -40,8 +41,11 @@ export class A_giveResource extends Action{
   }
   use(user, target){
     const self = this ;
+    DialogueService.open = true ;
     this.fileNameDialogRef = Dialog.dialog.open(GiveResourceComponent);
-
+    this.fileNameDialogRef.afterClosed().subscribe(()=>{
+      DialogueService.open = false ;
+    });
     this.fileNameDialogRef
       .afterClosed()
       .subscribe(value => {

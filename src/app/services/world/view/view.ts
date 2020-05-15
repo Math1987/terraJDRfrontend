@@ -2,6 +2,7 @@ import {Area} from '../area';
 import {Net} from '../../net' ;
 import {B_mover} from './view_mover';
 import {Box} from './../model/box';
+import {DialogueService} from '../../../game/dialogs/dialogue.service';
 
 export class View{
 
@@ -418,7 +419,7 @@ export class View{
     View.selectPosition = function(event) {
 
 
-      if ( self.canvasWorld !== null ){
+      if ( self.canvasWorld !== null &&  !DialogueService.open ){
         let px = event.clientX - self.canvasWorld.getBoundingClientRect().left ;
         let py = event.clientY - self.canvasWorld.getBoundingClientRect().top ;
 

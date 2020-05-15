@@ -8,6 +8,7 @@ import {Box} from '../../model/box';
 import {Translator} from '../../model/translator/translator';
 import {View} from '../../view/view';
 import {ManageComponent} from '../../../../game/dialogs/manage/manage.component';
+import {DialogueService} from '../../../../game/dialogs/dialogue.service';
 
 export class A_manage extends Action{
 
@@ -58,7 +59,11 @@ export class A_manage extends Action{
     ManageComponent.user = user ;
     ManageComponent.target = target ;
 
+    DialogueService.open = true ;
     this.fileNameDialogRef = Dialog.dialog.open(ManageComponent);
+    this.fileNameDialogRef.afterClosed().subscribe(()=>{
+      DialogueService.open = false ;
+    });
 
     this.fileNameDialogRef
       .afterClosed()

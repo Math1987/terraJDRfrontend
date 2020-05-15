@@ -14,6 +14,7 @@ import {Message} from '@angular/compiler/src/i18n/i18n_ast';
 import {MessageComponent} from '../message/message.component';
 import {Model} from '../../services/world/model/model';
 import {Historic} from '../../services/historic';
+import {DialogueService} from '../dialogs/dialogue.service';
 
 @Component({
   selector: 'app-map',
@@ -133,7 +134,7 @@ export class MapComponent implements OnInit {
 
         }
         View.moveControls = function(x, y, callBack) {
-          if ( View.canMove(x,y)) {
+          if ( !DialogueService.open && View.canMove(x,y) ) {
 
 
 

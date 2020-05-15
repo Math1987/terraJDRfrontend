@@ -8,6 +8,7 @@ import {Box} from '../../model/box';
 import {GetResourceComponent} from '../../../../game/dialogs/get-resource/get-resource.component';
 import {MatDialogRef} from '@angular/material';
 import {View} from '../../view/view';
+import {DialogueService} from '../../../../game/dialogs/dialogue.service';
 
 export class A_getResource extends Action{
 
@@ -52,7 +53,11 @@ export class A_getResource extends Action{
 
   use(user, target){
     const self = this ;
+    DialogueService.open = true ;
     this.fileNameDialogRef = Dialog.dialog.open(GetResourceComponent);
+    this.fileNameDialogRef.afterClosed().subscribe(()=>{
+      DialogueService.open = false ;
+    });
     GetResourceComponent.user = user ;
     GetResourceComponent.target = target ;
 

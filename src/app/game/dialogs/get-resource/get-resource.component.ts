@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {Net} from '../../../services/net';
 import {Box} from '../../../services/world/model/box';
+import {DialogueService} from '../dialogue.service';
 
 @Component({
   selector: 'app-get-resource',
@@ -33,6 +34,7 @@ export class GetResourceComponent implements OnInit {
   }
   validate(){
 
+    DialogueService.open = false ;
     this.dialogRef.close(``);
     Net.emitAction( GetResourceComponent.resourceFocused, {
       user : GetResourceComponent.user,
