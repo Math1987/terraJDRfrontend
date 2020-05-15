@@ -14,31 +14,34 @@
 
       <app-resources></app-resources>
       <br>
-      <mat-card>
-        <mat-card-title><span>interactions</span></mat-card-title>
-        <mat-card-content class="row">
-          <div class="col-4">
-            <div *ngIf="caseFocused" class="row flex-column text-center">
+      <mat-card class="interactions">
 
-              <canvas id="{{caseFocused.id}}" class="canvasInteraction" ></canvas>
-              <h3>{{caseFocused.title()}}</h3>
-              <p>Coordonnées {{caseFocused.getPosition().x}}/{{caseFocused.getPosition().y}}</p>
-              <div *ngFor="let action of caseFocused.actions">
-                <div class="btn btn-warning" (click)="useInteraction(caseFocused, action)">{{action.getNom(caseFocused.user, caseFocused.target)}}</div>
-              </div>
-              </div>
+        <mat-card-title><span>interactions</span></mat-card-title>
+
+        <div class="row interactionsContent">
+
+          <div *ngIf="caseFocused && caseFocused.draw()" class="col-4 row flex-column text-center focusedCase w-100 caseColor">
+
+            <canvas id="{{caseFocused.id}}" class="canvasInteraction canvasCase" ></canvas>
+
+            <h3>{{caseFocused.title()}}</h3>
+            <p>Coordonnées {{caseFocused.getPosition().x}}/{{caseFocused.getPosition().y}}</p>
+            <div *ngFor="let action of caseFocused.actions">
+              <div class="btn midleBlueColor" (click)="useInteraction(caseFocused, action)">{{action.getNom(caseFocused.user, caseFocused.target)}}</div>
+            </div>
+
           </div>
           <div class="col-8 row">
 
-            <div *ngFor="let interaction of interactions" class="col-4">
+            <div *ngFor="let interaction of interactionObjs" class="col-6">
 
-              <div *ngIf="interaction.draw()" class="text-center">
+              <div *ngIf="interaction.draw()" class="text-center teamColor">
                 <canvas id="{{interaction.id}}" class="canvasInteraction"></canvas>
                 <h5>{{interaction.title()}}</h5>
                 <p *ngIf="interaction.target.life">{{interaction.target.life}}/{{interaction.target.life_max}}pv</p>
                 <div class="row flex-column">
                   <div *ngFor="let action of interaction.actions">
-                    <div class="btn btn-warning" (click)="useInteraction(interaction, action)">{{action.getNom(interaction.user, interaction.target)}}</div>
+                    <div class="btn midleBlueColor" (click)="useInteraction(interaction, action)">{{action.getNom(interaction.user, interaction.target)}}</div>
                   </div>
                 </div>
               </div>
@@ -48,7 +51,7 @@
 
           </div>
 
-        </mat-card-content>
+        </div>
       </mat-card>
 
 

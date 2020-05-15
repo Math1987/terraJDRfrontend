@@ -1,16 +1,26 @@
-<mat-card>
+<mat-card class="resources">
   <mat-card-title><span>Resources</span></mat-card-title>
-  <mat-card-content class="row">
-    <div class="col-4">
-      <div class="list-group-item list-group-item-success">deplacement : {{deplacement}}</div>
-      <div class="list-group-item list-group-item-success">actions : {{actions}}</div>
-    </div>
-    <div class="row col-8">
-      <div *ngFor="let resource of resources">
-        <div class="list-group-item list-group-item-success">
-          {{resource.fr}}
-          {{resource.value}}</div>
+
+  <div class="row resourcesContent">
+
+    <div class="col-4 resourceLeft">
+      <div class="text-center resourceLeftButon">
+        <div class="lightBlueButton">déplacement</div>
+        <P style="color : white;">{{deplacement}}</P>
+      </div>
+      <div class="text-center resourceLeftButon" >
+        <div  class="lightBlueButton">actions</div>
+        <P style="color : white;">{{actions}}</P>
       </div>
     </div>
-  </mat-card-content>
+
+    <div class="col-8 resourceRight">
+      <div *ngFor="let resource of resources" class="resourceLeftButon">
+        <div class="lightBlueButton">
+          {{resource.fr}}: {{resource.value}}
+        </div>
+
+      </div>
+    </div>
+  </div>
 </mat-card>

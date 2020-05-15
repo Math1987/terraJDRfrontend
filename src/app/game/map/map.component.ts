@@ -25,6 +25,7 @@ export class MapComponent implements OnInit {
   lastUpdate = 0 ;
   interactions: any = [] ;
   caseFocused = null ;
+  interactionObjs = [] ;
 
   updateInterval = null ;
 
@@ -186,13 +187,15 @@ export class MapComponent implements OnInit {
 
     if (View.focused) {
 
+      this.interactionObjs = [] ;
       let interactions = Interaction.buildInteractionsFromView(this.interactions, Area.character, View.focused) ;
       for ( let interaction of interactions ){
         if ( Box.isGround(interaction.target.key) ){
           this.caseFocused = interaction;
+        }else{
+          this.interactionObjs.push(interaction);
         }
       }
-
       this.interactions = interactions ;
 
     }

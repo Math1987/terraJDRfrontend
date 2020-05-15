@@ -107,7 +107,7 @@ export class Translator{
       let px = -json.y + Math.floor(Area.world.height / 2);
       return {
         date: json.date,
-        date_fr: `${new Date(json.date).getDate()}/${new Date(json.date).getMonth()} à ${new Date(json.date).getHours()}h${new Date(json.date).getMinutes()}`,
+        date_fr: `${new Date(json.date).getDate()}/${new Date(json.date).getMonth()} ${new Date(json.date).getHours()}h${new Date(json.date).getMinutes()}`,
         position: {x:px,y:py},
         type : this.getTypeOfMessage(this.readKey(), "fr",'info'),
         D100 : json.D100,

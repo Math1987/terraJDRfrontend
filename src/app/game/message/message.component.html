@@ -4,20 +4,20 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col" >date</th>
-          <th scope="col">coordonnées</th>
-          <th scope="col">type</th>
-          <th scope="col">D100</th>
-          <th scope="col">message</th>
+          <th scope="col" style="width: 7.5%;">date</th>
+          <th scope="col" style="width: 7.5%;">x/y</th>
+          <th scope="col" style="width: 15%;">type</th>
+          <th scope="col" style="width: 10%;">D100</th>
+          <th scope="col" style="width: 60%;">message</th>
         </tr>
       </thead>
       <tbody id="bodyMessage" >
         <tr *ngFor="let message of getMessages()" >
-          <td>{{message.date_fr}}</td>
-          <td >{{message.position.x}}/{{message.position.y}}</td>
-          <td >{{message.type}}</td>
-          <td >{{message.D100}}</td>
-          <td >{{message.message}}</td>
+          <td style="width: 7.5%;">{{message.date_fr}}</td>
+          <td style="width: 7.5%;">{{message.position.x}}/{{message.position.y}}</td>
+          <td style="width: 15%;">{{message.type}}</td>
+          <td style="width: 10%;">{{message.D100}}</td>
+          <td style="width: 60%;">{{message.message}}</td>
         </tr>
       </tbody>
     </table>

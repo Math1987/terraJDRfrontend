@@ -71,3 +71,37 @@ mat-button-toggle{
   display: flex;
   flex-direction: row;
 }
+
+.lightBlueButton{
+  background-color: #c5cae9;
+  color : black ;
+  text-align: center;
+  font-size: smaller;
+  padding: 8px;
+  margin : 4px;
+  border : 1px solid white ;
+  align-self: center;
+}
+.midleBlueColor{
+  border-radius: 0px;
+  border : 1 px solid ;
+  border-color: #95989A ;
+  background-color: #5C6BC0;
+  color : white ;
+  text-align: center;
+  font-size: smaller;
+  padding: 4px;
+  width: 90% ;
+}
+
+.caseColor{
+  color : white ;
+}
+.caseColor p {
+  color : rgba(255,255,255,0.85) ;
+}
+
+.teamColor{
+  color : #0CA202 ;
+
+}

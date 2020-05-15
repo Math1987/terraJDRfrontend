@@ -1,0 +1,38 @@
+.resourceLeft{
+
+  padding : 0px ;
+  margin: 0px;
+
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.resourceRight{
+
+  padding : 0px ;
+  margin: 0px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.resourceLeftButon{
+  align-self: center;
+}
+
+.resources{
+  padding-left : 0px ;
+  padding-right: 0px;
+  background: linear-gradient(to left, #ffffff 66.6%, #8d6e63 66.6%);
+}
+.resourcesContent{
+  padding : 0px ;
+  margin: 0px;
+}
+

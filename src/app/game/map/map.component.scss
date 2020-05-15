@@ -1,11 +1,35 @@
-
+@import '../../../theme';
 .canvasInteraction{
+  border-radius: 50%;
+  border : 1px solid rgba(0,0,0,0.25);
   align-self: center;
+  background-color: rgba(0,0,0,0.1);
   width : 75% ;
   height: auto;
+}
+.canvasCase{
+  background-color: rgba(255,255,255,0.1);
 }
 .itemsChara{
   max-width: 256px;
   max-height: 128px;
   overflow-y: scroll;
+}
+.interactions{
+
+  background-color: black;
+  background: linear-gradient(to left, #ffffff 66.6%, #8d6e63 66.6%);
+
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0px ;
+
+}
+.interactionsContent{
+  padding : 0px ;
+  margin: 0px;
+}
+.focusedCase{
+  padding: 5%;
+  margin: 0px;
 }
