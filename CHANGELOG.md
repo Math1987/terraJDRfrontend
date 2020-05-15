@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/Math1987/terraJDRfrontend/compare/v0.0.7...v0.0.13) (2020-05-15)
+
+
+### Features
+
+* Use dynamic gender/race/religion generation ([3309049](https://github.com/Math1987/terraJDRfrontend/commit/33090496cb35e402beea32b100c977abfbbfb019))
+
+
+### Bug Fixes
+
+* add precisions if cannot create account (doublon mail or pseudo) ([bce5e98](https://github.com/Math1987/terraJDRfrontend/commit/bce5e98e74aef3fd241ee4d16afaa347f5519bbc))
+* Added char verif before displaying creation message ([dcaf846](https://github.com/Math1987/terraJDRfrontend/commit/dcaf84694cd457e3f81ef952e95fa9af558b458b))
+* Added char verification before displaying form ([18f9809](https://github.com/Math1987/terraJDRfrontend/commit/18f980927dcfda1a3fd5a11cd36e361a103c1ee2))
+* commit with gpg ([5e2b4eb](https://github.com/Math1987/terraJDRfrontend/commit/5e2b4ebecf2c71072816d8432d4199d6c5489fde))
+* graphisme, set new mine ([c3ed973](https://github.com/Math1987/terraJDRfrontend/commit/c3ed9739d0f3cdcb2768ec045f442d07a8d5f29d))
+* religions, set new spells ([e8c6cf9](https://github.com/Math1987/terraJDRfrontend/commit/e8c6cf9091117983a24aa2b8697dff46c3ad9abf))
+* tidy materials in app.module ([a12ebf9](https://github.com/Math1987/terraJDRfrontend/commit/a12ebf956128dfe52144d6223be9d324d572c1c7))
+
+
+### Visual updates
+
+* add images for creating page ([c2367bf](https://github.com/Math1987/terraJDRfrontend/commit/c2367bf200ce42b5cbde0b2a0b1b8a2f0985dd74))
+* Added footer + display version ([38cec6d](https://github.com/Math1987/terraJDRfrontend/commit/38cec6dea7b9f3cb510fa2d083e506e2dde594eb))
+* Changed char creation form ([947739d](https://github.com/Math1987/terraJDRfrontend/commit/947739d0ceaa782209755fc4fc96f5d68df48b07))
+* set game nav in main nav ([7ea7f7e](https://github.com/Math1987/terraJDRfrontend/commit/7ea7f7e93c56d988485a8f21407b39290e99ccf8))
+* Tweaked cards border + header ([97321d0](https://github.com/Math1987/terraJDRfrontend/commit/97321d0daf254b8e51c8c74cae96ef403d06e01c))
+* update map interface ([f551d86](https://github.com/Math1987/terraJDRfrontend/commit/f551d86f26f48f777901664c34a3547e2821f91f))
+* update map interface ([bc7787d](https://github.com/Math1987/terraJDRfrontend/commit/bc7787dc570ee72465bd633de2e00e8e363383e4))
+* update message on map page + update historic with info in place of text message only ([5f8192d](https://github.com/Math1987/terraJDRfrontend/commit/5f8192dc53b4b6f8240ebe85a8815d938a666621))
+
 ### [0.0.12](https://github.com/Math1987/terraJDRfrontend/compare/v0.0.7...v0.0.12) (2020-05-13)
 
 
