@@ -26,6 +26,7 @@
 
             <h3>{{caseFocused.title()}}</h3>
             <p>Coordonnées {{caseFocused.getPosition().x}}/{{caseFocused.getPosition().y}}</p>
+            <p>Coût déplacement {{getMoveCost(caseFocused.target.x,caseFocused.target.y)}}</p>
             <div *ngFor="let action of caseFocused.actions">
               <div class="btn midleBlueColor" (click)="useInteraction(caseFocused, action)">{{action.getNom(caseFocused.user, caseFocused.target)}}</div>
             </div>

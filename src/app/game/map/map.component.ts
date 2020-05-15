@@ -162,6 +162,31 @@ export class MapComponent implements OnInit {
     }
   }
 
+  getMoveCost(x,y){
+    let cost = 1 ;
+    let objs = Box.getByPosition(x,y);
+    let gotConstraint = false ;
+    for ( let obj of objs ){
+      if (obj.key == "neutral") {
+        cost = 0;
+        break;
+      } else if (obj.key == 'tree') {
+        gotConstraint = true;
+        cost = 2;
+        break;
+      } else if (obj.key == 'fortification') {
+        gotConstraint = true;
+        if (( obj.race == Area.character.race)) {
+          cost = 0 ;
+        }else{
+          cost = 2 ;
+        }
+        break;
+      }
+    }
+    return cost  ;
+  }
+
   update(){
 
     Historic.check();
