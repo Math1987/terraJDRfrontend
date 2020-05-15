@@ -229,6 +229,9 @@ export class MapComponent implements OnInit {
   translate(item, language, type){
     return Translator.translate(item.key, language, type);
   }
+  getCharacter(){
+    return Area.character ;
+  }
   getItemInfos(item){
     let key = "" ;
     for ( let k of Object.keys(item)){

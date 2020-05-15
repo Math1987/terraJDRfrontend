@@ -249,6 +249,17 @@ export class Interaction{
     return true ;
   }
 
+  getTypeOfInteractionWith(user){
+    if ( 'race' in user && 'race' in this.target && user.race === this.target.race ){
+      return 'ally';
+    }else if ( 'race' in user && 'race' in this.target && user.race !== this.target.race ){
+      return 'enemy';
+    }else{
+      return 'neutral';
+    }
+
+  }
+
   updateFromModel(interaction){
 
     this.target = interaction.target ;
