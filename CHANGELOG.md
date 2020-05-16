@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/Math1987/terraJDRfrontend/compare/v0.0.13...v0.0.14) (2020-05-16)
+
+
+### Features
+
+* add move cost in map component ([ea91447](https://github.com/Math1987/terraJDRfrontend/commit/ea914471ec8d085415d661683bc44162be681dc4))
+
+
+### Bug Fixes
+
+* create dialogService empeach click when dialog open ([5769ed1](https://github.com/Math1987/terraJDRfrontend/commit/5769ed13db9560ef7190e84cd5da4e2f08e253c7))
+
+
+### Visual updates
+
+* set illustrations as path from metadatas when got in dynamics interactions ([08b048f](https://github.com/Math1987/terraJDRfrontend/commit/08b048fdf33a52489992428f3a3ae99c5db27f62))
+* set images in place of canvas in terran case (mapComponent), used from backend metaDatas loaded in translator ([0036935](https://github.com/Math1987/terraJDRfrontend/commit/00369356455cdd03d3dca6787d1e2f2671cd54d2))
+* set type of interactions in map (ally, neutral, enemy) ([33bb303](https://github.com/Math1987/terraJDRfrontend/commit/33bb303a966dfb982d9802e60f99ea375012a0f7))
+* start chara update ([a773ff3](https://github.com/Math1987/terraJDRfrontend/commit/a773ff37d49d85413459b3a59bcab67503378a0d))
+
 ### [0.0.13](https://github.com/Math1987/terraJDRfrontend/compare/v0.0.7...v0.0.13) (2020-05-15)
 
 
