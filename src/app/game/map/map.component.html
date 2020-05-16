@@ -22,7 +22,9 @@
 
           <div *ngIf="caseFocused && caseFocused.draw()" class="col-4 row flex-column text-center focusedCase w-100 caseColor">
 
-            <canvas id="{{caseFocused.id}}" class="canvasInteraction canvasCase" ></canvas>
+            <!-- canvas id="{{caseFocused.id}}" class="canvasInteraction canvasCase" ></canvas> -->
+
+            <img class="canvasInteraction canvasCase" [src]="caseFocused.img_src">
 
             <h3>{{caseFocused.title()}}</h3>
             <p>Coordonnées {{caseFocused.getPosition().x}}/{{caseFocused.getPosition().y}}</p>

@@ -53,7 +53,7 @@ export class Box{
     return bool ;
   }
   static isGround(key){
-    if ( key == "ground" || key == "neutral" || key == "field" || key == "well" || key == "tree" || key == "temple"){
+    if ( key == "ground" || key == "neutral" || key == "field" || key == "well" || key == "tree" || key == "temple" || key == "trader"){
       return true ;
     }else{
       return false ;

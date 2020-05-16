@@ -163,11 +163,19 @@ export class Interaction{
       }
     }
     if ( actions.length >= 0  ){
+
       interaction.id = Interaction.ID_BUILDER ++ ;
       interaction.views = views ;
       interaction.user = user;
       interaction.target = target;
       interaction.actions = actions;
+      if ( interaction.target ){
+        let metaData = Translator.getMetaDataByKey(interaction.target.key);
+        if ( metaData ){
+          console.log(metaData);
+          interaction.img_src = metaData.img ;
+        }
+      }
       if ( target['items'] ) {
         interaction.items = target['items'] ;
       }
@@ -181,6 +189,7 @@ export class Interaction{
 
   id = 0 ;
   canvas = null ;
+  img_src = 'assets/images/cat.png' ;
   views = null ;
   user : any = null ;
   target : any = null ;
@@ -242,8 +251,6 @@ export class Interaction{
           }
         }
       }
-
-
     }
 
     return true ;

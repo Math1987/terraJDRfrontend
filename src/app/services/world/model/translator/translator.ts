@@ -21,6 +21,19 @@ export class Translator{
 
   }
 
+  static getMetaDataByKey(key){
+    let focused = null ;
+    for ( let ar of Object.keys(Translator.METADATAS) ){
+      for ( let json of Translator.METADATAS[ar] ){
+        if ( json.key == key ){
+          focused = json ;
+          break ;
+        }
+      }
+    }
+    return focused ;
+  }
+
   static translate(key, language, type ){
 
     let translate = null ;
