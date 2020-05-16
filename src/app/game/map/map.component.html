@@ -47,7 +47,8 @@
                      'enemyColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'enemy'
                  }"
                 >
-                  <canvas id="{{interaction.id}}"
+                  <canvas *ngIf="!interaction.img_src"
+                    id="{{interaction.id}}"
                           [ngClass]="{
                      'canvasInteraction': true,
                      'neutralCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'neutral',
@@ -55,6 +56,15 @@
                      'ennemyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'enemy'
                  }"
                   ></canvas>
+
+                  <img *ngIf="interaction.img_src"
+                       [ngClass]="{
+                     'canvasInteraction': true,
+                     'neutralCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'neutral',
+                     'allyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'ally',
+                     'ennemyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'enemy'}"
+                       [src]="interaction.img_src">
+
                   <h5>{{interaction.title()}}</h5>
                   <p *ngIf="interaction.target.life">{{interaction.target.life}}/{{interaction.target.life_max}}pv</p>
                   <div class="row flex-column">

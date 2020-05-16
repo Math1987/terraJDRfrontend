@@ -189,7 +189,7 @@ export class Interaction{
 
   id = 0 ;
   canvas = null ;
-  img_src = 'assets/images/cat.png' ;
+  img_src = null ;
   views = null ;
   user : any = null ;
   target : any = null ;
