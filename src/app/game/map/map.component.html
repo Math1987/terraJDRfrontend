@@ -16,17 +16,18 @@
       <br>
       <mat-card class="interactions">
 
-        <mat-card-title><span>interactions</span></mat-card-title>
+        <mat-card-title><span>Informations CASE</span></mat-card-title>
 
         <div class="row interactionsContent">
 
-          <div *ngIf="caseFocused && caseFocused.draw()" class="col-4 row flex-column text-center focusedCase w-100 caseColor">
+          <div *ngIf="caseFocused && caseFocused.draw()" class="col-4 row flex-column text-center focusedCase caseColor">
 
             <!-- canvas id="{{caseFocused.id}}" class="canvasInteraction canvasCase" ></canvas> -->
 
             <img class="canvasInteraction canvasCase" [src]="caseFocused.img_src">
 
             <h3>{{caseFocused.title()}}</h3>
+            <p *ngIf="caseFocused.target.vitality">{{caseFocused.target.vitality}}/{{caseFocused.target.vitality_max}}</p>
             <p>Coordonnées {{caseFocused.getPosition().x}}/{{caseFocused.getPosition().y}}</p>
             <p>Coût déplacement {{getMoveCost(caseFocused.target.x,caseFocused.target.y)}}</p>
             <div *ngFor="let action of caseFocused.actions">
@@ -36,7 +37,7 @@
           </div>
           <div class="col-8 row">
 
-            <div *ngFor="let interaction of interactionObjs" class="col-6">
+            <div *ngFor="let interaction of interactionObjs" class="col-4">
 
               <div *ngIf="interaction.draw()"
                    class="text-center teamColor">

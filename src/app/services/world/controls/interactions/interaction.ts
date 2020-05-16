@@ -172,7 +172,6 @@ export class Interaction{
       if ( interaction.target ){
         let metaData = Translator.getMetaDataByKey(interaction.target.key);
         if ( metaData ){
-          console.log(metaData);
           interaction.img_src = metaData.img ;
         }
       }

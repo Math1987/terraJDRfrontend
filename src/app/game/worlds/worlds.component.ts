@@ -134,13 +134,18 @@ export class WorldsComponent implements OnInit {
   createCharacter(){
     console.log(this.name);
     if(this.name.length > 2){
-      Net.emitCreateCharacter({
+
+      let json = {
         key: "character",
         name: this.name,
         sexe: this.gender,
         race: this.race,
         religion: this.religion
-      }, (createUserCharaRes) => {
+      };
+      console.log(json);
+
+      Net.emitCreateCharacter(
+        json, (createUserCharaRes) => {
         if ( createUserCharaRes){
           Characters.add(createUserCharaRes);
           this.chooseCharacter(createUserCharaRes);

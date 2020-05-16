@@ -18,9 +18,11 @@ import {HistoricComponent} from '../historic/historic.component';
 export class CharacterComponent implements OnInit {
 
   static lastUpdate = new Date().getTime();
+  infos = [];
   skills = [];
   spells = [] ;
   fortifications = [] ;
+  religionImagePath = '/assets/images/cat.png' ;
 
   constructor() {
 
@@ -43,7 +45,37 @@ export class CharacterComponent implements OnInit {
     const self = this ;
     if ( Area.character !== null && Box.lastUpdate !== CharacterComponent.lastUpdate ){
 
-      this.skills = [] ;
+      console.log(Area.character);
+
+      let fortifications =  null ;
+      let reliques = null ;
+      if ( this.infos.length <= 0 ) {
+        for (let key of Object.keys(Area.character)) {
+          if (key === "race") {
+            this.infos.push(Translator.getMetaDataByKey(Area.character[key]).name_fr);
+          }else if (key === "sexe") {
+            this.infos.push(Translator.translate(Area.character[key], 'fr', 'default'));
+          }else if (key === "fortifications") {
+            this.infos.push(Translator.translate("fortification", 'fr', 'default'));
+            fortifications = true ;
+          }else if (key === "relics") {
+            this.infos.push(Translator.translate("relic", 'fr', 'default'));
+            reliques = true ;
+          }
+        }
+      }
+
+      if ( Area.character && Area.character.religion ){
+        let path = Translator.getMetaDataByKey(Area.character.religion);
+        if ( path ){
+          console.log('path' + JSON.stringify(path));
+          this.religionImagePath = path.img ;
+        }
+      }
+
+      while (this.skills.length>0){
+        this.skills.splice(0,1);
+      }
       for ( let i = 0 ; i < Object.keys(Area.character).length ; i ++ ){
         let key = Object.keys(Area.character)[i];
         let skill = Controls.getSkillFromKey( Object.keys(Area.character)[i]);
@@ -58,7 +90,9 @@ export class CharacterComponent implements OnInit {
       }
 
 
-      this.spells = [] ;
+      while ( this.spells.length > 0 ){
+        this.spells.splice(0,1);
+      }
 
       for ( let spell of Action.getSpells() ){
         if ( 'religions' in spell ){
@@ -123,6 +157,9 @@ export class CharacterComponent implements OnInit {
     }
 
   }
+  getCharacter(){
+    return Area.character ;
+  }
   getSpellNom(key){
     return Translator.translate(key, 'fr', 'default');
   }
@@ -130,19 +167,30 @@ export class CharacterComponent implements OnInit {
     return this.spells ;
   }
   canAddSkill = true ;
-  addSkill(skill){
+  addSkill(skill, add){
     const self = this ;
     if ( self.canAddSkill ){
       self.canAddSkill = false ;
       Net.emitAction( 'addSkill', {
         user: Area.character,
         skill: skill.key,
-        value : 1
+        value : add
       }, function(res) {
         self.canAddSkill = true ;
       });
     }
 
+  }
+
+  getInfos(){
+    return this.infos ;
+  }
+  getReligionImagePath(){
+    if ( this.religionImagePath ){
+      return this.religionImagePath ;
+    }else{
+      return '/assets/images/cat.png' ;
+    }
   }
 
 }

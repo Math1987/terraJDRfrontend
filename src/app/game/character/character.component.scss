@@ -10,3 +10,34 @@
   width : 128px ;
   height : 128px ;
 }
+.charaDescription{
+
+  background: linear-gradient(to left, #ffffff 66.6%, #8d6e63 66.6%);
+
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0px ;
+
+}
+.charaDescriptionInside{
+  padding: 0px;
+  margin: 0px;
+}
+
+
+.charaInfos{
+}
+.charaImage{
+  border-radius: 50%;
+  align-self: center;
+  width : 75% ;
+  height: auto;
+}
+.adders{
+  display: flex;
+  justify-content: space-around;
+  padding: 5%;
+}
+.buttonSkill{
+  margin: 2.5%;
+}

@@ -3,6 +3,7 @@ import {Box} from '../box';
 
 export class T_giveResource extends Translator{
 
+  info = "dont de resource" ;
   default = "donner une resource";
   action = "donner une resource";
 
@@ -11,6 +12,16 @@ export class T_giveResource extends Translator{
   }
   readKey(){
     return 'giveResource' ;
+  }
+
+  asMessage(user, json, language) {
+
+    let message = '' ;
+
+    if ( user.id == json.user ){
+      message += `${user.name} a donné ${json.value} ${Translator.translate(json.resource,'fr','designation')} à ${json.target_name}`;
+    }
+    return message ;
   }
   /*asMessage(user, json, language) {
 

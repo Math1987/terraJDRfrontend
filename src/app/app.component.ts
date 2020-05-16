@@ -53,6 +53,9 @@ import {T_squeleton} from './services/world/model/translator/t_squeleton';
 import {T_fortification} from './services/world/model/translator/t_fortification';
 import {T_flame} from './services/world/model/translator/t_flame';
 import {T_well} from './services/world/model/translator/t_well';
+import {T_passRelic} from './services/world/model/translator/t_passRelic';
+import {T_masculin} from './services/world/model/translator/t_masculin';
+import {T_feminine} from './services/world/model/translator/t_feminine';
 
 @Component({
   selector: 'app-root',
@@ -115,7 +118,10 @@ export class AppComponent implements OnInit{
       new T_squeleton(),
       new T_fortification(),
       new T_flame(),
-      new T_well()
+      new T_well(),
+      new T_passRelic(),
+      new T_masculin(),
+      new T_feminine()
     ]);
 
     Calculation.init();

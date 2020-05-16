@@ -23,6 +23,7 @@ export class A_giveResource extends Action{
     if ( key1 == "water"
       && key1 == key2
       && user.id !== target.id
+      && user.x == target.x && user.y == target.y
       && ( !('race' in target && 'race' in user) || target.race === user.race )
     ){
       return true ;

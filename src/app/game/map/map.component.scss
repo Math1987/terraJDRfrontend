@@ -8,7 +8,10 @@
   height: auto;
 }
 .canvasCase{
+  width: 104%;
+  margin-left: - 2%;
   background-color: rgba(255,255,255,0.1);
+  border : 1px solid white ;
 }
 .itemsChara{
   max-width: 256px;
@@ -30,8 +33,9 @@
   margin: 0px;
 }
 .focusedCase{
-  padding: 5%;
+  padding: 2.5%;
   margin: 0px;
+
 }
 
 .neutralCanvas{

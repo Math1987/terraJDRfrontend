@@ -57,25 +57,25 @@ export class V_character extends View{
 
   getImage(){
     if ( 'race' in this.box && this.box.race === "human" ){
-      if ( 'sexe' in this.box && this.box.sexe === "Féminin" ){
+      if ( 'sexe' in this.box && this.box.sexe === "feminine" ){
         return V_character.image_human_female ;
       }else{
         return V_character.image_human ;
       }
     }else if ( 'race' in this.box && this.box.race === "dwarf" ){
-      if ( 'sexe' in this.box && this.box.sexe == "Féminin" ) {
+      if ( 'sexe' in this.box && this.box.sexe == "feminine" ) {
         return V_character.image_dwarf_female;
       }else{
         return V_character.image_dwarf;
       }
     }else if ( 'race' in this.box && this.box.race === "vampire" ){
-      if ( 'sexe' in this.box && this.box.sexe === "Féminin" ) {
+      if ( 'sexe' in this.box && this.box.sexe === "feminine" ) {
         return V_character.image_vampire_female;
       }else{
         return V_character.image_vampire;
       }
     }else if ( 'race' in this.box && this.box.race === "elf" ){
-      if ( 'sexe' in this.box && this.box.sexe === "Féminin" ) {
+      if ( 'sexe' in this.box && this.box.sexe === "feminine" ) {
         return V_character.image_elf_female;
       }else{
         return V_character.image_elf;
