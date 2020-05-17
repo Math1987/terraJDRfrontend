@@ -256,7 +256,9 @@ export class Interaction{
   }
 
   getTypeOfInteractionWith(user){
-    if ( 'race' in user && 'race' in this.target && user.race === this.target.race ){
+    if ( user.id == this.target.id ){
+      return 'self';
+    }else if ( 'race' in user && 'race' in this.target && user.race === this.target.race ){
       return 'ally';
     }else if ( 'race' in user && 'race' in this.target && user.race !== this.target.race ){
       return 'enemy';

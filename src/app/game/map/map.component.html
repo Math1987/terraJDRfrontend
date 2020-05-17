@@ -43,6 +43,7 @@
                    class="text-center teamColor">
                 <div [ngClass]="{
                      'text-center': true,
+                     'selfColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'self',
                      'neutralColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'neutral',
                      'teamColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'ally',
                      'enemyColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'enemy'
@@ -52,6 +53,7 @@
                     id="{{interaction.id}}"
                           [ngClass]="{
                      'canvasInteraction': true,
+                     'selfColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'self',
                      'neutralCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'neutral',
                      'allyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'ally',
                      'ennemyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'enemy'
