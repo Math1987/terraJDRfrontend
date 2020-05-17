@@ -79,6 +79,10 @@
                     [src]="interaction.img_src">
 
                   <h5>{{interaction.title()}}</h5>
+                  <div *ngIf="interaction.target.life" class="health-bar">
+                    <div class="heal" style="width: {{interaction.target.life/interaction.target.life_max*100}}%"></div>
+                    <div class="hp" style="width: {{interaction.target.life/interaction.target.life_max*100}}%"></div>
+                  </div>
                   <p *ngIf="interaction.target.life">{{interaction.target.life}}/{{interaction.target.life_max}}pv</p>
                   <div class="row flex-column">
                     <div *ngFor="let action of interaction.actions">

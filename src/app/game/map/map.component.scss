@@ -1,4 +1,5 @@
 @import '../../../theme';
+
 .canvasInteraction{
   border-radius: 50%;
   border : 1px solid rgba(0,0,0,0.25);
@@ -49,4 +50,27 @@
 .ennemyCanvas{
   border-color: red;
   border : 2px solid ;
+}
+
+.health-bar{
+  position: relative;
+  height: 5px;
+  background-color: mat-color($warn);
+
+  .heal,.hp{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+
+  .heal{
+    background-color: $heal;
+    transition: width .3s;
+  }
+
+  .hp{
+    background-color: $hp;
+    transition: width .5s;
+  }
 }
