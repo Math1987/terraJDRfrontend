@@ -62,12 +62,6 @@ export class CharacterComponent implements OnInit {
               name_fr: Translator.translate(Area.character[key], 'fr', 'default'),
               description_fr : ''
             });
-          }else if (key === "fortifications") {
-            this.infos.push({
-              name_fr: Translator.translate("fortification", 'fr', 'default'),
-              description_fr : ''
-            });
-            fortifications = true ;
           }else if (key === "items") {
             let relics = [] ;
             for ( let item of Area.character['items'] ){
@@ -86,10 +80,18 @@ export class CharacterComponent implements OnInit {
                   description += `${Translator.translate(resource, 'fr', 'default')}: ${relic[resource]} `
                 }
               }
-              this.infos.push( {
-                name_fr : `${relics.length} ${Translator.translate("relic", 'fr', 'default')}`,
-                description_fr : description
-              });
+              if ( relics.length > 1 ){
+                this.infos.push( {
+                  name_fr : `${relics.length} ${Translator.translate("relic", 'fr', 'default')}s`,
+                  description_fr : description
+                });
+              }else{
+                this.infos.push( {
+                  name_fr : `${relics.length} ${Translator.translate("relic", 'fr', 'default')}`,
+                  description_fr : description
+                });
+              }
+
             }
             reliques = true ;
           }
@@ -145,6 +147,25 @@ export class CharacterComponent implements OnInit {
         self.fortifications = [];
         Net.emitReadByIds(Area.character.fortifications, function(objs){
           self.fortifications = objs ;
+          if ( self.fortifications && self.fortifications.length > 0  ){
+
+            let description = '' ;
+            let i = 1 ;
+            for ( let fort of self.fortifications ){
+              if ( description.length > 0 ){
+                description += ', ' ;
+              }
+              description += `fort ${i}: ${fort.x}x/${fort.y}y, ${fort.life}pv, `;
+
+              i ++ ;
+            }
+
+
+            self.infos.push({
+              name_fr: self.fortifications.length + ' fortifications',
+              description_fr : description
+            });
+          }
         });
       }
 

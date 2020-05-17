@@ -50,30 +50,13 @@
       </mat-card>
     </div>
 
-
-    <app-message class="col-12"></app-message>
+    <app-message class="col-12" style="margin-top: 16px"></app-message>
 
   </div>
 
   <div class="col-md-5 row">
     <div class="container-fluid">
       <app-resources></app-resources>
-    </div>
-  </div>
-</div>
-
-<div class="list-group-item list-group-item-primary">
-
-  <div class="list-group-item list-group-item-danger">
-    <h4>fortifications:</h4>
-    <div class="flexRow">
-      <div  *ngFor="let fortification of fortifications">
-        <div class="list-group-item list-group-item-danger">
-          <canvas id="{{fortification.id}}" class="canvasFortification"></canvas>
-          <p>pv:{{fortification.life}}/1000</p>
-          <p>position : {{fortification.x}}x, {{fortification.y}}y</p>
-        </div>
-      </div>
     </div>
   </div>
 </div>
