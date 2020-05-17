@@ -52,14 +52,45 @@ export class CharacterComponent implements OnInit {
       if ( this.infos.length <= 0 ) {
         for (let key of Object.keys(Area.character)) {
           if (key === "race") {
-            this.infos.push(Translator.getMetaDataByKey(Area.character[key]).name_fr);
+            this.infos.push(
+              {
+                name_fr : Translator.getMetaDataByKey(Area.character[key]).name_fr,
+                desciprion_fr : 'race de votre personnage'
+              });
           }else if (key === "sexe") {
-            this.infos.push(Translator.translate(Area.character[key], 'fr', 'default'));
+            this.infos.push({
+              name_fr: Translator.translate(Area.character[key], 'fr', 'default'),
+              description_fr : ''
+            });
           }else if (key === "fortifications") {
-            this.infos.push(Translator.translate("fortification", 'fr', 'default'));
+            this.infos.push({
+              name_fr: Translator.translate("fortification", 'fr', 'default'),
+              description_fr : ''
+            });
             fortifications = true ;
-          }else if (key === "relics") {
-            this.infos.push(Translator.translate("relic", 'fr', 'default'));
+          }else if (key === "items") {
+            let relics = [] ;
+            for ( let item of Area.character['items'] ){
+              if ( item.key == "relic"){
+                relics.push(item);
+              }
+            }
+            if ( relics ){
+              let description = '';
+              for ( let relic of relics ){
+                let resource = Box.getResourceFromJson(relic);
+                if ( resource ){
+                  if ( description.length > 0 ){
+                    description += ', ';
+                  }
+                  description += `${Translator.translate(resource, 'fr', 'default')}: ${relic[resource]} `
+                }
+              }
+              this.infos.push( {
+                name_fr : `${relics.length} ${Translator.translate("relic", 'fr', 'default')}`,
+                description_fr : description
+              });
+            }
             reliques = true ;
           }
         }

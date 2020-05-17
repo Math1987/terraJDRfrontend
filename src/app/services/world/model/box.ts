@@ -90,6 +90,16 @@ export class Box{
     }
     return bool ;
   }
+  static getResourceFromJson(json){
+    let resource = null ;
+    for ( let key of Object.keys(json)){
+      if ( Box.isResource(key)){
+        resource = key ;
+        break ;
+      }
+    }
+    return resource ;
+  }
 
   static reset(){
     while ( Box.BOXES.length > 0 ){

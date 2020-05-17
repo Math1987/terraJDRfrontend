@@ -4,22 +4,18 @@
 
     <div class="col-8">
       <mat-card class="col-12 charaDescription">
-        <mat-card-title><span>{{getCharacter().name}}</span></mat-card-title>
+        <mat-card-title *ngIf="getCharacter()"><span>{{getCharacter().name}}</span></mat-card-title>
         <div class="row charaDescriptionInside">
 
-          <div class="col-4 row flex-column charaInfos charaDescriptionInside">
-            <img *ngIf="getCharacter()" class="charaImage" src = "/assets/images/cat.png">
+          <mat-card-content class="col-4 row flex-column charaInfos charaDescriptionInside">
+            <img *ngIf="getCharacter()" class="charaImage" src = "/assets/images/cat.png" >
             <div class ="btn btn-primary midleBlueColor" style="margin:5%">changer avatar</div>
             <div class ="btn btn-primary midleBlueColor" style="margin:5%">profil public</div>
-            <div *ngFor="let info of getInfos()">
-              <div class ="lightBlueButton">{{info}}</div>
-            </div>
-          </div>
+            <div *ngFor="let info of getInfos()" class ="lightBlueButton" [matTooltip]="info.description_fr" >{{info.name_fr}} </div>
+          </mat-card-content>
 
-          <div class="col-8">
-            <h4>histoire</h4>
-            <div textArea=""></div>
-          </div>
+          <app-character-details class="col-8">
+          </app-character-details>
 
         </div>
       </mat-card>
