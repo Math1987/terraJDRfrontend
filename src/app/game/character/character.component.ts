@@ -163,6 +163,9 @@ export class CharacterComponent implements OnInit {
   getSpellNom(key){
     return Translator.translate(key, 'fr', 'default');
   }
+  getSkillNameFr(key){
+    return Translator.translate(key, 'fr', 'skill');
+  }
   getSpells(){
     return this.spells ;
   }
