@@ -1,20 +1,35 @@
-<div class="row">
-  <div class="col-md-7 row h-auto d-inline-block">
-    <mat-card class="col-12">
-      <mat-card-title><span>Carte</span></mat-card-title>
+<div
+  gdColumns="repeat(12, 1fr)"
+  gdRows="auto"
+  gdAreas="map-dialog map-dialog map-dialog map-dialog map-dialog map-dialog map-dialog map-dialog ressources-area ressources-area ressources-area ressources-area"
+  gdGap="1rem"
+
+  gdColumns.lt-lg="1fr"
+  gdAreas.lt-lg="map-dialog | ressources-area"
+  gdRows.lt-lg="auto auto"
+>
+  <div class="dib" gdArea="map-dialog">
+    <div gdArea="map">
+      <mat-card class="col-12">
+        <mat-card-title><span>Carte</span></mat-card-title>
         <mat-card-content class="row">
           <canvas id="worldViewGame"></canvas>
         </mat-card-content>
-    </mat-card>
-    <br>
-    <app-message></app-message>
-  </div>
-  <div class="col-md-5 row">
-    <div class="container-fluid">
+      </mat-card>
+    </div>
 
-      <app-resources></app-resources>
-      <br>
-      <mat-card class="interactions">
+    <div class="mt-3" gdArea="dialog">
+      <app-message></app-message>
+    </div>
+  </div>
+
+    <div gdArea="ressources-area" class="dib">
+
+      <div>
+        <app-resources></app-resources>
+      </div>
+
+      <mat-card class="interactions mt-3">
 
         <mat-card-title><span>Informations CASE</span></mat-card-title>
 
@@ -31,7 +46,8 @@
             <p>Coordonnées {{caseFocused.getPosition().x}}/{{caseFocused.getPosition().y}}</p>
             <p>Coût déplacement {{getMoveCost(caseFocused.target.x,caseFocused.target.y)}}</p>
             <div *ngFor="let action of caseFocused.actions">
-              <div class="btn midleBlueColor" (click)="useInteraction(caseFocused, action)">{{action.getNom(caseFocused.user, caseFocused.target)}}</div>
+              <div class="btn midleBlueColor" (click)="useInteraction(caseFocused, action)">
+                {{action.getNom(caseFocused.user, caseFocused.target)}}</div>
             </div>
 
           </div>
@@ -39,40 +55,35 @@
 
             <div *ngFor="let interaction of interactionObjs" class="col-4">
 
-              <div *ngIf="interaction.draw()"
-                   class="text-center teamColor">
+              <div *ngIf="interaction.draw()" class="text-center teamColor">
                 <div [ngClass]="{
-                     'text-center': true,
-                     'selfColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'self',
-                     'neutralColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'neutral',
-                     'teamColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'ally',
-                     'enemyColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'enemy'
-                 }"
-                >
-                  <canvas *ngIf="!interaction.img_src"
-                    id="{{interaction.id}}"
-                          [ngClass]="{
-                     'canvasInteraction': true,
-                     'selfColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'self',
-                     'neutralCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'neutral',
-                     'allyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'ally',
-                     'ennemyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'enemy'
-                 }"
-                  ></canvas>
+                         'text-center': true,
+                         'selfColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'self',
+                         'neutralColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'neutral',
+                         'teamColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'ally',
+                         'enemyColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'enemy'
+                     }">
+                  <canvas *ngIf="!interaction.img_src" id="{{interaction.id}}" [ngClass]="{
+                         'canvasInteraction': true,
+                         'selfColor': interaction.getTypeOfInteractionWith(getCharacter()) == 'self',
+                         'neutralCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'neutral',
+                         'allyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'ally',
+                         'ennemyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'enemy'
+                     }"></canvas>
 
-                  <img *ngIf="interaction.img_src"
-                       [ngClass]="{
-                     'canvasInteraction': true,
-                     'neutralCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'neutral',
-                     'allyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'ally',
-                     'ennemyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'enemy'}"
-                       [src]="interaction.img_src">
+                  <img *ngIf="interaction.img_src" [ngClass]="{
+                         'canvasInteraction': true,
+                         'neutralCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'neutral',
+                         'allyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'ally',
+                         'ennemyCanvas': interaction.getTypeOfInteractionWith(getCharacter()) == 'enemy'}"
+                    [src]="interaction.img_src">
 
                   <h5>{{interaction.title()}}</h5>
                   <p *ngIf="interaction.target.life">{{interaction.target.life}}/{{interaction.target.life_max}}pv</p>
                   <div class="row flex-column">
                     <div *ngFor="let action of interaction.actions">
-                      <div class="btn midleBlueColor" (click)="useInteraction(interaction, action)">{{action.getNom(interaction.user, interaction.target)}}</div>
+                      <div class="btn midleBlueColor" (click)="useInteraction(interaction, action)">
+                        {{action.getNom(interaction.user, interaction.target)}}</div>
                     </div>
                   </div>
                 </div>
@@ -85,14 +96,6 @@
 
         </div>
       </mat-card>
-
-
     </div>
 
-
-  </div>
-
 </div>
-
-
-
