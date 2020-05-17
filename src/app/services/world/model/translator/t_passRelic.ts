@@ -9,7 +9,7 @@ export class T_passRelic extends Translator{
 
 
   readKey(){
-    return 'openChest' ;
+    return 'passRelic' ;
   }
   asMessage(user, json, language) {
 
