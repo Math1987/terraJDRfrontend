@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
 
       if ( EmailValidator.validate(this.formLogin.value.email) ){
         Account.login( this.formLogin.value.email, this.formLogin.value.password, function(res) {
-          console.log(res);
           if ( res !== null ){
             self.router.navigate(['/u/jeu']);
           }else{
