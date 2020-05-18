@@ -23,6 +23,7 @@ import {
   MatSelectModule, MatListModule,
   MatGridListModule
 } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { GameComponent } from './game/game.component';
 import { NavComponent } from './nav/nav.component';
@@ -109,6 +110,7 @@ const MATERIAL = [
     HttpClientModule,
     FormsModule,
     MATERIAL,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -2,10 +2,11 @@ import {Box} from '../../model/box';
 import {Action} from '../actions/action';
 import {Translator} from '../../model/translator/translator';
 import {View} from '../../view/view';
-import {Input} from '@angular/core';
+import { Input, Directive } from '@angular/core';
 import {A_bewitch} from '../actions/a_bewitch';
 import {Area} from '../../area';
 
+@Directive()
 export class Interaction{
 
   static ID_BUILDER = 0 ;

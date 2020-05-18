@@ -1,53 +1,56 @@
-<mat-toolbar color="primary">
-  <ul class="nav-left">
-    <li>
-      <a mat-icon-button routerLink="/u/jeu" matTooltip="Mondes">
-        <mat-icon>home</mat-icon>
-      </a>
-    </li>
-    <li *ngIf="isAdmin()">
-      <a mat-icon-button routerLink="/u/admin" matTooltip="Admin">
-        <mat-icon>tune</mat-icon>
-      </a>
-    </li>
-  </ul>
+<div class="skeleton" fxLayout="column">
 
-  <ul class="nav" *ngIf="getCharacter()" >
+  <mat-toolbar color="accent">
+    <ul class="nav-left">
+      <li>
+        <a mat-icon-button routerLink="/u/jeu" matTooltip="Mondes">
+          <mat-icon>home</mat-icon>
+        </a>
+      </li>
+      <li *ngIf="isAdmin()">
+        <a mat-icon-button routerLink="/u/admin" matTooltip="Admin">
+          <mat-icon>tune</mat-icon>
+        </a>
+      </li>
+    </ul>
 
-    <li >
-      <a [routerLink]="['/','u','jeu','carte']">
-        <mat-button-toggle (click)="gameNav = 'carte'" [class.active]="gameNav === 'carte'">CARTE</mat-button-toggle>
-      </a>
-    </li>
-    <li >
-      <a  [routerLink]="['/','u','jeu','perso']">
-        <mat-button-toggle (click)="gameNav = 'perso'" [class.active]="gameNav === 'perso'" >PERSO</mat-button-toggle>
-      </a>
-    </li>
-    <li >
-      <a href="https://terrajdr.forumactif.com"  target="_blank">
-        <mat-button-toggle (click)="gameNav = 'forum'" [class.active]="gameNav === 'forum'">FORUM</mat-button-toggle>
-      </a>
-    </li>
-    <li >
-      <a routerLink="/u/jeu/classement">
-        <mat-button-toggle (click)="gameNav = 'classement'" [class.active]="gameNav === 'classement'">CLASSEMENT</mat-button-toggle>
-      </a>
-    </li>
-  </ul>
+    <ul class="nav" *ngIf="getCharacter()" >
 
-  <div>
-    <span class="user">{{getUserPseudo()}} </span>
-    <button mat-icon-button (click)="deconnexion()" color="warn" matTooltip="Déconnexion">
-      <mat-icon>clear</mat-icon>
-    </button>
+      <li >
+        <a [routerLink]="['/','u','jeu','carte']">
+          <mat-button-toggle (click)="gameNav = 'carte'" [class.active]="gameNav === 'carte'">CARTE</mat-button-toggle>
+        </a>
+      </li>
+      <li >
+        <a  [routerLink]="['/','u','jeu','perso']">
+          <mat-button-toggle (click)="gameNav = 'perso'" [class.active]="gameNav === 'perso'" >PERSO</mat-button-toggle>
+        </a>
+      </li>
+      <li >
+        <a href="https://terrajdr.forumactif.com"  target="_blank">
+          <mat-button-toggle (click)="gameNav = 'forum'" [class.active]="gameNav === 'forum'">FORUM</mat-button-toggle>
+        </a>
+      </li>
+      <li >
+        <a routerLink="/u/jeu/classement">
+          <mat-button-toggle (click)="gameNav = 'classement'" [class.active]="gameNav === 'classement'">CLASSEMENT</mat-button-toggle>
+        </a>
+      </li>
+    </ul>
+
+    <div>
+      <span class="user">{{getUserPseudo()}} </span>
+      <button mat-icon-button (click)="deconnexion()" color="warn" matTooltip="Déconnexion">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div class="main-content" fxFlex="1 1 0%">
+    <router-outlet></router-outlet>
   </div>
-</mat-toolbar>
 
-<div class="main-content">
-  <router-outlet></router-outlet>
+  <mat-toolbar color="primary" class="footer">
+    <span class="mat-small">v{{getVersion()}}</span>
+  </mat-toolbar>
 </div>
-
-<mat-toolbar color="primary" class="footer">
-  <span class="mat-small">v{{getVersion()}}</span>
-</mat-toolbar>
